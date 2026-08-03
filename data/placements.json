@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "college": "RV Institute of Technology and Management",
+    "season": "Placement Season 2025–26",
+    "lastUpdated": "2026-08-04T00:20:00+05:30",
+    "notice": "Initial interface preview. Dates, packages and eligibility must be verified against official placement-cell communication before publication."
+  },
+  "announcements": [
+    {
+      "id": "initial-launch",
+      "title": "Placement portal is being prepared",
+      "message": "The interface is live-ready. Official company records will replace the preview entries as they are supplied.",
+      "date": "2026-08-04",
+      "type": "info"
+    }
+  ],
+  "companies": [
+    {
+      "slug": "aereo",
+      "name": "Aereo",
+      "shortName": "AE",
+      "industry": "Geospatial and drone technology",
+      "status": "draft",
+      "priority": "high",
+      "roles": ["Frontend Software Development Intern", "Product Management Intern"],
+      "package": { "ctc": null, "stipend": null, "label": "Awaiting official details" },
+      "location": "To be confirmed",
+      "workMode": "To be confirmed",
+      "eligibility": ["To be confirmed"],
+      "deadline": null,
+      "applicationUrl": null,
+      "jdUrl": null,
+      "summary": "Company record prepared from the placement tracker. Official dates, compensation, eligibility and process details are pending verification.",
+      "skills": ["JavaScript", "React", "Product thinking"],
+      "selectionProcess": ["To be confirmed"],
+      "timeline": [
+        { "stage": "Company announced", "date": "TBA", "state": "current" },
+        { "stage": "Registration closes", "date": "TBA", "state": "upcoming" },
+        { "stage": "Assessment / shortlist", "date": "TBA", "state": "upcoming" },
+        { "stage": "Interviews and result", "date": "TBA", "state": "upcoming" }
+      ],
+      "notes": ["Preview record. Confirm every field before treating it as an official notice."]
+    },
+    {
+      "slug": "teal-india",
+      "name": "TEAL India",
+      "shortName": "TI",
+      "industry": "Software and data engineering",
+      "status": "draft",
+      "priority": "high",
+      "roles": ["Full Stack Software Engineer", "Data Engineer", "AI/ML Engineer"],
+      "package": { "ctc": null, "stipend": null, "label": "Awaiting official details" },
+      "location": "To be confirmed",
+      "workMode": "To be confirmed",
+      "eligibility": ["To be confirmed"],
+      "deadline": null,
+      "applicationUrl": null,
+      "jdUrl": null,
+      "summary": "Multi-role company entry ready for the official job descriptions, registration deadline and selection schedule.",
+      "skills": ["Full-stack development", "Data engineering", "Machine learning"],
+      "selectionProcess": ["To be confirmed"],
+      "timeline": [
+        { "stage": "Role details received", "date": "TBA", "state": "current" },
+        { "stage": "Registration closes", "date": "TBA", "state": "upcoming" },
+        { "stage": "Technical rounds", "date": "TBA", "state": "upcoming" },
+        { "stage": "Final result", "date": "TBA", "state": "upcoming" }
+      ],
+      "notes": ["Role-specific eligibility can be stored separately when the JDs arrive."]
+    },
+    {
+      "slug": "rayvector",
+      "name": "Rayvector",
+      "shortName": "RV",
+      "industry": "Deep-tech engineering",
+      "status": "draft",
+      "priority": "medium",
+      "roles": ["C++ Software Developer", "AI/ML Engineer", "FPGA Engineer"],
+      "package": { "ctc": null, "stipend": null, "label": "Awaiting official details" },
+      "location": "To be confirmed",
+      "workMode": "To be confirmed",
+      "eligibility": ["To be confirmed"],
+      "deadline": null,
+      "applicationUrl": null,
+      "jdUrl": null,
+      "summary": "Technical role families are captured. The portal can publish separate preparation tracks and resumes for each role.",
+      "skills": ["C++", "Algorithms", "Computer architecture"],
+      "selectionProcess": ["To be confirmed"],
+      "timeline": [
+        { "stage": "Profiles identified", "date": "TBA", "state": "current" },
+        { "stage": "Registration", "date": "TBA", "state": "upcoming" },
+        { "stage": "Technical evaluation", "date": "TBA", "state": "upcoming" },
+        { "stage": "Offer communication", "date": "TBA", "state": "upcoming" }
+      ],
+      "notes": ["Keep role-level status distinct when official shortlists are provided."]
+    },
+    {
+      "slug": "opentext",
+      "name": "OpenText",
+      "shortName": "OT",
+      "industry": "Enterprise software",
+      "status": "draft",
+      "priority": "medium",
+      "roles": ["AI/ML Internship"],
+      "package": { "ctc": null, "stipend": null, "label": "Awaiting official details" },
+      "location": "To be confirmed",
+      "workMode": "To be confirmed",
+      "eligibility": ["To be confirmed"],
+      "deadline": null,
+      "applicationUrl": null,
+      "jdUrl": null,
+      "summary": "AI/ML internship record prepared for the official JD, assessment pattern and interview timeline.",
+      "skills": ["Machine learning", "Python", "Data structures"],
+      "selectionProcess": ["To be confirmed"],
+      "timeline": [
+        { "stage": "Opportunity received", "date": "TBA", "state": "current" },
+        { "stage": "Application deadline", "date": "TBA", "state": "upcoming" },
+        { "stage": "Assessment", "date": "TBA", "state": "upcoming" },
+        { "stage": "Interviews and result", "date": "TBA", "state": "upcoming" }
+      ],
+      "notes": ["Attach the official PDF or Drive link in jdUrl when available."]
+    },
+    {
+      "slug": "surewaves",
+      "name": "SureWaves",
+      "shortName": "SW",
+      "industry": "Media technology",
+      "status": "draft",
+      "priority": "medium",
+      "roles": ["DevOps", "Quality Assurance"],
+      "package": { "ctc": null, "stipend": null, "label": "Awaiting official details" },
+      "location": "To be confirmed",
+      "workMode": "To be confirmed",
+      "eligibility": ["To be confirmed"],
+      "deadline": null,
+      "applicationUrl": null,
+      "jdUrl": null,
+      "summary": "DevOps and QA role placeholders are ready for official requirements and round-wise updates.",
+      "skills": ["Linux", "CI/CD", "Testing fundamentals"],
+      "selectionProcess": ["To be confirmed"],
+      "timeline": [
+        { "stage": "Roles announced", "date": "TBA", "state": "current" },
+        { "stage": "Registration", "date": "TBA", "state": "upcoming" },
+        { "stage": "Technical process", "date": "TBA", "state": "upcoming" },
+        { "stage": "Final result", "date": "TBA", "state": "upcoming" }
+      ],
+      "notes": ["Preparation resources can be added as links in a future content update."]
+    },
+    {
+      "slug": "flipkart",
+      "name": "Flipkart",
+      "shortName": "FK",
+      "industry": "E-commerce and technology",
+      "status": "draft",
+      "priority": "high",
+      "roles": ["Role to be confirmed"],
+      "package": { "ctc": null, "stipend": null, "label": "Awaiting official details" },
+      "location": "To be confirmed",
+      "workMode": "To be confirmed",
+      "eligibility": ["To be confirmed"],
+      "deadline": null,
+      "applicationUrl": null,
+      "jdUrl": null,
+      "summary": "Registration and application details can be published here once the official campus communication is supplied.",
+      "skills": ["Data structures", "Problem solving", "Core computer science"],
+      "selectionProcess": ["To be confirmed"],
+      "timeline": [
+        { "stage": "Registration notice", "date": "TBA", "state": "current" },
+        { "stage": "Registration closes", "date": "TBA", "state": "upcoming" },
+        { "stage": "Online assessment", "date": "TBA", "state": "upcoming" },
+        { "stage": "Interviews and result", "date": "TBA", "state": "upcoming" }
+      ],
+      "notes": ["Do not publish application links until verified by the placement cell."]
+    }
+  ],
+  "selectedStudents": []
+}
