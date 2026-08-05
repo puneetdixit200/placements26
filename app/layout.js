@@ -1,22 +1,16 @@
-import { Cinzel, Fira_Code, Spectral } from "next/font/google";
+import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./sheet.css";
 
-const cinzel = Cinzel({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-cinzel",
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
-const spectral = Spectral({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-spectral",
-  display: "swap",
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-fira-code",
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
@@ -28,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${cinzel.variable} ${spectral.variable} ${firaCode.variable}`}>
+      <body className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
         {children}
       </body>
     </html>
