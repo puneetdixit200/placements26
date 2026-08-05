@@ -68,6 +68,24 @@ function SortIcon() {
   );
 }
 
+function CalendarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 3v4M19 3v4" />
+      <rect x="3" y="5" width="18" height="16" />
+      <path d="M3 10h18M8 14h2M14 14h2M8 18h2M14 18h2" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </svg>
+  );
+}
+
 function formatUpdated(value) {
   return new Date(value).toLocaleString("en-IN", {
     day: "2-digit",
@@ -119,6 +137,7 @@ function parseDateText(value) {
   const monthPattern = /(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})/g;
 
   for (const match of text.matchAll(rangePattern)) {
+    dates.push(new Date(Number(match[4]), MONTHS[match[3]], Number(match[1]), 12).getTime());
     dates.push(new Date(Number(match[4]), MONTHS[match[3]], Number(match[2]), 12).getTime());
   }
 
@@ -132,7 +151,7 @@ function parseDateText(value) {
     }
   }
 
-  return dates.filter(Number.isFinite);
+  return Array.from(new Set(dates.filter(Number.isFinite))).sort((a, b) => a - b);
 }
 
 function companyDates(company) {
@@ -162,6 +181,74 @@ function compareLatest(a, b, referenceTime) {
 
 function hasPpo(company) {
   return ppoText(company) !== "Not mentioned" && ppoText(company) !== "No";
+}
+
+function eventStatus(timestamps, referenceTime) {
+  if (!timestamps.length) return "unscheduled";
+
+  const reference = new Date(referenceTime);
+  const startOfToday = new Date(reference.getFullYear(), reference.getMonth(), reference.getDate()).getTime();
+  const endOfToday = startOfToday + 24 * 60 * 60 * 1000 - 1;
+  const first = timestamps[0];
+  const last = timestamps[timestamps.length - 1];
+
+  if (first <= endOfToday && last >= startOfToday) return "today";
+  if (first > endOfToday) return "upcoming";
+  return "past";
+}
+
+function buildCalendarEvents(companies, referenceTime) {
+  const events = [];
+
+  for (const company of companies) {
+    const entries = [];
+
+    if (company.deadline) {
+      entries.push({ stage: "Application deadline", date: company.deadline });
+    }
+
+    for (const item of company.timeline || []) {
+      const date = String(item.date || "").trim();
+      if (!date || /^(tba|to be announced|not announced)$/i.test(date)) continue;
+      if (!entries.some((entry) => entry.stage === item.stage && entry.date === date)) {
+        entries.push({ stage: item.stage, date });
+      }
+    }
+
+    entries.forEach((entry, index) => {
+      const timestamps = parseDateText(entry.date);
+      events.push({
+        id: `${company.slug}-${entry.stage}-${index}`,
+        company,
+        stage: entry.stage,
+        date: entry.date,
+        timestamps,
+        firstTimestamp: timestamps[0] || 0,
+        lastTimestamp: timestamps[timestamps.length - 1] || 0,
+        status: eventStatus(timestamps, referenceTime),
+      });
+    });
+  }
+
+  const rank = { today: 0, upcoming: 1, past: 2, unscheduled: 3 };
+
+  return events.sort((a, b) => {
+    if (rank[a.status] !== rank[b.status]) return rank[a.status] - rank[b.status];
+    if (a.status === "past") return b.lastTimestamp - a.lastTimestamp || a.company.name.localeCompare(b.company.name);
+    if (a.status === "unscheduled") return a.company.name.localeCompare(b.company.name);
+    return a.firstTimestamp - b.firstTimestamp || a.company.name.localeCompare(b.company.name);
+  });
+}
+
+function formatEventDate(event) {
+  if (!event.firstTimestamp) return { day: "?", month: "DATE", year: "TBD" };
+
+  const date = new Date(event.firstTimestamp);
+  return {
+    day: date.toLocaleDateString("en-IN", { day: "2-digit", timeZone: "Asia/Kolkata" }),
+    month: date.toLocaleDateString("en-IN", { month: "short", timeZone: "Asia/Kolkata" }).toUpperCase(),
+    year: date.toLocaleDateString("en-IN", { year: "numeric", timeZone: "Asia/Kolkata" }),
+  };
 }
 
 function RequirementCell({ company }) {
@@ -259,6 +346,94 @@ function CompanyCell({ company }) {
   );
 }
 
+function CalendarModal({ events, filter, onFilterChange, onClose }) {
+  const visibleEvents = events.filter((event) => {
+    if (filter === "all") return true;
+    if (filter === "upcoming") return event.status === "today" || event.status === "upcoming";
+    return event.status === filter;
+  });
+
+  const datedCompanies = new Set(events.map((event) => event.company.slug)).size;
+
+  return (
+    <div className="calendar-overlay" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <section className="calendar-panel" role="dialog" aria-modal="true" aria-labelledby="calendar-title">
+        <header className="calendar-header">
+          <div>
+            <span className="calendar-kicker">Placement calendar</span>
+            <h2 id="calendar-title">All dates in one place.</h2>
+            <p>{events.length} schedule items across {datedCompanies} companies.</p>
+          </div>
+          <button className="calendar-close" type="button" onClick={onClose} aria-label="Close calendar">
+            <CloseIcon />
+          </button>
+        </header>
+
+        <nav className="calendar-filters" aria-label="Calendar filters">
+          {[
+            ["all", "All"],
+            ["upcoming", "Upcoming"],
+            ["past", "Past"],
+            ["unscheduled", "Date pending"],
+          ].map(([value, label]) => (
+            <button
+              type="button"
+              className={filter === value ? "active" : ""}
+              onClick={() => onFilterChange(value)}
+              key={value}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="calendar-list">
+          {visibleEvents.map((event) => {
+            const date = formatEventDate(event);
+            const website = event.company.companyUrl || COMPANY_URLS[event.company.slug];
+
+            return (
+              <article className={`calendar-event status-${event.status}`} key={event.id}>
+                <div className="calendar-date-block" aria-hidden="true">
+                  <strong>{date.day}</strong>
+                  <span>{date.month}</span>
+                  <small>{date.year}</small>
+                </div>
+                <div className="calendar-event-body">
+                  <div className="calendar-event-topline">
+                    <span className="calendar-status">{event.status === "unscheduled" ? "DATE PENDING" : event.status}</span>
+                    <span className="calendar-company-code">{event.company.shortName}</span>
+                  </div>
+                  <h3>{event.company.name}</h3>
+                  <strong className="calendar-stage">{event.stage}</strong>
+                  <p>{event.date}</p>
+                  <div className="calendar-event-actions">
+                    {website && (
+                      <a href={website} target="_blank" rel="noreferrer">Company <ExternalIcon /></a>
+                    )}
+                    {event.company.applicationUrl && (
+                      <a className="calendar-apply" href={event.company.applicationUrl} target="_blank" rel="noreferrer">
+                        Apply / Form <ExternalIcon />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+
+          {!visibleEvents.length && (
+            <div className="calendar-empty">
+              <strong>No dates in this group.</strong>
+              <span>The calendar has achieved a rare moment of peace.</span>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 export default function Home() {
   const [data, setData] = useState(null);
   const [loadError, setLoadError] = useState("");
@@ -266,6 +441,8 @@ export default function Home() {
   const [domain, setDomain] = useState("all");
   const [linkFilter, setLinkFilter] = useState("all");
   const [sortBy, setSortBy] = useState("latest");
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarFilter, setCalendarFilter] = useState("all");
 
   useEffect(() => {
     fetch("/api/placements")
@@ -277,12 +454,29 @@ export default function Home() {
       .catch((error) => setLoadError(error.message));
   }, []);
 
+  useEffect(() => {
+    if (!calendarOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setCalendarOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [calendarOpen]);
+
   const sourceCompanies = data?.companies || [];
   const referenceTime = data ? new Date(data.meta.lastUpdated).getTime() : 0;
 
   const domains = useMemo(
     () => ["all", ...Array.from(new Set(sourceCompanies.map((company) => company.industry).filter(Boolean))).sort()],
-    [data],
+    [sourceCompanies],
   );
 
   const companies = useMemo(() => {
@@ -319,13 +513,18 @@ export default function Home() {
       if (sortBy === "ppo") return ppoValue(b) - ppoValue(a) || a.name.localeCompare(b.name);
       return compareLatest(a, b, referenceTime);
     });
-  }, [data, domain, linkFilter, query, referenceTime, sortBy]);
+  }, [domain, linkFilter, query, referenceTime, sortBy, sourceCompanies]);
+
+  const calendarEvents = useMemo(
+    () => buildCalendarEvents(sourceCompanies, referenceTime),
+    [referenceTime, sourceCompanies],
+  );
 
   const stats = useMemo(() => ({
     forms: sourceCompanies.filter((company) => company.applicationUrl).length,
     jds: sourceCompanies.filter((company) => company.jdUrl || company.jdLinks?.length).length,
     ppos: sourceCompanies.filter(hasPpo).length,
-  }), [data]);
+  }), [sourceCompanies]);
 
   if (!data) {
     return (
@@ -359,10 +558,10 @@ export default function Home() {
 
       <section className="workspace">
         <section className="summary-strip" aria-label="Placement tracker summary">
-          <div><span>Total companies</span><strong>{data.companies.length}</strong></div>
+          <div><span>Total companies</span><strong>{sourceCompanies.length}</strong></div>
           <div><span>Application links</span><strong>{stats.forms}</strong></div>
           <div><span>JD links</span><strong>{stats.jds}</strong></div>
-          <div><span>PPO / full-time</span><strong>{stats.ppos}</strong></div>
+          <div><span>Calendar items</span><strong>{calendarEvents.length}</strong></div>
           <div className="announcement-cell">
             <span>Latest sync</span>
             <strong>{data.announcements[0]?.title || "Placement updates"}</strong>
@@ -407,13 +606,19 @@ export default function Home() {
               <option value="ppo">Highest PPO / package</option>
             </select>
           </label>
+
+          <button className="calendar-button" type="button" onClick={() => setCalendarOpen(true)}>
+            <CalendarIcon />
+            <span>Calendar</span>
+            <strong>{calendarEvents.length}</strong>
+          </button>
         </div>
 
         <section className="table-card" aria-label="Placement company information">
           <div className="table-titlebar">
             <div>
               <strong>Company Information</strong>
-              <span>{companies.length} of {data.companies.length} companies shown</span>
+              <span>{companies.length} of {sourceCompanies.length} companies shown</span>
             </div>
             <small>Company names open official websites. Apply / Form opens the supplied registration link.</small>
           </div>
@@ -461,6 +666,15 @@ export default function Home() {
 
         <p className="verification-note">{data.meta.notice}</p>
       </section>
+
+      {calendarOpen && (
+        <CalendarModal
+          events={calendarEvents}
+          filter={calendarFilter}
+          onFilterChange={setCalendarFilter}
+          onClose={() => setCalendarOpen(false)}
+        />
+      )}
     </main>
   );
 }
