@@ -29,6 +29,7 @@ function formatUpdated(value) {
     year: "numeric",
     hour: "numeric",
     minute: "2-digit",
+    timeZone: "Asia/Kolkata",
   });
 }
 
@@ -73,6 +74,26 @@ function RequirementCell({ company }) {
       {skills.length > 0 && (
         <div><strong>Skills</strong><span>{skills.join(", ")}</span></div>
       )}
+    </div>
+  );
+}
+
+function JdCell({ company }) {
+  const links = company.jdLinks?.length
+    ? company.jdLinks
+    : company.jdUrl
+      ? [{ label: "Open JD", url: company.jdUrl }]
+      : [];
+
+  if (!links.length) return <span className="empty-value">Not available</span>;
+
+  return (
+    <div className="jd-links">
+      {links.map((link) => (
+        <a className="jd-link" href={link.url} target="_blank" rel="noreferrer" key={`${company.slug}-${link.label}`}>
+          {link.label || "Open JD"} <ExternalIcon />
+        </a>
+      ))}
     </div>
   );
 }
@@ -217,13 +238,7 @@ export default function Home() {
                     <td className="money-cell">{ppoText(company)}</td>
                     <td className="description-cell">{descriptionText(company)}</td>
                     <td><RequirementCell company={company} /></td>
-                    <td>
-                      {company.jdUrl ? (
-                        <a className="jd-link" href={company.jdUrl} target="_blank" rel="noreferrer">
-                          Open JD <ExternalIcon />
-                        </a>
-                      ) : <span className="empty-value">Not available</span>}
-                    </td>
+                    <td><JdCell company={company} /></td>
                     <td><RelatedDates company={company} /></td>
                   </tr>
                 ))}
