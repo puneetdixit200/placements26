@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./sheet.css";
 
 export const metadata = {
   title: "Placements 26 | RVITM",
