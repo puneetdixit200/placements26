@@ -181,7 +181,7 @@ svg {
 .placement-table th:nth-child(4), .placement-table td:nth-child(4) { width: 135px; }
 .placement-table th:nth-child(5), .placement-table td:nth-child(5) { width: 300px; }
 .placement-table th:nth-child(6), .placement-table td:nth-child(6) { width: 360px; }
-.placement-table th:nth-child(7), .placement-table td:nth-child(7) { width: 115px; }
+.placement-table th:nth-child(7), .placement-table td:nth-child(7) { width: 150px; }
 .placement-table th:nth-child(8), .placement-table td:nth-child(8) { width: 265px; }
 .company-column {
   position: sticky;
@@ -224,9 +224,11 @@ th.company-column { z-index: 12; background: #d9dddf !important; }
 .requirements-cell div { display: grid; gap: 2px; }
 .requirements-cell strong { color: #365443; font-size: .62rem; text-transform: uppercase; letter-spacing: .04em; }
 .requirements-cell span { color: #4f5853; line-height: 1.45; }
+.jd-links { display: grid; gap: 6px; align-content: start; }
 .jd-link {
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5px;
   border-radius: 4px;
   padding: 7px 9px;
@@ -235,7 +237,6 @@ th.company-column { z-index: 12; background: #d9dddf !important; }
   font-size: .66rem;
   font-weight: 800;
   text-decoration: none;
-  white-space: nowrap;
 }
 .jd-link:hover { background: var(--green-dark); }
 .dates-cell { display: grid; gap: 7px; }
