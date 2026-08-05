@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import data from "../data/placements.json";
+import { useEffect, useMemo, useState } from "react";
 
 const COMPANY_URLS = {
   aereo: "https://aereo.io/",
@@ -261,21 +260,35 @@ function CompanyCell({ company }) {
 }
 
 export default function Home() {
+  const [data, setData] = useState(null);
+  const [loadError, setLoadError] = useState("");
   const [query, setQuery] = useState("");
   const [domain, setDomain] = useState("all");
   const [linkFilter, setLinkFilter] = useState("all");
   const [sortBy, setSortBy] = useState("latest");
-  const referenceTime = new Date(data.meta.lastUpdated).getTime();
+
+  useEffect(() => {
+    fetch("/api/placements")
+      .then((response) => {
+        if (!response.ok) throw new Error(`Placement API returned ${response.status}`);
+        return response.json();
+      })
+      .then(setData)
+      .catch((error) => setLoadError(error.message));
+  }, []);
+
+  const sourceCompanies = data?.companies || [];
+  const referenceTime = data ? new Date(data.meta.lastUpdated).getTime() : 0;
 
   const domains = useMemo(
-    () => ["all", ...Array.from(new Set(data.companies.map((company) => company.industry).filter(Boolean))).sort()],
-    [],
+    () => ["all", ...Array.from(new Set(sourceCompanies.map((company) => company.industry).filter(Boolean))).sort()],
+    [data],
   );
 
   const companies = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    const filtered = data.companies.filter((company) => {
+    const filtered = sourceCompanies.filter((company) => {
       const searchable = [
         company.name,
         company.industry,
@@ -306,13 +319,27 @@ export default function Home() {
       if (sortBy === "ppo") return ppoValue(b) - ppoValue(a) || a.name.localeCompare(b.name);
       return compareLatest(a, b, referenceTime);
     });
-  }, [domain, linkFilter, query, referenceTime, sortBy]);
+  }, [data, domain, linkFilter, query, referenceTime, sortBy]);
 
   const stats = useMemo(() => ({
-    forms: data.companies.filter((company) => company.applicationUrl).length,
-    jds: data.companies.filter((company) => company.jdUrl || company.jdLinks?.length).length,
-    ppos: data.companies.filter(hasPpo).length,
-  }), []);
+    forms: sourceCompanies.filter((company) => company.applicationUrl).length,
+    jds: sourceCompanies.filter((company) => company.jdUrl || company.jdLinks?.length).length,
+    ppos: sourceCompanies.filter(hasPpo).length,
+  }), [data]);
+
+  if (!data) {
+    return (
+      <main className="loading-screen">
+        <div className="loading-card">
+          <span className="logo-box">P26</span>
+          <div>
+            <strong>{loadError ? "Unable to load placement data" : "Loading placement tracker"}</strong>
+            <p>{loadError || "Fetching the latest company records…"}</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main>
