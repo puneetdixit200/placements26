@@ -1,163 +1,345 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import data from "../data/placements.json";
 
 const statusNames = {
-  draft: "Awaiting verification",
+  draft: "Awaiting update",
   upcoming: "Upcoming",
   active: "Open now",
   closed: "Registration closed",
-  completed: "Process complete",
+  completed: "Completed",
 };
 
-const filters = [
-  ["all", "All companies"],
+const statusFilters = [
+  ["all", "All"],
   ["active", "Open now"],
   ["upcoming", "Upcoming"],
   ["draft", "Awaiting update"],
+  ["closed", "Closed"],
   ["completed", "Completed"],
 ];
 
-const Arrow = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
-);
-
-const Search = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" /></svg>
-);
-
-function Status({ value }) {
-  return <span className={`status status-${value}`}><i />{statusNames[value]}</span>;
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-4-4" />
+    </svg>
+  );
 }
 
-function CompanyCard({ company }) {
+function Chevron({ open = false }) {
   return (
-    <article className="company-card">
-      <div className="company-head">
-        <div className="identity">
-          <span className="logo">{company.shortName}</span>
-          <div><h3>{company.name}</h3><p>{company.industry}</p></div>
+    <svg className={open ? "chevron open" : "chevron"} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m8 10 4 4 4-4" />
+    </svg>
+  );
+}
+
+function ExternalIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M14 5h5v5" />
+      <path d="m10 14 9-9" />
+      <path d="M19 13v6H5V5h6" />
+    </svg>
+  );
+}
+
+function StatusCell({ value }) {
+  return <span className={`status status-${value}`}><i />{statusNames[value] || value}</span>;
+}
+
+function packageText(company) {
+  return company.package.ctc || company.package.stipend || company.package.label || "TBA";
+}
+
+function currentStage(company) {
+  return company.timeline.find((item) => item.state === "current") || company.timeline[0] || { stage: "TBA", date: "TBA" };
+}
+
+function formatUpdated(value) {
+  return new Date(value).toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+function DetailRow({ company }) {
+  return (
+    <tr className="detail-row">
+      <td colSpan="11">
+        <div className="detail-panel">
+          <div className="detail-summary">
+            <span className="company-mark large">{company.shortName}</span>
+            <div>
+              <span className="cell-label">Company brief</span>
+              <h2>{company.name}</h2>
+              <p>{company.summary}</p>
+            </div>
+          </div>
+
+          <div className="detail-grid">
+            <section>
+              <span className="cell-label">Industry</span>
+              <strong>{company.industry}</strong>
+            </section>
+            <section>
+              <span className="cell-label">Work mode</span>
+              <strong>{company.workMode}</strong>
+            </section>
+            <section>
+              <span className="cell-label">Priority</span>
+              <strong className={`priority priority-${company.priority}`}>{company.priority}</strong>
+            </section>
+            <section>
+              <span className="cell-label">Eligibility</span>
+              <strong>{company.eligibility.join(", ")}</strong>
+            </section>
+          </div>
+
+          <div className="detail-columns">
+            <section>
+              <h3>Skills to prepare</h3>
+              <div className="tags">{company.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+            </section>
+            <section>
+              <h3>Selection process</h3>
+              <ol>{company.selectionProcess.map((step) => <li key={step}>{step}</li>)}</ol>
+            </section>
+            <section className="timeline-block">
+              <h3>Timeline</h3>
+              <div className="timeline-list">
+                {company.timeline.map((item, index) => (
+                  <div className={`timeline-item ${item.state}`} key={`${item.stage}-${index}`}>
+                    <i>{index + 1}</i>
+                    <div><strong>{item.stage}</strong><span>{item.date}</span></div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <div className="detail-footer">
+            <p><strong>Note:</strong> {company.notes.join(" ")}</p>
+            <div className="detail-links">
+              {company.applicationUrl ? (
+                <a href={company.applicationUrl} target="_blank" rel="noreferrer">Application <ExternalIcon /></a>
+              ) : <span>Application link pending</span>}
+              {company.jdUrl ? (
+                <a href={company.jdUrl} target="_blank" rel="noreferrer">Official JD <ExternalIcon /></a>
+              ) : <span>Official JD pending</span>}
+            </div>
+          </div>
         </div>
-        <Status value={company.status} />
+      </td>
+    </tr>
+  );
+}
+
+function CompaniesSheet({ companies, expanded, onToggle }) {
+  return (
+    <div className="sheet-scroll">
+      <table className="placement-table">
+        <thead>
+          <tr>
+            <th className="row-number">#</th>
+            <th className="company-column">Company</th>
+            <th>Role(s)</th>
+            <th>Status</th>
+            <th>Package / Stipend</th>
+            <th>Deadline</th>
+            <th>Location</th>
+            <th>Eligibility</th>
+            <th>Current stage</th>
+            <th>Documents</th>
+            <th aria-label="Expand details" />
+          </tr>
+        </thead>
+        <tbody>
+          {companies.map((company, index) => {
+            const stage = currentStage(company);
+            const isOpen = expanded === company.slug;
+            return (
+              <Fragment key={company.slug}>
+                <tr className={isOpen ? "data-row expanded" : "data-row"}>
+                  <td className="row-number">{String(index + 1).padStart(2, "0")}</td>
+                  <td className="company-column">
+                    <div className="company-cell">
+                      <span className="company-mark">{company.shortName}</span>
+                      <div><strong>{company.name}</strong><small>{company.industry}</small></div>
+                    </div>
+                  </td>
+                  <td><div className="role-list">{company.roles.map((role) => <span key={role}>{role}</span>)}</div></td>
+                  <td><StatusCell value={company.status} /></td>
+                  <td className="strong-cell">{packageText(company)}</td>
+                  <td><span className={company.deadline ? "date-cell" : "muted-cell"}>{company.deadline || "TBA"}</span></td>
+                  <td>{company.location}</td>
+                  <td><span className="truncate-cell" title={company.eligibility.join(", ")}>{company.eligibility.join(", ")}</span></td>
+                  <td><div className="stage-cell"><strong>{stage.stage}</strong><small>{stage.date}</small></div></td>
+                  <td>
+                    <div className="document-cell">
+                      {company.jdUrl ? <a href={company.jdUrl} target="_blank" rel="noreferrer">JD</a> : <span>JD</span>}
+                      {company.applicationUrl ? <a href={company.applicationUrl} target="_blank" rel="noreferrer">Apply</a> : <span>Apply</span>}
+                    </div>
+                  </td>
+                  <td className="expand-cell">
+                    <button onClick={() => onToggle(company.slug)} aria-expanded={isOpen} aria-label={`${isOpen ? "Close" : "Open"} ${company.name} details`}>
+                      <Chevron open={isOpen} />
+                    </button>
+                  </td>
+                </tr>
+                {isOpen && <DetailRow company={company} />}
+              </Fragment>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function SelectedSheet() {
+  const students = data.selectedStudents.filter((student) => student.verified);
+
+  if (!students.length) {
+    return (
+      <div className="empty-sheet">
+        <span>0</span>
+        <div><strong>No verified selections published yet</strong><p>Student details and resumes appear only after the result and sharing permission are confirmed.</p></div>
       </div>
+    );
+  }
 
-      <p className="summary">{company.summary}</p>
-      <div className="tags">{company.roles.map((role) => <span key={role}>{role}</span>)}</div>
-
-      <div className="facts">
-        <div><small>Package</small><strong>{company.package.ctc || company.package.stipend || company.package.label}</strong></div>
-        <div><small>Deadline</small><strong>{company.deadline || "To be announced"}</strong></div>
-      </div>
-
-      <div className="mini-timeline">
-        {company.timeline.map((item) => (
-          <div className={`mini-step ${item.state}`} key={item.stage}>
-            <i /><div><strong>{item.stage}</strong><small>{item.date}</small></div>
-          </div>
-        ))}
-      </div>
-
-      <details>
-        <summary>Open full company brief <Arrow /></summary>
-        <div className="brief">
-          <div className="brief-grid">
-            <section><small>Location</small><strong>{company.location}</strong></section>
-            <section><small>Work mode</small><strong>{company.workMode}</strong></section>
-            <section><small>Eligibility</small><strong>{company.eligibility.join(", ")}</strong></section>
-            <section><small>Priority</small><strong>{company.priority}</strong></section>
-          </div>
-          <div className="brief-columns">
-            <section><h4>Skills to prepare</h4><div className="tags green">{company.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></section>
-            <section><h4>Selection process</h4><ol>{company.selectionProcess.map((step) => <li key={step}>{step}</li>)}</ol></section>
-          </div>
-          <div className="brief-note"><strong>Official note</strong><p>{company.notes.join(" ")}</p></div>
-          <div className="links">
-            {company.applicationUrl ? <a href={company.applicationUrl} target="_blank" rel="noreferrer">Apply now <Arrow /></a> : <span>Application link pending</span>}
-            {company.jdUrl ? <a href={company.jdUrl} target="_blank" rel="noreferrer">Official JD <Arrow /></a> : <span>Official JD pending</span>}
-          </div>
-        </div>
-      </details>
-    </article>
+  return (
+    <div className="sheet-scroll">
+      <table className="placement-table student-table">
+        <thead><tr><th className="row-number">#</th><th>Student</th><th>Company</th><th>Role</th><th>Resume</th></tr></thead>
+        <tbody>
+          {students.map((student, index) => (
+            <tr className="data-row" key={`${student.name}-${student.company}`}>
+              <td className="row-number">{String(index + 1).padStart(2, "0")}</td>
+              <td className="strong-cell">{student.name}</td>
+              <td>{student.company}</td>
+              <td>{student.role}</td>
+              <td>{student.resumeUrl ? <a className="table-link" href={student.resumeUrl} target="_blank" rel="noreferrer">View resume <ExternalIcon /></a> : "Not shared"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
+  const [sort, setSort] = useState("priority");
+  const [sheet, setSheet] = useState("companies");
+  const [expanded, setExpanded] = useState(null);
 
-  const companies = useMemo(() => data.companies.filter((company) => {
-    const text = [company.name, company.industry, ...company.roles, ...company.skills].join(" ").toLowerCase();
-    return (filter === "all" || company.status === filter) && text.includes(query.trim().toLowerCase());
-  }), [filter, query]);
+  const companies = useMemo(() => {
+    const filtered = data.companies.filter((company) => {
+      const haystack = [
+        company.name,
+        company.industry,
+        company.location,
+        company.workMode,
+        ...company.roles,
+        ...company.skills,
+        ...company.eligibility,
+      ].join(" ").toLowerCase();
 
-  const active = data.companies.filter((company) => company.status === "active").length;
-  const upcoming = data.companies.filter((company) => company.status === "upcoming").length;
-  const selected = data.selectedStudents.filter((student) => student.verified).length;
-  const featured = data.companies.find((company) => company.status === "active") || data.companies[0];
+      return (filter === "all" || company.status === filter) && haystack.includes(query.trim().toLowerCase());
+    });
+
+    const priorityRank = { high: 0, medium: 1, low: 2 };
+    return [...filtered].sort((a, b) => {
+      if (sort === "company") return a.name.localeCompare(b.name);
+      if (sort === "status") return statusNames[a.status].localeCompare(statusNames[b.status]);
+      if (sort === "deadline") return (a.deadline || "9999").localeCompare(b.deadline || "9999");
+      return (priorityRank[a.priority] ?? 9) - (priorityRank[b.priority] ?? 9) || a.name.localeCompare(b.name);
+    });
+  }, [filter, query, sort]);
+
+  const counts = {
+    total: data.companies.length,
+    active: data.companies.filter((company) => company.status === "active").length,
+    upcoming: data.companies.filter((company) => company.status === "upcoming").length,
+    selected: data.selectedStudents.filter((student) => student.verified).length,
+  };
+
+  function switchSheet(nextSheet) {
+    setSheet(nextSheet);
+    setExpanded(null);
+  }
 
   return (
-    <>
-      <header className="nav">
-        <div className="shell nav-inner">
-          <a className="brand" href="#top"><span>P26</span><div><strong>Placements 26</strong><small>RVITM opportunity desk</small></div></a>
-          <nav><a href="#companies">Companies</a><a href="#timeline">Timeline</a><a href="#selected">Selected students</a></nav>
-          <a className="nav-button" href="#updates">Latest updates</a>
+    <main>
+      <header className="app-header">
+        <div className="brand-block">
+          <span className="logo-box">P26</span>
+          <div><h1>Placements 26</h1><p>{data.meta.college}</p></div>
+        </div>
+        <div className="header-meta">
+          <span>{data.meta.season}</span>
+          <small>Updated {formatUpdated(data.meta.lastUpdated)}</small>
         </div>
       </header>
 
-      <main id="top">
-        <section className="hero">
-          <div className="grid-overlay" />
-          <div className="shell hero-layout">
-            <div className="hero-copy">
-              <span className="eyebrow light">{data.meta.season}</span>
-              <h1>Placement information,<em> finally in one place.</em></h1>
-              <p>Track every company from announcement to final result. Find roles, packages, deadlines, JDs, eligibility, preparation signals and verified selected-student resumes without excavating old chat messages.</p>
-              <div className="hero-actions"><a className="primary" href="#companies">Explore companies <Arrow /></a><a className="secondary" href="#selected">View selected students</a></div>
-              <small className="updated"><i />Last updated {new Date(data.meta.lastUpdated).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}</small>
-            </div>
+      <section className="workspace">
+        <div className="summary-strip">
+          <div><span>Total companies</span><strong>{counts.total}</strong></div>
+          <div><span>Open now</span><strong>{counts.active}</strong></div>
+          <div><span>Upcoming</span><strong>{counts.upcoming}</strong></div>
+          <div><span>Verified selections</span><strong>{counts.selected}</strong></div>
+          <div className="announcement-cell"><span>Latest update</span><strong>{data.announcements[0].title}</strong><small>{data.announcements[0].date}</small></div>
+        </div>
 
-            <div className="radar">
-              <div className="radar-title"><span>Opportunity radar</span><small>Live content structure</small></div>
-              <div className="featured"><span className="featured-logo">{featured.shortName}</span><div><Status value={featured.status} /><h2>{featured.name}</h2><p>{featured.roles.join(" · ")}</p></div></div>
-              <div className="radar-facts"><div><small>Compensation</small><strong>{featured.package.ctc || featured.package.label}</strong></div><div><small>Registration</small><strong>{featured.deadline || "TBA"}</strong></div></div>
-              <div className="radar-steps">{featured.timeline.map((item, index) => <div className={`radar-step ${item.state}`} key={item.stage}><i>{index + 1}</i><div><strong>{item.stage}</strong><small>{item.date}</small></div></div>)}</div>
-            </div>
+        <div className="formula-bar">
+          <span className="name-box">P26</span>
+          <span className="fx">fx</span>
+          <p>{data.meta.notice}</p>
+        </div>
+
+        <div className="sheet-toolbar">
+          <label className="search-box"><SearchIcon /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search company, role, skill, location..." /></label>
+          <div className="filter-buttons">
+            {statusFilters.map(([value, label]) => (
+              <button className={filter === value ? "active" : ""} onClick={() => setFilter(value)} key={value}>{label}</button>
+            ))}
+          </div>
+          <label className="sort-box"><span>Sort</span><select value={sort} onChange={(event) => setSort(event.target.value)}><option value="priority">Priority</option><option value="company">Company A–Z</option><option value="status">Status</option><option value="deadline">Deadline</option></select></label>
+        </div>
+
+        <section className="sheet-frame" aria-label="Placement workbook">
+          <div className="sheet-titlebar">
+            <div><strong>{sheet === "companies" ? "Master Placement Tracker" : "Selected Students"}</strong><span>{sheet === "companies" ? `${companies.length} visible rows` : `${counts.selected} verified rows`}</span></div>
+            <small>Scroll sideways to view every column</small>
+          </div>
+
+          {sheet === "companies" ? (
+            companies.length ? <CompaniesSheet companies={companies} expanded={expanded} onToggle={(slug) => setExpanded(expanded === slug ? null : slug)} /> : (
+              <div className="empty-sheet"><span>0</span><div><strong>No rows match the current filters</strong><p>Clear the search or select another status.</p></div></div>
+            )
+          ) : <SelectedSheet />}
+
+          <div className="sheet-tabs">
+            <button className={sheet === "companies" ? "active" : ""} onClick={() => switchSheet("companies")}>Companies</button>
+            <button className={sheet === "selected" ? "active" : ""} onClick={() => switchSheet("selected")}>Selected students</button>
+            <span>Official placement information only</span>
           </div>
         </section>
+      </section>
 
-        <section className="stats"><div className="shell stat-grid"><div><strong>{data.companies.length}</strong><span>Companies tracked</span></div><div><strong>{active}</strong><span>Open applications</span></div><div><strong>{upcoming}</strong><span>Upcoming processes</span></div><div><strong>{selected}</strong><span>Verified selections</span></div></div></section>
-
-        <section className="shell update-wrap" id="updates">
-          <div className="update"><span className="update-icon">↗</span><div><span className="eyebrow">Latest update</span><h2>{data.announcements[0].title}</h2><p>{data.announcements[0].message}</p></div><small>{data.announcements[0].date}</small></div>
-          <p className="warning">{data.meta.notice}</p>
-        </section>
-
-        <section className="shell section" id="companies">
-          <div className="heading"><div><span className="eyebrow">Company intelligence</span><h2>Every opportunity, one reliable timeline.</h2></div><p>Search by company, role or skill. Each record keeps the JD, package, eligibility and round-by-round status together instead of scattering it across six groups and one heroic screenshot.</p></div>
-          <div className="toolbar">
-            <label><Search /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search company, role or skill" /></label>
-            <div className="filters">{filters.map(([value, label]) => <button className={filter === value ? "active" : ""} onClick={() => setFilter(value)} key={value}>{label}</button>)}</div>
-          </div>
-          <div className="company-grid">{companies.map((company) => <CompanyCard company={company} key={company.slug} />)}</div>
-          {!companies.length && <div className="empty"><strong>No company matches that filter.</strong><p>Try another role, technology or status.</p></div>}
-        </section>
-
-        <section className="process" id="timeline">
-          <div className="shell process-grid">
-            <div><span className="eyebrow light">One process language</span><h2>Know what happened, what is next, and what needs action.</h2><p>Every company follows the same readable structure, so students can compare stages quickly while the placement team updates only the facts that changed.</p></div>
-            <div className="master-steps">{[["01","Announcement","JD, roles, package and eligibility published"],["02","Registration","Deadline, form and resume instructions"],["03","Assessment","Pattern, timing, shortlist and preparation notes"],["04","Interviews","Round updates, venue and reporting instructions"],["05","Results","Verified selections and permission-approved resumes"]].map(([n,t,c]) => <div key={n}><span>{n}</span><section><strong>{t}</strong><p>{c}</p></section></div>)}</div>
-          </div>
-        </section>
-
-        <section className="shell section" id="selected">
-          <div className="heading"><div><span className="eyebrow">Verified outcomes</span><h2>Learn from students who converted.</h2></div><p>Official selections, role outcomes and student-approved resume links will appear here. Personal data does not become public merely because someone found a Drive link.</p></div>
-          {data.selectedStudents.length ? <div className="student-grid">{data.selectedStudents.filter((student) => student.verified).map((student) => <article key={`${student.name}-${student.company}`}><span className="avatar">{student.name.slice(0,2).toUpperCase()}</span><small>{student.company}</small><h3>{student.name}</h3><p>{student.role}</p>{student.resumeUrl && <a href={student.resumeUrl}>View resume <Arrow /></a>}</article>)}</div> : <div className="selected-empty"><span>✓</span><div><strong>No verified selections published yet.</strong><p>Profiles appear after the result and resume-sharing permission are confirmed.</p></div></div>}
-        </section>
-      </main>
-
-      <footer><div className="shell"><a className="brand" href="#top"><span>P26</span><div><strong>Placements 26</strong><small>Built for clear, verified communication.</small></div></a><p>Always verify dates and eligibility with the official placement-cell notice.</p></div></footer>
-    </>
+      <footer>
+        <p>Verify deadlines and eligibility against the official placement-cell notice before applying.</p>
+        <a href="/api/placements" target="_blank" rel="noreferrer">Placement data API <ExternalIcon /></a>
+      </footer>
+    </main>
   );
 }
