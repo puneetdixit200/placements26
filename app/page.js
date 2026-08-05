@@ -3,6 +3,41 @@
 import { useMemo, useState } from "react";
 import data from "../data/placements.json";
 
+const COMPANY_URLS = {
+  aereo: "https://aereo.io/",
+  "breville-india": "https://www.breville.com/",
+  "evertz-india": "https://evertz.com/",
+  flipkart: "https://www.flipkartcareers.com/",
+  "google-india-apprenticeships": "https://www.google.com/about/careers/applications/",
+  greenlight: "https://greenlight.com/",
+  "inmobi-groups": "https://www.inmobi.com/",
+  infosys: "https://www.infosys.com/",
+  lseg: "https://www.lseg.com/",
+  "mu-sigma": "https://www.mu-sigma.com/",
+  opentext: "https://www.opentext.com/",
+  rayvector: "https://rayvector.com/",
+  sama: "https://www.sama.live/",
+  "sartorius-india": "https://www.sartorius.com/",
+  stonex: "https://www.stonex.com/",
+  surewaves: "https://www.surewaves.com/",
+  "teal-india": "https://www.tealindia.in/",
+};
+
+const MONTHS = {
+  january: 0,
+  february: 1,
+  march: 2,
+  april: 3,
+  may: 4,
+  june: 5,
+  july: 6,
+  august: 7,
+  september: 8,
+  october: 9,
+  november: 10,
+  december: 11,
+};
+
 function SearchIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -18,6 +53,18 @@ function ExternalIcon() {
       <path d="M14 5h5v5" />
       <path d="m10 14 9-9" />
       <path d="M19 13v6H5V5h6" />
+    </svg>
+  );
+}
+
+function SortIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 6h11" />
+      <path d="M8 12h8" />
+      <path d="M8 18h5" />
+      <path d="m3 5 2-2 2 2" />
+      <path d="M5 3v16" />
     </svg>
   );
 }
@@ -51,6 +98,73 @@ function descriptionText(company) {
   return company.description || company.summary || "Not provided";
 }
 
+function extractNumbers(value) {
+  return String(value || "")
+    .match(/\d+(?:,\d{3})*(?:\.\d+)?/g)
+    ?.map((number) => Number(number.replaceAll(",", ""))) || [];
+}
+
+function stipendValue(company) {
+  return Math.max(0, ...extractNumbers(stipendText(company)));
+}
+
+function ppoValue(company) {
+  return Math.max(0, ...extractNumbers(ppoText(company)));
+}
+
+function parseDateText(value) {
+  const text = String(value || "").toLowerCase().replaceAll(",", " ");
+  const dates = [];
+  const rangePattern = /(\d{1,2})\s*[–-]\s*(\d{1,2})\s+(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})/g;
+  const dayPattern = /(\d{1,2})(?:st|nd|rd|th)?\s+(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})/g;
+  const monthPattern = /(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})/g;
+
+  for (const match of text.matchAll(rangePattern)) {
+    dates.push(new Date(Number(match[4]), MONTHS[match[3]], Number(match[2]), 12).getTime());
+  }
+
+  for (const match of text.matchAll(dayPattern)) {
+    dates.push(new Date(Number(match[3]), MONTHS[match[2]], Number(match[1]), 12).getTime());
+  }
+
+  if (!dates.length) {
+    for (const match of text.matchAll(monthPattern)) {
+      dates.push(new Date(Number(match[2]), MONTHS[match[1]], 1, 12).getTime());
+    }
+  }
+
+  return dates.filter(Number.isFinite);
+}
+
+function companyDates(company) {
+  return [company.deadline, ...(company.timeline || []).map((item) => item.date)]
+    .flatMap(parseDateText)
+    .sort((a, b) => a - b);
+}
+
+function latestSortValue(company, referenceTime) {
+  const dates = companyDates(company);
+  const upcoming = dates.find((date) => date >= referenceTime - 12 * 60 * 60 * 1000);
+  const recent = dates.length ? dates[dates.length - 1] : 0;
+
+  return { upcoming: upcoming || 0, recent };
+}
+
+function compareLatest(a, b, referenceTime) {
+  const left = latestSortValue(a, referenceTime);
+  const right = latestSortValue(b, referenceTime);
+
+  if (left.upcoming && right.upcoming) return left.upcoming - right.upcoming;
+  if (left.upcoming) return -1;
+  if (right.upcoming) return 1;
+  if (left.recent !== right.recent) return right.recent - left.recent;
+  return a.name.localeCompare(b.name);
+}
+
+function hasPpo(company) {
+  return ppoText(company) !== "Not mentioned" && ppoText(company) !== "No";
+}
+
 function RequirementCell({ company }) {
   const eligibility = (company.eligibility || []).filter((item) => !/^to be confirmed$/i.test(item));
   const roles = company.roles || [];
@@ -62,18 +176,10 @@ function RequirementCell({ company }) {
 
   return (
     <div className="requirements-cell">
-      {roles.length > 0 && (
-        <div><strong>Roles</strong><span>{roles.join(", ")}</span></div>
-      )}
-      {explicitRequirements.length > 0 && (
-        <div><strong>Requirements</strong><span>{explicitRequirements.join(", ")}</span></div>
-      )}
-      {eligibility.length > 0 && (
-        <div><strong>Eligibility</strong><span>{eligibility.join(", ")}</span></div>
-      )}
-      {skills.length > 0 && (
-        <div><strong>Skills</strong><span>{skills.join(", ")}</span></div>
-      )}
+      {roles.length > 0 && <div><strong>Roles</strong><span>{roles.join(", ")}</span></div>}
+      {explicitRequirements.length > 0 && <div><strong>Requirements</strong><span>{explicitRequirements.join(", ")}</span></div>}
+      {eligibility.length > 0 && <div><strong>Eligibility</strong><span>{eligibility.join(", ")}</span></div>}
+      {skills.length > 0 && <div><strong>Skills</strong><span>{skills.join(", ")}</span></div>}
     </div>
   );
 }
@@ -101,9 +207,7 @@ function JdCell({ company }) {
 function RelatedDates({ company }) {
   const entries = [];
 
-  if (company.deadline) {
-    entries.push({ label: "Application deadline", date: company.deadline });
-  }
+  if (company.deadline) entries.push({ label: "Application deadline", date: company.deadline });
 
   for (const item of company.timeline || []) {
     const date = String(item.date || "").trim();
@@ -127,9 +231,41 @@ function RelatedDates({ company }) {
   );
 }
 
+function CompanyCell({ company }) {
+  const website = company.companyUrl || COMPANY_URLS[company.slug];
+
+  return (
+    <div className="company-cell">
+      <span className="company-mark">{company.shortName}</span>
+      <div className="company-identity">
+        {website ? (
+          <a className="company-name-link" href={website} target="_blank" rel="noreferrer">
+            {company.name} <ExternalIcon />
+          </a>
+        ) : (
+          <strong>{company.name}</strong>
+        )}
+        <div className="company-actions">
+          {company.applicationUrl && (
+            <a className="form-link" href={company.applicationUrl} target="_blank" rel="noreferrer">
+              Apply / Form <ExternalIcon />
+            </a>
+          )}
+          <span className={`link-status ${company.applicationUrl ? "available" : ""}`}>
+            {company.applicationUrl ? "Registration link available" : "No form shared"}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [domain, setDomain] = useState("all");
+  const [linkFilter, setLinkFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("latest");
+  const referenceTime = new Date(data.meta.lastUpdated).getTime();
 
   const domains = useMemo(
     () => ["all", ...Array.from(new Set(data.companies.map((company) => company.industry).filter(Boolean))).sort()],
@@ -139,23 +275,44 @@ export default function Home() {
   const companies = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return data.companies
-      .filter((company) => {
-        const searchable = [
-          company.name,
-          company.industry,
-          company.description,
-          company.summary,
-          ...(company.roles || []),
-          ...(company.requirements || []),
-          ...(company.eligibility || []),
-          ...(company.skills || []),
-        ].filter(Boolean).join(" ").toLowerCase();
+    const filtered = data.companies.filter((company) => {
+      const searchable = [
+        company.name,
+        company.industry,
+        company.description,
+        company.summary,
+        ...(company.roles || []),
+        ...(company.requirements || []),
+        ...(company.eligibility || []),
+        ...(company.skills || []),
+      ].filter(Boolean).join(" ").toLowerCase();
 
-        return (domain === "all" || company.industry === domain) && searchable.includes(normalizedQuery);
-      })
-      .sort((a, b) => a.name.localeCompare(b.name));
-  }, [domain, query]);
+      const matchesDomain = domain === "all" || company.industry === domain;
+      const matchesQuery = searchable.includes(normalizedQuery);
+      const matchesLinks =
+        linkFilter === "all"
+        || (linkFilter === "form" && Boolean(company.applicationUrl))
+        || (linkFilter === "jd" && Boolean(company.jdUrl || company.jdLinks?.length))
+        || (linkFilter === "ppo" && hasPpo(company))
+        || (linkFilter === "dated" && companyDates(company).length > 0);
+
+      return matchesDomain && matchesQuery && matchesLinks;
+    });
+
+    return [...filtered].sort((a, b) => {
+      if (sortBy === "name-asc") return a.name.localeCompare(b.name);
+      if (sortBy === "name-desc") return b.name.localeCompare(a.name);
+      if (sortBy === "stipend") return stipendValue(b) - stipendValue(a) || a.name.localeCompare(b.name);
+      if (sortBy === "ppo") return ppoValue(b) - ppoValue(a) || a.name.localeCompare(b.name);
+      return compareLatest(a, b, referenceTime);
+    });
+  }, [domain, linkFilter, query, referenceTime, sortBy]);
+
+  const stats = useMemo(() => ({
+    forms: data.companies.filter((company) => company.applicationUrl).length,
+    jds: data.companies.filter((company) => company.jdUrl || company.jdLinks?.length).length,
+    ppos: data.companies.filter(hasPpo).length,
+  }), []);
 
   return (
     <main>
@@ -174,22 +331,25 @@ export default function Home() {
       </header>
 
       <section className="workspace">
-        <div className="notice-bar">
-          <strong>{data.announcements[0]?.title || "Placement updates"}</strong>
-          <span>{data.announcements[0]?.message || data.meta.notice}</span>
-        </div>
+        <section className="summary-strip" aria-label="Placement tracker summary">
+          <div><span>Total companies</span><strong>{data.companies.length}</strong></div>
+          <div><span>Application links</span><strong>{stats.forms}</strong></div>
+          <div><span>JD links</span><strong>{stats.jds}</strong></div>
+          <div><span>PPO / full-time</span><strong>{stats.ppos}</strong></div>
+          <div className="announcement-cell">
+            <span>Latest sync</span>
+            <strong>{data.announcements[0]?.title || "Placement updates"}</strong>
+            <small>{data.announcements[0]?.message || data.meta.notice}</small>
+          </div>
+        </section>
 
         <div className="toolbar">
           <label className="search-box">
             <SearchIcon />
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search company, domain or requirement"
-            />
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search company, role, domain or skill" />
           </label>
 
-          <label className="domain-filter">
+          <label className="control-box">
             <span>Domain</span>
             <select value={domain} onChange={(event) => setDomain(event.target.value)}>
               {domains.map((item) => (
@@ -198,22 +358,44 @@ export default function Home() {
             </select>
           </label>
 
-          <span className="result-count">{companies.length} compan{companies.length === 1 ? "y" : "ies"}</span>
+          <label className="control-box">
+            <span>Filter</span>
+            <select value={linkFilter} onChange={(event) => setLinkFilter(event.target.value)}>
+              <option value="all">All companies</option>
+              <option value="form">Form available</option>
+              <option value="jd">JD available</option>
+              <option value="ppo">PPO / full-time</option>
+              <option value="dated">Dates available</option>
+            </select>
+          </label>
+
+          <label className="control-box sort-control">
+            <SortIcon />
+            <span>Sort</span>
+            <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+              <option value="latest">Latest / upcoming first</option>
+              <option value="name-asc">Company A–Z</option>
+              <option value="name-desc">Company Z–A</option>
+              <option value="stipend">Highest stipend</option>
+              <option value="ppo">Highest PPO / package</option>
+            </select>
+          </label>
         </div>
 
         <section className="table-card" aria-label="Placement company information">
           <div className="table-titlebar">
             <div>
               <strong>Company Information</strong>
-              <span>Only the essential placement fields</span>
+              <span>{companies.length} of {data.companies.length} companies shown</span>
             </div>
-            <small>Scroll horizontally on smaller screens</small>
+            <small>Company names open official websites. Apply / Form opens the supplied registration link.</small>
           </div>
 
           <div className="table-scroll">
             <table className="placement-table">
               <thead>
                 <tr>
+                  <th className="number-column">#</th>
                   <th className="company-column">Company Name</th>
                   <th>Domain</th>
                   <th>Stipend</th>
@@ -225,14 +407,10 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {companies.map((company) => (
+                {companies.map((company, index) => (
                   <tr key={company.slug}>
-                    <td className="company-column">
-                      <div className="company-cell">
-                        <span className="company-mark">{company.shortName}</span>
-                        <strong>{company.name}</strong>
-                      </div>
-                    </td>
+                    <td className="number-column">{index + 1}</td>
+                    <td className="company-column"><CompanyCell company={company} /></td>
                     <td><span className="domain-pill">{company.industry || "Not provided"}</span></td>
                     <td className="money-cell">{stipendText(company)}</td>
                     <td className="money-cell">{ppoText(company)}</td>
@@ -249,7 +427,7 @@ export default function Home() {
           {!companies.length && (
             <div className="empty-state">
               <strong>No matching company</strong>
-              <span>Clear the search or choose another domain.</span>
+              <span>Clear the search or reset the filters.</span>
             </div>
           )}
         </section>
