@@ -7,8 +7,8 @@ const LATEST_COMPANIES = [
     shortName: "ID",
     companyUrl: "https://www.idfcfirstbank.com/",
     industry: "Banking technology and application engineering",
-    package: { stipend: null },
-    ppo: null,
+    package: { stipend: "₹40,000 per month" },
+    ppo: "₹18 LPA CTC (₹14 LPA fixed + ₹2 lakh joining bonus + 15% variable)",
     description: "IDFC FIRST Bank is conducting a 2027 campus recruitment drive at RVCE for the Application Engineer role. Candidates must complete both the event registration and job application using the same email ID.",
     roles: ["Application Engineer"],
     requirements: [
@@ -16,8 +16,8 @@ const LATEST_COMPANIES = [
       "Answer the pre-screening questions sent after applying",
       "Students without PAN may complete the event registration and skip the application link as instructed by the placement team",
     ],
-    eligibility: ["Graduating batch 2027", "Applied candidates participating through the RV campus drive"],
-    skills: [],
+    eligibility: ["2027 batch", "B.E. CSE/ISE", "Minimum 6.0 CGPA", "No current backlogs"],
+    skills: ["Java", "Spring Boot", "Python", "C++", "REST APIs", "SQL", "DSA", "OOP", "Testing", "Debugging", "Secure coding"],
     deadline: "9 August 2026, 3:30 PM",
     applicationUrl: "https://careers.idfcfirst.bank.in/in/en/event/6a75a7672a51052e8937a58d/Campus-Drive-RVCE",
     jdUrl: "https://careers.idfcfirst.bank.in/in/en/job/IFBAINP224654ENIN/Application-Engineer",
@@ -29,7 +29,7 @@ const LATEST_COMPANIES = [
       { stage: "Assessment test", date: "10 August 2026, 5:00 PM" },
       { stage: "Campus interviews", date: "21 August 2026" },
     ],
-    source: "Official RVCE placement email received 7 August 2026",
+    source: "Official RVCE placement email updated 8 August 2026; compensation and eligibility confirmed in Placement Tracker 2026",
   },
   {
     slug: "gocomet",
@@ -76,9 +76,7 @@ const LATEST_COMPANIES = [
     applicationUrl: null,
     jdUrl: null,
     jdLinks: [],
-    timeline: [
-      { stage: "Pre-placement talk", date: "7 August 2026, 9:00 AM at ECE Seminar Hall" },
-    ],
+    timeline: [{ stage: "Pre-placement talk", date: "7 August 2026, 9:00 AM at ECE Seminar Hall" }],
     source: "Official RVCE placement email received 6 August 2026",
   },
   {
@@ -98,9 +96,7 @@ const LATEST_COMPANIES = [
     applicationUrl: "https://forms.gle/i8ZQiXT9vhadsswaA",
     jdUrl: null,
     jdLinks: [],
-    timeline: [
-      { stage: "Application deadline", date: "7 August 2026, 9:00 AM" },
-    ],
+    timeline: [{ stage: "Application deadline", date: "7 August 2026, 9:00 AM" }],
     source: "Official RVITM placement email received 6 August 2026",
   },
   {
@@ -119,13 +115,37 @@ const LATEST_COMPANIES = [
     deadline: null,
     applicationUrl: "https://careers.recruitcrm.io/17841115307470061803BaU?utm_source=Internal+Hiring+&utm_medium=Candidates+&utm_campaign=Hiring",
     jdUrl: "https://drive.google.com/file/d/1n8BmY0BSidExPwogTsZ-807dWaxX2edY/view?usp=sharing",
-    jdLinks: [
-      { label: "Trainee Software Engineer JD", url: "https://drive.google.com/file/d/1n8BmY0BSidExPwogTsZ-807dWaxX2edY/view?usp=sharing" },
-    ],
-    timeline: [
-      { stage: "Opportunity announced", date: "6 August 2026" },
-    ],
+    jdLinks: [{ label: "Trainee Software Engineer JD", url: "https://drive.google.com/file/d/1n8BmY0BSidExPwogTsZ-807dWaxX2edY/view?usp=sharing" }],
+    timeline: [{ stage: "Opportunity announced", date: "6 August 2026" }],
     source: "Official RVITM placement email received 6 August 2026",
+  },
+  {
+    slug: "sharechat",
+    name: "ShareChat",
+    shortName: "SC",
+    companyUrl: "https://sharechat.com/",
+    industry: "Consumer internet and software engineering",
+    package: { stipend: "₹75,000 per month" },
+    ppo: "₹50 LPA full-time CTC",
+    description: "ShareChat is recruiting for a Software Development Intern opportunity with potential full-time employment. The process emphasizes DSA, problem solving, low-level design, projects and system/culture fit.",
+    roles: ["Software Development Intern", "Full-Time Software Engineer conversion opportunity"],
+    requirements: [
+      "Complete the campus registration sheet including gender and resume before the deadline",
+      "Remote assessment covers DSA with emphasis on graphs, trees and linked lists",
+      "Technical interviews are in person at the ShareChat office in Bengaluru",
+    ],
+    eligibility: ["B.E. CSE, ISE, AIML, DS or CY", "Minimum 8.0 CGPA", "No active backlogs"],
+    skills: ["DSA", "Graphs", "Trees", "Linked Lists", "Problem Solving", "OOP", "Low-Level Design", "Testing", "Debugging"],
+    deadline: "9 August 2026, 7:00 PM",
+    applicationUrl: "https://docs.google.com/spreadsheets/d/1FYqq6iJgymOJwNFjuXS1nn1UcUDbB4FQ8jXCVk8yKKE",
+    jdUrl: null,
+    jdLinks: [],
+    timeline: [
+      { stage: "Campus registration deadline", date: "9 August 2026, 7:00 PM" },
+      { stage: "Remote assessment", date: "18 August 2026; exact time TBD" },
+      { stage: "In-person technical and HM rounds", date: "19 August 2026 at ShareChat office, Bengaluru; exact time TBD" },
+    ],
+    source: "Placement Tracker 2026 and ShareChat campus registration sheet, updated 8 August 2026",
   },
 ];
 
@@ -177,7 +197,7 @@ function mergeLatestCompanies(sourceCompanies) {
   );
 
   for (const company of LATEST_COMPANIES) {
-    if (!merged.has(company.slug)) merged.set(company.slug, company);
+    merged.set(company.slug, company);
   }
 
   return Array.from(merged.values());
@@ -205,15 +225,15 @@ export async function GET() {
     ...sourceData,
     meta: {
       ...sourceData.meta,
-      lastUpdated: "2026-08-08T02:39:00+05:30",
-      rawDataThrough: "2026-08-07",
-      notice: "Placement records are synced through 7 August 2026 from official placement-cell communications. Google and Flipkart remain hidden because their old records are stale; they will return only after a fresh official notice. Always verify the latest placement-cell message before acting.",
+      lastUpdated: "2026-08-08T20:30:00+05:30",
+      rawDataThrough: "2026-08-08",
+      notice: "Placement records are synced through 8 August 2026 from official placement communications and the primary placement tracker. Google and Flipkart remain hidden until a fresh official notice appears. Always verify the latest placement-cell message before acting.",
     },
     announcements: [
       {
-        id: "placement-email-sync-2026-08-08",
-        title: "Latest placement emails synced",
-        message: `${companies.length} active company records are shown after adding IDFC FIRST Bank, GoComet, Cognizant, Gnani.ai and Recruit CRM, plus the latest Sartorius interview update.`,
+        id: "placement-sync-2026-08-08-sharechat",
+        title: "ShareChat added to current placement records",
+        message: `${companies.length} active company records are shown. ShareChat has been added with the 9 August registration deadline and 18–19 August selection schedule; IDFC compensation and eligibility were also enriched without replacing the newer official assessment timeline.`,
         date: "2026-08-08",
         type: "info",
       },
