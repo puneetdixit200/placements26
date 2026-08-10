@@ -76,13 +76,13 @@ const LATEST_COMPANIES = [
     industry: "Banking technology and application engineering",
     package: { stipend: "₹40,000 per month" },
     ppo: "₹18 LPA CTC (₹14 LPA fixed + ₹2 lakh joining bonus + 15% variable)",
-    description: "IDFC FIRST Bank is conducting a 2027 campus recruitment drive at RVCE for the Application Engineer role. Registration/application is complete and the placement cell reconfirmed the remote online assessment for 10 August at 5:00 PM.",
+    description: "IDFC FIRST Bank is conducting a 2027 campus recruitment drive at RVCE for the Application Engineer role. Puneet Dixit is on the official OA shortlist, and the 10 August 5:00 PM assessment has been changed from remote to on-campus at the RVCE/RVU campus; exact lab/venue is TBD.",
     roles: ["Application Engineer"],
     requirements: [
       "Complete both event registration and the job application with the same email ID",
       "Answer the pre-screening questions sent after applying",
       "Students without PAN may complete the event registration and skip the application link as instructed by the placement team",
-      "Remote online assessment is confirmed for 10 August 2026 at 5:00 PM; remaining test details are to be shared",
+      "Officially shortlisted candidates must report to the RVCE/RVU campus for the 10 August 2026, 5:00 PM OA with a fully charged laptop; exact lab/venue is still to be announced",
     ],
     eligibility: ["2027 batch", "B.E. CSE/ISE", "Minimum 6.0 CGPA", "No current backlogs"],
     skills: ["Java", "Spring Boot", "Python", "C++", "REST APIs", "SQL", "DSA", "OOP", "Testing", "Debugging", "Secure coding"],
@@ -94,10 +94,10 @@ const LATEST_COMPANIES = [
     ],
     timeline: [
       { stage: "Registration window", date: "7 August 2026, 3:30 PM – 9 August 2026, 3:30 PM" },
-      { stage: "Remote online assessment", date: "10 August 2026, 5:00 PM" },
+      { stage: "On-campus assessment", date: "10 August 2026, 5:00 PM at RVCE/RVU; exact lab/venue TBD" },
       { stage: "Campus interviews", date: "21 August 2026; shortlist/time TBD" },
     ],
-    source: "Official RVCE placement email reconfirmed the remote online assessment on 10 August 2026; compensation and eligibility confirmed in Placement Tracker 2026",
+    source: "Official IDFC / RVCE placement emails and shortlist received 10 August 2026; Puneet Dixit is shortlisted and the OA was changed to on-campus at RVCE/RVU",
   },
   {
     slug: "gocomet",
@@ -295,15 +295,15 @@ export async function GET() {
     ...sourceData,
     meta: {
       ...sourceData.meta,
-      lastUpdated: "2026-08-10T11:05:00+05:30",
+      lastUpdated: "2026-08-10T13:55:00+05:30",
       rawDataThrough: "2026-08-10",
       notice: "Placement records are synced through 10 August 2026 from official placement communications and the primary placement tracker. Google and Flipkart remain hidden until a fresh official notice appears. Always verify the latest placement-cell message before acting.",
     },
     announcements: [
       {
-        id: "placement-sync-2026-08-10-eurofins-evertz-idfc",
-        title: "Eurofins registration closes today at 5:00 PM",
-        message: `${companies.length} active company records are shown. Eurofins registration closes 10 August at 5:00 PM. IDFC's remote online assessment is confirmed for 5:00 PM today, and the Evertz pre-placement session is at 6:00 PM with its campus assessment confirmed for 19 August.`,
+        id: "placement-sync-2026-08-10-idfc-onsite-shortlist",
+        title: "IDFC OA moved on-campus — shortlisted candidates report at 5:00 PM",
+        message: `${companies.length} active company records are shown. Puneet Dixit is on IDFC FIRST Bank's official OA shortlist. Today's 5:00 PM assessment has changed from remote to on-campus at RVCE/RVU; carry a fully charged laptop and watch for the exact lab/venue. Eurofins registration also closes at 5:00 PM, and the Evertz pre-placement session is at 6:00 PM.`,
         date: "2026-08-10",
         type: "warning",
       },
