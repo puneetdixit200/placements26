@@ -290,12 +290,29 @@ export async function GET() {
   const companies = mergeLatestCompanies(sourceData.companies || [])
     .filter((company) => !isStaleRemovedRecord(company));
   const [, ...olderAnnouncements] = sourceData.announcements || [];
+  const selectedStudents = [
+    {
+      name: "Murali Krishna",
+      usn: "1RF24CS405",
+      company: "SureWaves",
+      role: "QA Internship",
+      stipend: "₹20,000 per month",
+      ppo: "₹7.5 LPA, subject to company terms and performance requirements",
+      selectionDate: "10 August 2026",
+      verified: true,
+      resumeUrl: null,
+    },
+    ...(sourceData.selectedStudents || []).filter(
+      (student) => !(student.company === "SureWaves" && student.usn === "1RF24CS405"),
+    ),
+  ];
 
   const data = {
     ...sourceData,
+    selectedStudents,
     meta: {
       ...sourceData.meta,
-      lastUpdated: "2026-08-10T13:55:00+05:30",
+      lastUpdated: "2026-08-10T14:05:00+05:30",
       rawDataThrough: "2026-08-10",
       notice: "Placement records are synced through 10 August 2026 from official placement communications and the primary placement tracker. Google and Flipkart remain hidden until a fresh official notice appears. Always verify the latest placement-cell message before acting.",
     },
@@ -303,7 +320,7 @@ export async function GET() {
       {
         id: "placement-sync-2026-08-10-idfc-onsite-shortlist",
         title: "IDFC OA moved on-campus — shortlisted candidates report at 5:00 PM",
-        message: `${companies.length} active company records are shown. Puneet Dixit is on IDFC FIRST Bank's official OA shortlist. Today's 5:00 PM assessment has changed from remote to on-campus at RVCE/RVU; carry a fully charged laptop and watch for the exact lab/venue. Eurofins registration also closes at 5:00 PM, and the Evertz pre-placement session is at 6:00 PM.`,
+        message: `${companies.length} active company records are shown. Puneet Dixit is on IDFC FIRST Bank's official OA shortlist. Today's 5:00 PM assessment has changed from remote to on-campus at RVCE/RVU; carry a fully charged laptop and watch for the exact lab/venue. SureWaves also confirmed Murali Krishna (1RF24CS405) for its QA Internship at ₹20,000/month with a ₹7.5 LPA PPO. Eurofins registration closes at 5:00 PM, and the Evertz pre-placement session is at 6:00 PM.`,
         date: "2026-08-10",
         type: "warning",
       },
