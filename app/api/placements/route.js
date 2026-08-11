@@ -2,6 +2,39 @@ const SOURCE_URL = "https://raw.githubusercontent.com/puneetdixit200/placements2
 
 const LATEST_COMPANIES = [
   {
+    slug: "hsd2c-consulting",
+    name: "HSD2C Consulting",
+    shortName: "H2",
+    companyUrl: null,
+    industry: "Deep-tech, Physical AI and embedded systems",
+    package: { stipend: "₹10,000 per month" },
+    ppo: "₹6–₹7 LPA full-time potential based on performance",
+    description: "HSD2C Consulting is recruiting for two six-month, work-from-office internships in Whitefield, Bengaluru: an AI Intern focused on Physical AI and an embedded BSP Intern. PPO/full-time conversion is performance based.",
+    roles: ["AI Intern – Physical AI", "BSP Intern – Embedded Linux / Board Support Package"],
+    requirements: [
+      "Six-month internship, work from office in Whitefield, Bengaluru",
+      "AI role: strong Python; VLM/LLM applications, agents, prompt engineering, RAG, model evaluation, Edge AI and sensor fusion",
+      "AI role: LangChain/LlamaIndex or similar plus PyTorch/TensorFlow/Hugging Face familiarity; portfolio/GitHub/side projects preferred",
+      "BSP role: Embedded C, Linux/RTOS, device drivers, Linux kernel, bootloaders and board bring-up",
+      "BSP exposure includes UART/I2C/SPI/CAN/USB/Ethernet, Git, Yocto/Buildroot, U-Boot, ARM, Device Tree and hardware debugging",
+    ],
+    eligibility: [
+      "Official campus notice distributed to CSE, ISE and ECE students",
+      "AI JD prefers final-year BTech/MTech students or recent graduates",
+    ],
+    skills: ["Python", "LLMs", "VLMs", "RAG", "AI Agents", "Edge AI", "Sensor Fusion", "Embedded C", "Linux", "RTOS", "Device Drivers", "U-Boot", "ARM", "Device Tree"],
+    deadline: "11 August 2026, 9:00 PM",
+    applicationUrl: "https://docs.google.com/spreadsheets/d/1Oq03x9JBnSN8OOKlUJ0SGFJcTPXHEu1Il9bDUeF1T84/edit?usp=sharing",
+    jdUrl: null,
+    jdLinks: [],
+    timeline: [
+      { stage: "Campus registration deadline", date: "11 August 2026, 9:00 PM IST" },
+      { stage: "Six-month internship", date: "Work from office, Whitefield, Bengaluru" },
+      { stage: "PPO / full-time conversion", date: "Based on performance; potential ₹6–₹7 LPA" },
+    ],
+    source: "Official RVITM placement email and attached AI/BSP JDs received 11 August 2026",
+  },
+  {
     slug: "eurofins",
     name: "Eurofins",
     shortName: "EU",
@@ -17,11 +50,7 @@ const LATEST_COMPANIES = [
       "Basic SQL/database knowledge and understanding of frontend frameworks",
       "REST API and SDLC knowledge are preferred; Git/version-control familiarity is preferred",
     ],
-    eligibility: [
-      "2027 graduating batch",
-      "Bachelor's degree in Computer Science, Information Technology, Engineering or a related field",
-      "Campus notice distributed to CSE, ISE and ECE students",
-    ],
+    eligibility: ["2027 graduating batch", "Bachelor's degree in Computer Science, Information Technology, Engineering or a related field", "Campus notice distributed to CSE, ISE and ECE students"],
     skills: ["Programming", "OOP", "SQL", "Databases", "REST APIs", "Git", "SDLC", ".NET", "Debugging", "Problem Solving"],
     deadline: "10 August 2026, 5:00 PM",
     applicationUrl: "https://docs.google.com/spreadsheets/d/1vS64HK2FYnJ2JzBhEz32MxMTkLRBFFjINraM4uaRZPs/edit?usp=sharing",
@@ -43,18 +72,8 @@ const LATEST_COMPANIES = [
     ppo: null,
     description: "Evertz India is conducting its 2027 campus recruitment process for software and broadcast-technology roles. Registered students had a virtual pre-placement session on 10 August and the campus assessment is confirmed for 19 August at RVITM.",
     roles: ["Campus Recruitment – 2027 Batch (role not specified)"],
-    requirements: [
-      "The 10 August pre-placement session used Microsoft Teams",
-      "Non-registered students were allowed to attend the session and register for the 19 August assessment",
-      "No active backlogs and no break in education",
-    ],
-    eligibility: [
-      "CSE/ISE/IT",
-      "ECE/EEE with programming knowledge",
-      "Minimum 70% aggregate through 6th semester",
-      "Minimum 60% in Class 12",
-      "Non-placed students only",
-    ],
+    requirements: ["The 10 August pre-placement session used Microsoft Teams", "Non-registered students were allowed to attend the session and register for the 19 August assessment", "No active backlogs and no break in education"],
+    eligibility: ["CSE/ISE/IT", "ECE/EEE with programming knowledge", "Minimum 70% aggregate through 6th semester", "Minimum 60% in Class 12", "Non-placed students only"],
     skills: ["C", "C++", "Java", "Python", "DSA", "OOP", "Linux", "Operating Systems", "Computer Networks", "DBMS", "SQL", "Debugging"],
     deadline: "4 August 2026, 9:00 AM",
     applicationUrl: "https://forms.gle/EWBAb4LYuepuF9dSA",
@@ -77,19 +96,13 @@ const LATEST_COMPANIES = [
     ppo: "₹18 LPA CTC (₹14 LPA fixed + ₹2 lakh joining bonus + 15% variable)",
     description: "IDFC FIRST Bank is conducting a 2027 campus recruitment drive for the Application Engineer role. Puneet Dixit completed the on-campus OA on 10 August 2026 and is now awaiting the result / interview shortlist.",
     roles: ["Application Engineer"],
-    requirements: [
-      "Event registration and job application were completed for the campus process",
-      "The on-campus HirePro assessment was completed on 10 August 2026",
-      "Monitor placement communication for the OA result and any next-stage interview instructions",
-    ],
+    requirements: ["Event registration and job application were completed for the campus process", "The on-campus HirePro assessment was completed on 10 August 2026", "Monitor placement communication for the OA result and any next-stage interview instructions"],
     eligibility: ["2027 batch", "B.E. CSE/ISE", "Minimum 6.0 CGPA", "No current backlogs"],
     skills: ["Java", "Spring Boot", "Python", "C++", "REST APIs", "SQL", "DSA", "OOP", "Testing", "Debugging", "Secure coding"],
     deadline: "9 August 2026, 3:30 PM",
     applicationUrl: "https://careers.idfcfirst.bank.in/in/en/event/6a75a7672a51052e8937a58d/Campus-Drive-RVCE",
     jdUrl: "https://careers.idfcfirst.bank.in/in/en/job/IFBAINP224654ENIN/Application-Engineer",
-    jdLinks: [
-      { label: "Application Engineer", url: "https://careers.idfcfirst.bank.in/in/en/job/IFBAINP224654ENIN/Application-Engineer" },
-    ],
+    jdLinks: [{ label: "Application Engineer", url: "https://careers.idfcfirst.bank.in/in/en/job/IFBAINP224654ENIN/Application-Engineer" }],
     timeline: [
       { stage: "Registration window", date: "7 August 2026, 3:30 PM – 9 August 2026, 3:30 PM" },
       { stage: "On-campus assessment — completed", date: "10 August 2026, 5:00 PM at CCH LAB 1 & 2, RVCE/RVU" },
@@ -108,12 +121,7 @@ const LATEST_COMPANIES = [
     ppo: "₹6–₹12 LPA depending on role after PPO",
     description: "GoComet, through AccioJob, is offering 12-month internships for Full Stack Developer and AI-First SDET roles with work from office in Bengaluru.",
     roles: ["Full Stack Developer Intern", "AI-First SDET Intern"],
-    requirements: [
-      "Able to join within 15 days if selected",
-      "Work from office in Bengaluru",
-      "Bring your own laptop for the offline assessment at The Oxford College of Engineering",
-      "Selection includes an offline assessment, coding assignment and three virtual technical interview rounds",
-    ],
+    requirements: ["Able to join within 15 days if selected", "Work from office in Bengaluru", "Bring your own laptop for the offline assessment at The Oxford College of Engineering", "Selection includes an offline assessment, coding assignment and three virtual technical interview rounds"],
     eligibility: ["BE/B.Tech", "CSE, ISE, ECE, AI, ML and other circuital branches", "Graduation years 2025, 2026 and 2027"],
     skills: ["DSA", "SQL", "Aptitude", "React", "REST API", "STLC", "Manual Testing", "Selenium", "CI/CD", "Java", "JavaScript", "Docker"],
     deadline: null,
@@ -196,12 +204,7 @@ const LATEST_COMPANIES = [
     ppo: "₹50 LPA full-time CTC",
     description: "ShareChat is recruiting for a Software Development Intern opportunity with potential full-time employment. The campus registration deadline has passed, and Puneet's registration acceptance is currently unconfirmed because the campus sheet still shows an incomplete row.",
     roles: ["Software Development Intern", "Full-Time Software Engineer conversion opportunity"],
-    requirements: [
-      "Campus registration deadline passed on 9 August 2026 at 7:00 PM",
-      "Puneet's campus row still shows Gender blank and Resume link as 'PUNEET'; acceptance must be confirmed with the placement cell or ShareChat campus coordinator",
-      "Remote assessment covers DSA with emphasis on graphs, trees and linked lists, subject to confirmed registration/shortlist",
-      "Technical interviews are in person at the ShareChat office in Bengaluru",
-    ],
+    requirements: ["Campus registration deadline passed on 9 August 2026 at 7:00 PM", "Puneet's campus row still shows Gender blank and Resume link as 'PUNEET'; acceptance must be confirmed with the placement cell or ShareChat campus coordinator", "Remote assessment covers DSA with emphasis on graphs, trees and linked lists, subject to confirmed registration/shortlist", "Technical interviews are in person at the ShareChat office in Bengaluru"],
     eligibility: ["B.E. CSE, ISE, AIML, DS or CY", "Minimum 8.0 CGPA", "No active backlogs"],
     skills: ["DSA", "Graphs", "Trees", "Linked Lists", "Problem Solving", "OOP", "Low-Level Design", "Testing", "Debugging"],
     deadline: "9 August 2026, 7:00 PM",
@@ -222,18 +225,14 @@ function isStaleRemovedRecord(company) {
   if (company.slug === "flipkart") {
     return company.source === "Existing placement tracker" && !company.deadline;
   }
-
   if (company.slug === "google-india-apprenticeships") {
-    return company.deadline === "3 August 2026"
-      && company.timeline?.some((item) => item.stage === "Program start" && item.date === "March 2027");
+    return company.deadline === "3 August 2026" && company.timeline?.some((item) => item.stage === "Program start" && item.date === "March 2027");
   }
-
   return false;
 }
 
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
-
   return {
     ...company,
     industry: "Biopharma technology internship",
@@ -241,11 +240,7 @@ function supplementSartorius(company) {
     ppo: "Full-time opportunity based on individual performance and business requirements",
     description: "Sartorius India offered a 6–9 month technology internship with a ₹20,000 monthly stipend and cab facility. The latest update announced the technical-interview shortlist; interview dates and timings are still pending.",
     roles: ["6–9 Month Internship"],
-    requirements: [
-      "Carry college ID and an updated resume for campus recruitment stages",
-      "Formal attire and professional conduct required",
-      "Prepare core technical subjects, projects and programming concepts for the technical interview",
-    ],
+    requirements: ["Carry college ID and an updated resume for campus recruitment stages", "Formal attire and professional conduct required", "Prepare core technical subjects, projects and programming concepts for the technical interview"],
     eligibility: ["B.Tech AI & ML", "B.Tech IT", "B.E CSE", "B.E ECE"],
     deadline: "1 July 2026, 8:00 PM",
     applicationUrl: "https://forms.gle/zuSAKuMyAyH48ocx9",
@@ -261,14 +256,8 @@ function supplementSartorius(company) {
 }
 
 function mergeLatestCompanies(sourceCompanies) {
-  const merged = new Map(
-    sourceCompanies.map((company) => [company.slug, supplementSartorius(company)]),
-  );
-
-  for (const company of LATEST_COMPANIES) {
-    merged.set(company.slug, company);
-  }
-
+  const merged = new Map(sourceCompanies.map((company) => [company.slug, supplementSartorius(company)]));
+  for (const company of LATEST_COMPANIES) merged.set(company.slug, company);
   return Array.from(merged.values());
 }
 
@@ -277,17 +266,12 @@ export async function GET() {
     next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
-
   if (!response.ok) {
-    return Response.json(
-      { error: "Unable to load placement data", status: response.status },
-      { status: 502 },
-    );
+    return Response.json({ error: "Unable to load placement data", status: response.status }, { status: 502 });
   }
 
   const sourceData = await response.json();
-  const companies = mergeLatestCompanies(sourceData.companies || [])
-    .filter((company) => !isStaleRemovedRecord(company));
+  const companies = mergeLatestCompanies(sourceData.companies || []).filter((company) => !isStaleRemovedRecord(company));
   const [, ...olderAnnouncements] = sourceData.announcements || [];
   const selectedStudents = [
     {
@@ -301,9 +285,7 @@ export async function GET() {
       verified: true,
       resumeUrl: null,
     },
-    ...(sourceData.selectedStudents || []).filter(
-      (student) => !(student.company === "SureWaves" && student.usn === "1RF24CS405"),
-    ),
+    ...(sourceData.selectedStudents || []).filter((student) => !(student.company === "SureWaves" && student.usn === "1RF24CS405")),
   ];
 
   const data = {
@@ -311,17 +293,17 @@ export async function GET() {
     selectedStudents,
     meta: {
       ...sourceData.meta,
-      lastUpdated: "2026-08-10T22:49:00+05:30",
-      rawDataThrough: "2026-08-10",
-      notice: "Placement records are synced through 10 August 2026 from official placement communications and the primary placement tracker. Google and Flipkart remain hidden until a fresh official notice appears. Always verify the latest placement-cell message before acting.",
+      lastUpdated: "2026-08-11T16:47:00+05:30",
+      rawDataThrough: "2026-08-11",
+      notice: "Placement records are synced through 11 August 2026 from official placement communications and the primary placement tracker. Google and Flipkart remain hidden until a fresh official notice appears. Always verify the latest placement-cell message before acting.",
     },
     announcements: [
       {
-        id: "placement-sync-2026-08-10-idfc-oa-complete",
-        title: "IDFC OA completed — awaiting result / interview shortlist",
-        message: `${companies.length} active company records are shown. Puneet Dixit completed the IDFC FIRST Bank OA on 10 August 2026. The next actionable IDFC update is the OA result / interview shortlist; campus interviews were previously communicated for 21 August 2026, subject to shortlist and exact timing confirmation.`,
-        date: "2026-08-10",
-        type: "info",
+        id: "placement-sync-2026-08-11-hsd2c",
+        title: "HSD2C Consulting applications close today at 9:00 PM",
+        message: `${companies.length} active company records are shown. HSD2C Consulting is hiring AI / Physical AI and BSP / Embedded Linux interns for six months in Whitefield, Bengaluru at ₹10,000/month, with PPO/full-time potential up to ₹6–₹7 LPA. Registration closes 11 August 2026 at 9:00 PM IST. IDFC FIRST Bank OA remains completed on 10 August 2026 and is awaiting result / interview shortlist.`,
+        date: "2026-08-11",
+        type: "urgent",
       },
       ...olderAnnouncements,
     ],
