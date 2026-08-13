@@ -1,268 +1,5 @@
 const SOURCE_URL = "https://raw.githubusercontent.com/puneetdixit200/placements26/main/data/placements.json";
-
-const LATEST_COMPANIES = [
-  {
-    slug: "bosch-mlff",
-    name: "BOSCH",
-    shortName: "BO",
-    companyUrl: "https://www.bosch.in/",
-    industry: "Data analytics, software testing and intelligent transportation systems",
-    package: { stipend: "₹10,000 per month" },
-    ppo: "PPO based on performance",
-    description: "Six-month MLFF Data Analysis & Software Testing internship in Adugodi, Bengaluru. The registration deadline was 11 August 2026 at 9:00 PM IST; submission status is not confirmed.",
-    roles: ["MLFF – Data Analysis & Software Testing Intern"],
-    requirements: ["Final-year B.Tech CSE/ECE", "Basic data analysis and software-testing knowledge", "Excel, programming and SQL/database fundamentals"],
-    eligibility: ["Final-year B.Tech CSE/ECE"],
-    skills: ["Excel", "Python", "Java", "SQL", "Pandas", "Power BI", "Jira", "API Testing", "ANPR", "RFID", "Computer Vision", "Software Testing"],
-    deadline: "11 August 2026, 9:00 PM",
-    applicationUrl: "https://docs.google.com/spreadsheets/d/1Im2Qfg8kDTpl938eWixZVb3mRlOWsm0ZicAJtikY4hQ/edit?usp=sharing",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [
-      { stage: "Campus registration deadline", date: "11 August 2026, 9:00 PM IST — passed; submission status unconfirmed" },
-      { stage: "Six-month internship", date: "Adugodi, Bengaluru" },
-      { stage: "PPO", date: "Based on performance" },
-    ],
-    source: "Official RVITM placement email and BOSCH MLFF JD received 11 August 2026",
-  },
-  {
-    slug: "hsd2c-consulting",
-    name: "HSD2C Consulting",
-    shortName: "H2",
-    companyUrl: null,
-    industry: "Deep-tech, Physical AI and embedded systems",
-    package: { stipend: "₹10,000 per month" },
-    ppo: "₹6–₹7 LPA full-time potential based on performance",
-    description: "Two six-month, work-from-office internships in Whitefield, Bengaluru: AI / Physical AI and BSP / Embedded Linux. Registration closed 11 August 2026 at 9:00 PM IST; submission status is not confirmed.",
-    roles: ["AI Intern – Physical AI", "BSP Intern – Embedded Linux / Board Support Package"],
-    requirements: ["Six-month WFO internship in Whitefield", "AI: Python, VLM/LLM apps, agents, RAG, model evaluation, Edge AI and sensor fusion", "BSP: Embedded C, Linux/RTOS, device drivers, kernel, bootloaders and board bring-up"],
-    eligibility: ["Campus notice distributed to CSE, ISE and ECE students", "AI JD prefers final-year BTech/MTech students or recent graduates"],
-    skills: ["Python", "LLMs", "VLMs", "RAG", "AI Agents", "Edge AI", "Embedded C", "Linux", "RTOS", "Device Drivers", "U-Boot", "ARM", "Device Tree"],
-    deadline: "11 August 2026, 9:00 PM",
-    applicationUrl: "https://docs.google.com/spreadsheets/d/1Oq03x9JBnSN8OOKlUJ0SGFJcTPXHEu1Il9bDUeF1T84/edit?usp=sharing",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [
-      { stage: "Campus registration deadline", date: "11 August 2026, 9:00 PM IST — passed; submission status unconfirmed" },
-      { stage: "Six-month internship", date: "Work from office, Whitefield, Bengaluru" },
-      { stage: "PPO / full-time conversion", date: "Performance based; potential ₹6–₹7 LPA" },
-    ],
-    source: "Official RVITM placement email and AI/BSP JDs received 11 August 2026",
-  },
-  {
-    slug: "sama",
-    name: "Sama",
-    shortName: "SA",
-    companyUrl: null,
-    industry: "MERN full-stack development / Online Dispute Resolution",
-    package: { stipend: "₹5.4 LPA fixed (~₹45,000/month) for 2027 internship" },
-    ppo: "Full-time conversion after graduation: ₹9 LPA fixed + 30% variable",
-    description: "Sama's campus recruitment drive has been rescheduled from 14 August to 17 August 2026 at RVITM. A fresh mandatory registration and video resume are required before 17 August.",
-    roles: ["MERN Stack Developer – Internship / Full-Time Conversion"],
-    requirements: ["Mandatory registration before 17 August 2026", "Video resume is mandatory", "Shortlisted candidates must remain available on campus for subsequent interviews", "Carry college ID and required documents"],
-    eligibility: ["2027 graduates: internship with full-time conversion", "Earlier campus notice specified B.E. CSE/ISE and MCA with hands-on MERN exposure"],
-    skills: ["React", "JavaScript", "TypeScript", "Node.js", "Express", "MongoDB", "MySQL", "REST APIs", "Git", "Debugging"],
-    deadline: "Before 17 August 2026; exact cutoff time not stated",
-    applicationUrl: "https://forms.gle/zg4W1xCjzvvePZDs9",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [
-      { stage: "Mandatory registration + video resume", date: "Before 17 August 2026; exact cutoff time TBD" },
-      { stage: "Campus drive", date: "17 August 2026 at RVITM; exact reporting time TBD" },
-      { stage: "Selection process", date: "Pre-Placement Talk → 40-minute Online Assessment → shortlist → Technical & Culture Interviews" },
-    ],
-    source: "Official RVITM placement email received 11 August 2026 confirming reschedule and new registration",
-  },
-  {
-    slug: "infosys",
-    name: "Infosys",
-    shortName: "IN",
-    companyUrl: "https://www.infosys.com/",
-    industry: "Software engineering",
-    package: { stipend: null },
-    ppo: "Direct full-time roles: ₹6.25–₹21 LPA depending on role",
-    description: "Infosys interview shortlist for Specialist Programmer (Trainee) / Digital Specialist Engineer (Trainee) was published on 11 August 2026. Eight RVITM candidates are listed. Puneet's known personal email is not in the attached RVITM shortlist, but the tracker does not treat that as a definitive rejection if a different application email was used.",
-    roles: ["Specialist Programmer (Trainee)", "Digital Specialist Engineer (Trainee)"],
-    requirements: ["Interview dates will be communicated shortly", "Monitor direct Infosys and RVITM placement communication"],
-    eligibility: ["Registered / shortlisted candidates"],
-    skills: ["Coding", "DSA", "OOP", "DBMS", "SQL", "Operating Systems", "Computer Networks", "Problem Solving"],
-    deadline: null,
-    applicationUrl: null,
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [
-      { stage: "Interview shortlist published", date: "11 August 2026" },
-      { stage: "Interview date(s)", date: "To be communicated shortly" },
-    ],
-    source: "Official RVITM Infosys shortlist email and attached RV College.xlsx received 11 August 2026",
-  },
-  {
-    slug: "eurofins",
-    name: "Eurofins",
-    shortName: "EU",
-    companyUrl: "https://www.eurofins.com/",
-    industry: "Software engineering and enterprise applications",
-    package: { stipend: "₹15,000 per month" },
-    ppo: "₹8 LPA full-time + ₹50,000 retention bonus",
-    description: "Associate Software Engineer opportunity through a six-month internship followed by full-time employment; the development team primarily works on .NET.",
-    roles: ["Associate Software Engineer"],
-    requirements: ["Strong programming and OOP fundamentals", "Basic SQL/database knowledge", "REST API, SDLC and Git familiarity preferred"],
-    eligibility: ["2027 graduating batch", "Computer Science, IT, Engineering or related degree", "Campus notice distributed to CSE, ISE and ECE students"],
-    skills: ["Programming", "OOP", "SQL", "REST APIs", "Git", "SDLC", ".NET", "Debugging"],
-    deadline: "10 August 2026, 5:00 PM",
-    applicationUrl: "https://docs.google.com/spreadsheets/d/1vS64HK2FYnJ2JzBhEz32MxMTkLRBFFjINraM4uaRZPs/edit?usp=sharing",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [{ stage: "Campus registration deadline", date: "10 August 2026, 5:00 PM" }],
-    source: "Official RVITM placement email received 10 August 2026",
-  },
-  {
-    slug: "evertz-india",
-    name: "Evertz India Private Limited",
-    shortName: "EV",
-    companyUrl: "https://www.evertz.com/",
-    industry: "Broadcast technology, software engineering and digital media",
-    package: { stipend: null },
-    ppo: null,
-    description: "2027 campus recruitment process. The virtual pre-placement session was held on 10 August and the campus assessment is confirmed for 19 August at RVITM.",
-    roles: ["Campus Recruitment – 2027 Batch (role not specified)"],
-    requirements: ["No active backlogs", "No break in education"],
-    eligibility: ["CSE/ISE/IT", "ECE/EEE with programming knowledge", "Minimum 70% through 6th semester", "Minimum 60% in Class 12", "Non-placed students only"],
-    skills: ["C", "C++", "Java", "Python", "DSA", "OOP", "Linux", "OS", "Networks", "DBMS", "SQL"],
-    deadline: "4 August 2026, 9:00 AM",
-    applicationUrl: "https://forms.gle/EWBAb4LYuepuF9dSA",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [{ stage: "Campus assessment", date: "19 August 2026 at RVITM; exact time TBD" }, { stage: "Selection process", date: "Technical Test → Technical Interview Rounds → Final Managerial Interview" }],
-    source: "Official RVITM placement email updated 10 August 2026",
-  },
-  {
-    slug: "idfc-first-bank",
-    name: "IDFC FIRST Bank",
-    shortName: "ID",
-    companyUrl: "https://www.idfcfirstbank.com/",
-    industry: "Banking technology and application engineering",
-    package: { stipend: "₹40,000 per month" },
-    ppo: "₹18 LPA CTC (₹14 LPA fixed + ₹2 lakh joining bonus + 15% variable)",
-    description: "Puneet Dixit completed the on-campus Application Engineer OA on 10 August 2026 and is awaiting the result / interview shortlist.",
-    roles: ["Application Engineer"],
-    requirements: ["OA completed on 10 August 2026", "Monitor placement communication for result and next-stage interview instructions"],
-    eligibility: ["2027 batch", "B.E. CSE/ISE", "Minimum 6.0 CGPA", "No current backlogs"],
-    skills: ["Java", "Spring Boot", "Python", "C++", "REST APIs", "SQL", "DSA", "OOP", "Testing", "Debugging", "Secure coding"],
-    deadline: "9 August 2026, 3:30 PM",
-    applicationUrl: "https://careers.idfcfirst.bank.in/in/en/event/6a75a7672a51052e8937a58d/Campus-Drive-RVCE",
-    jdUrl: "https://careers.idfcfirst.bank.in/in/en/job/IFBAINP224654ENIN/Application-Engineer",
-    jdLinks: [{ label: "Application Engineer", url: "https://careers.idfcfirst.bank.in/in/en/job/IFBAINP224654ENIN/Application-Engineer" }],
-    timeline: [{ stage: "On-campus assessment — completed", date: "10 August 2026, 5:00 PM" }, { stage: "Awaiting OA result / interview shortlist", date: "No result date announced yet" }, { stage: "Campus interviews", date: "21 August 2026; only if shortlisted; exact time/venue TBD" }],
-    source: "Official IDFC / RVCE placement emails and user confirmation that the OA was completed",
-  },
-  {
-    slug: "gocomet",
-    name: "GoComet",
-    shortName: "GC",
-    companyUrl: "https://www.gocomet.com/",
-    industry: "Full-stack development and software testing",
-    package: { stipend: "₹30,000–₹35,000 per month" },
-    ppo: "₹6–₹12 LPA depending on role after PPO",
-    description: "12-month Bengaluru WFO internships for Full Stack Developer and AI-First SDET roles through AccioJob.",
-    roles: ["Full Stack Developer Intern", "AI-First SDET Intern"],
-    requirements: ["Able to join within 15 days if selected", "Bring own laptop for offline assessment"],
-    eligibility: ["BE/B.Tech", "CSE, ISE, ECE, AI, ML and other circuital branches", "2025, 2026 and 2027 graduates"],
-    skills: ["DSA", "SQL", "React", "REST API", "STLC", "Selenium", "CI/CD", "Java", "JavaScript", "Docker"],
-    deadline: null,
-    applicationUrl: "https://go.acciojob.com/c9wcB3",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [{ stage: "Selection process", date: "Offline assessment → coding assignment → three virtual technical interview rounds" }],
-    source: "Official RVITM placement email received 7 August 2026; SDET application: https://go.acciojob.com/27c3yn",
-  },
-  {
-    slug: "cognizant",
-    name: "Cognizant",
-    shortName: "CO",
-    companyUrl: "https://www.cognizant.com/",
-    industry: "Software engineering",
-    package: { stipend: null },
-    ppo: "Associate – Ace Frontier Engineer: ₹12 LPA; Senior Associate – Ace Frontier Engineer: ₹18 LPA",
-    description: "Cognizant campus recruitment includes Ace Frontier Engineer roles.",
-    roles: ["Associate – Ace Frontier Engineer", "Senior Associate – Ace Frontier Engineer"],
-    requirements: [],
-    eligibility: [],
-    skills: [],
-    deadline: null,
-    applicationUrl: null,
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [{ stage: "Pre-placement talk", date: "7 August 2026, 9:00 AM at ECE Seminar Hall" }],
-    source: "Official RVCE placement email received 6 August 2026",
-  },
-  {
-    slug: "gnani-ai",
-    name: "Gnani.ai",
-    shortName: "GN",
-    companyUrl: "https://www.gnani.ai/",
-    industry: "Enterprise AI and forward deployed engineering",
-    package: { stipend: "₹30,000 per month" },
-    ppo: "₹6.9–₹8.8 LPA on conversion",
-    description: "12-month Forward Deployed Engineer internship focused on enterprise Voice AI and Generative AI solutions.",
-    roles: ["Forward Deployed Engineer (Intern)"],
-    requirements: [],
-    eligibility: ["2027 batch", "B.E/MCA students as notified"],
-    skills: ["Python", "FastAPI", "Flask", "MongoDB", "Redis", "REST APIs", "Generative AI", "LLMs", "Prompt Engineering"],
-    deadline: "7 August 2026, 9:00 AM",
-    applicationUrl: "https://forms.gle/i8ZQiXT9vhadsswaA",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [{ stage: "Application deadline", date: "7 August 2026, 9:00 AM" }],
-    source: "Official RVITM placement email received 6 August 2026",
-  },
-  {
-    slug: "recruit-crm",
-    name: "Recruit CRM",
-    shortName: "RC",
-    companyUrl: "https://recruitcrm.io/",
-    industry: "Remote SaaS software engineering",
-    package: { stipend: "₹7,500/month internship; ₹20,000/month traineeship" },
-    ppo: "Up to ₹9 LPA for Associate Software Engineer after successful traineeship",
-    description: "Remote Trainee Software Engineer path with part-time internship, full-time traineeship and potential Associate Software Engineer conversion.",
-    roles: ["Trainee Software Engineer", "Associate Software Engineer (conversion opportunity)"],
-    requirements: ["Internship: 3 months, 21 hours/week", "Traineeship: 6 months, full-time"],
-    eligibility: ["2027 BE/B.Tech/BCA/B.Sc./M.Tech/MCA/M.Sc.", "CS, IT or related technical disciplines"],
-    skills: ["Java", "Python", "AI", "Machine Learning", "Software Development"],
-    deadline: null,
-    applicationUrl: "https://careers.recruitcrm.io/17841115307470061803BaU?utm_source=Internal+Hiring+&utm_medium=Candidates+&utm_campaign=Hiring",
-    jdUrl: "https://drive.google.com/file/d/1n8BmY0BSidExPwogTsZ-807dWaxX2edY/view?usp=sharing",
-    jdLinks: [{ label: "Trainee Software Engineer JD", url: "https://drive.google.com/file/d/1n8BmY0BSidExPwogTsZ-807dWaxX2edY/view?usp=sharing" }],
-    timeline: [{ stage: "Opportunity announced", date: "6 August 2026" }],
-    source: "Official RVITM placement email received 6 August 2026",
-  },
-  {
-    slug: "sharechat",
-    name: "ShareChat",
-    shortName: "SC",
-    companyUrl: "https://sharechat.com/",
-    industry: "Consumer internet and software engineering",
-    package: { stipend: "₹75,000 per month" },
-    ppo: "₹50 LPA full-time CTC",
-    description: "Software Development Intern opportunity. Puneet's registration acceptance remains unconfirmed because the campus row was incomplete after the deadline.",
-    roles: ["Software Development Intern", "Full-Time Software Engineer conversion opportunity"],
-    requirements: ["Registration acceptance must be confirmed", "Remote assessment emphasizes graphs, trees and linked lists", "Technical interviews are in person at ShareChat office"],
-    eligibility: ["B.E. CSE, ISE, AIML, DS or CY", "Minimum 8.0 CGPA", "No active backlogs"],
-    skills: ["DSA", "Graphs", "Trees", "Linked Lists", "Problem Solving", "OOP", "Low-Level Design"],
-    deadline: "9 August 2026, 7:00 PM",
-    applicationUrl: "https://docs.google.com/spreadsheets/d/1FYqq6iJgymOJwNFjuXS1nn1UcUDbB4FQ8jXCVk8yKKE",
-    jdUrl: null,
-    jdLinks: [],
-    timeline: [{ stage: "Remote assessment", date: "18 August 2026; exact time TBD; subject to confirmed registration/shortlist" }, { stage: "In-person technical and HM rounds", date: "19 August 2026 at ShareChat office; exact time TBD" }],
-    source: "Placement Tracker 2026 and ShareChat campus registration sheet",
-  },
-];
-
-function isStaleRemovedRecord(company) {
-  if (company.slug === "flipkart") return company.source === "Existing placement tracker" && !company.deadline;
-  if (company.slug === "google-india-apprenticeships") return company.deadline === "3 August 2026";
-  return false;
-}
+const OVERRIDES_URL = "https://raw.githubusercontent.com/puneetdixit200/placements26/main/data/confirmed-overrides.json";
 
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
@@ -274,61 +11,125 @@ function supplementSartorius(company) {
     description: "Sartorius India offered a 6–9 month technology internship. The latest update announced the technical-interview shortlist; interview dates and timings are pending.",
     roles: ["6–9 Month Internship"],
     eligibility: ["B.Tech AI & ML", "B.Tech IT", "B.E CSE", "B.E ECE"],
-    timeline: [{ stage: "Technical interview shortlist announced", date: "7 August 2026" }, { stage: "Technical interview", date: "Date/time TBD based on panel availability" }, { stage: "Internship start", date: "February 2027" }],
+    timeline: [
+      { stage: "Technical interview shortlist announced", date: "7 August 2026" },
+      { stage: "Technical interview", date: "Date/time TBD based on panel availability" },
+      { stage: "Internship start", date: "February 2027" },
+    ],
     source: "Official RVITM placement email thread updated 7 August 2026",
   };
 }
 
-function mergeLatestCompanies(sourceCompanies) {
-  const merged = new Map(sourceCompanies.map((company) => [company.slug, supplementSartorius(company)]));
-  for (const company of LATEST_COMPANIES) merged.set(company.slug, company);
-  return Array.from(merged.values());
+function normalizeAddition(addition) {
+  const shortName = (addition.name || addition.slug || "NA")
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+  return {
+    slug: addition.slug,
+    name: addition.name,
+    shortName,
+    companyUrl: null,
+    industry: "Software engineering",
+    package: { stipend: null },
+    ppo: null,
+    description: addition.currentStage || "Campus application submitted; awaiting next-stage details.",
+    roles: addition.roles || (addition.role ? [addition.role] : []),
+    requirements: [],
+    eligibility: [],
+    skills: [],
+    deadline: null,
+    applicationUrl: null,
+    jdUrl: null,
+    jdLinks: [],
+    timeline: [],
+    source: "Placement Tracker 2026 / confirmed user state",
+    ...addition,
+  };
+}
+
+function applyConfirmedState(sourceCompanies, overrideData) {
+  const companies = new Map(
+    (sourceCompanies || []).map((company) => [company.slug, supplementSartorius(company)]),
+  );
+
+  for (const override of overrideData.overrides || []) {
+    const existing = companies.get(override.slug) || { slug: override.slug };
+    const merged = { ...existing, ...override };
+
+    // These states are explicitly non-actionable for Puneet. Keep historical role/company
+    // information, but do not expose superseded personal deadlines or interview timelines.
+    if (override.applicationStatus === "Not Applicable" || override.applicationStatus === "Not Applied") {
+      merged.deadline = null;
+      merged.timeline = [];
+    }
+
+    companies.set(override.slug, merged);
+  }
+
+  for (const addition of overrideData.additions || []) {
+    const existing = companies.get(addition.slug);
+    companies.set(
+      addition.slug,
+      existing ? { ...existing, ...addition } : normalizeAddition(addition),
+    );
+  }
+
+  const exclusions = new Set((overrideData.exclusions || []).map((name) => name.toLowerCase()));
+  return Array.from(companies.values()).filter((company) => {
+    const name = (company.name || "").toLowerCase();
+    const slug = (company.slug || "").toLowerCase();
+    return !Array.from(exclusions).some((excluded) => name.includes(excluded) || slug.includes(excluded));
+  });
 }
 
 export async function GET() {
-  const response = await fetch(SOURCE_URL, {
-    next: { revalidate: 60 },
-    headers: { Accept: "application/json" },
-  });
-  if (!response.ok) return Response.json({ error: "Unable to load placement data", status: response.status }, { status: 502 });
+  const [sourceResponse, overrideResponse] = await Promise.all([
+    fetch(SOURCE_URL, { next: { revalidate: 60 }, headers: { Accept: "application/json" } }),
+    fetch(OVERRIDES_URL, { next: { revalidate: 60 }, headers: { Accept: "application/json" } }),
+  ]);
 
-  const sourceData = await response.json();
-  const companies = mergeLatestCompanies(sourceData.companies || []).filter((company) => !isStaleRemovedRecord(company));
-  const [, ...olderAnnouncements] = sourceData.announcements || [];
-  const selectedStudents = [
-    {
-      name: "Murali Krishna",
-      usn: "1RF24CS405",
-      company: "SureWaves",
-      role: "QA Internship",
-      stipend: "₹20,000 per month",
-      ppo: "₹7.5 LPA, subject to company terms and performance requirements",
-      selectionDate: "10 August 2026",
-      verified: true,
-      resumeUrl: null,
-    },
-    ...(sourceData.selectedStudents || []).filter((student) => !(student.company === "SureWaves" && student.usn === "1RF24CS405")),
-  ];
+  if (!sourceResponse.ok) {
+    return Response.json(
+      { error: "Unable to load placement data", status: sourceResponse.status },
+      { status: 502 },
+    );
+  }
+
+  const sourceData = await sourceResponse.json();
+  const overrideData = overrideResponse.ok
+    ? await overrideResponse.json()
+    : { overrides: [], additions: [], exclusions: ["Google", "Flipkart"] };
+
+  const companies = applyConfirmedState(sourceData.companies || [], overrideData);
+  const overrideUpdated = overrideData.meta?.lastUpdated || sourceData.meta?.lastUpdated;
+  const rawDataThrough = overrideUpdated?.slice(0, 10) || sourceData.meta?.rawDataThrough;
 
   return Response.json(
     {
       ...sourceData,
-      selectedStudents,
       meta: {
         ...sourceData.meta,
-        lastUpdated: "2026-08-11T22:48:00+05:30",
-        rawDataThrough: "2026-08-11",
-        notice: "Placement records are synced through 11 August 2026 from official placement communications and the primary tracker. Google and Flipkart remain hidden until a fresh official notice appears. Verify the latest placement-cell message before acting.",
+        lastUpdated: overrideUpdated,
+        rawDataThrough,
+        notice:
+          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable because RVITM was not considered; Sama is Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
         {
-          id: "placement-sync-2026-08-11-sama",
-          title: "Sama drive rescheduled to 17 August; mandatory registration required",
-          message: `${companies.length} active company records are shown. Sama's RVITM campus drive is now 17 August 2026. Complete the fresh registration and mandatory video resume before 17 August; exact cutoff time and reporting time are still TBD. BOSCH and HSD2C registration deadlines passed at 9:00 PM on 11 August. IDFC FIRST Bank OA remains completed on 10 August and is awaiting result / interview shortlist.`,
-          date: "2026-08-11",
-          type: "urgent",
+          id: "confirmed-state-sync-2026-08-13",
+          title: "Confirmed placement state synced",
+          message:
+            "Authoritative corrections are active: IDFC OA completed; InMobi not applicable to RVITM; Sama not applied. Tekion, Red Hat and BitGo are recorded as applied and awaiting next-stage communication.",
+          date: "2026-08-13",
+          type: "info",
         },
-        ...olderAnnouncements,
+        ...(sourceData.announcements || []).filter(
+          (announcement) => announcement.id !== "confirmed-state-sync-2026-08-13",
+        ),
       ],
       companies,
     },
