@@ -88,8 +88,8 @@ function applyConfirmedState(sourceCompanies, overrideData) {
 
 export async function GET() {
   const [sourceResponse, overrideResponse] = await Promise.all([
-    fetch(SOURCE_URL, { next: { revalidate: 60 }, headers: { Accept: "application/json" } }),
-    fetch(OVERRIDES_URL, { next: { revalidate: 60 }, headers: { Accept: "application/json" } }),
+    fetch(SOURCE_URL, { cache: "no-store", headers: { Accept: "application/json" } }),
+    fetch(OVERRIDES_URL, { cache: "no-store", headers: { Accept: "application/json" } }),
   ]);
 
   if (!sourceResponse.ok) {
@@ -116,19 +116,21 @@ export async function GET() {
         lastUpdated: overrideUpdated,
         rawDataThrough,
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable because RVITM was not considered; Sama is Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
         {
-          id: "confirmed-state-sync-2026-08-13",
+          id: "confirmed-state-sync-2026-08-15",
           title: "Confirmed placement state synced",
           message:
-            "Authoritative corrections are active: IDFC OA completed; InMobi not applicable to RVITM; Sama not applied. Tekion, Red Hat and BitGo are recorded as applied and awaiting next-stage communication.",
-          date: "2026-08-13",
+            "Authoritative corrections are active: IDFC OA completed; InMobi and BitGo current drives are not applicable to RVITM; Sama not applied. Tekion and Red Hat remain applied and awaiting next-stage communication.",
+          date: "2026-08-15",
           type: "info",
         },
         ...(sourceData.announcements || []).filter(
-          (announcement) => announcement.id !== "confirmed-state-sync-2026-08-13",
+          (announcement) =>
+            announcement.id !== "confirmed-state-sync-2026-08-13" &&
+            announcement.id !== "confirmed-state-sync-2026-08-15",
         ),
       ],
       companies,
