@@ -60,8 +60,6 @@ function applyConfirmedState(sourceCompanies, overrideData) {
     const existing = companies.get(override.slug) || { slug: override.slug };
     const merged = { ...existing, ...override };
 
-    // These states are explicitly non-actionable for Puneet. Keep historical role/company
-    // information, but do not expose superseded personal deadlines or interview timelines.
     if (override.applicationStatus === "Not Applicable" || override.applicationStatus === "Not Applied") {
       merged.deadline = null;
       merged.timeline = [];
@@ -106,7 +104,7 @@ export async function GET() {
 
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
   const overrideUpdated = overrideData.meta?.lastUpdated || sourceData.meta?.lastUpdated;
-  const rawDataThrough = overrideUpdated?.slice(0, 10) || sourceData.meta?.rawDataThrough;
+  const rawDataThrough = overrideData.meta?.rawDataThrough || sourceData.meta?.rawDataThrough || null;
 
   return Response.json(
     {
@@ -115,6 +113,9 @@ export async function GET() {
         ...sourceData.meta,
         lastUpdated: overrideUpdated,
         rawDataThrough,
+        rawSourceLatestCommit: overrideData.meta?.rawSourceLatestCommit || null,
+        rawSourceLatestCommitAt: overrideData.meta?.rawSourceLatestCommitAt || null,
+        rawSourceFreshness: overrideData.meta?.rawSourceFreshness || null,
         notice:
           "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
