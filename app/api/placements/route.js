@@ -1,5 +1,5 @@
-const SOURCE_URL = "https://raw.githubusercontent.com/puneetdixit200/placements26/main/data/placements.json";
-const OVERRIDES_URL = "https://raw.githubusercontent.com/puneetdixit200/placements26/main/data/confirmed-overrides.json";
+import sourceData from "../../../data/placements.json";
+import overrideData from "../../../data/confirmed-overrides.json";
 
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
@@ -51,12 +51,12 @@ function normalizeAddition(addition) {
   };
 }
 
-function applyConfirmedState(sourceCompanies, overrideData) {
+function applyConfirmedState(sourceCompanies, overrides) {
   const companies = new Map(
     (sourceCompanies || []).map((company) => [company.slug, supplementSartorius(company)]),
   );
 
-  for (const override of overrideData.overrides || []) {
+  for (const override of overrides.overrides || []) {
     const existing = companies.get(override.slug) || { slug: override.slug };
     const merged = { ...existing, ...override };
 
@@ -68,7 +68,7 @@ function applyConfirmedState(sourceCompanies, overrideData) {
     companies.set(override.slug, merged);
   }
 
-  for (const addition of overrideData.additions || []) {
+  for (const addition of overrides.additions || []) {
     const existing = companies.get(addition.slug);
     companies.set(
       addition.slug,
@@ -76,7 +76,7 @@ function applyConfirmedState(sourceCompanies, overrideData) {
     );
   }
 
-  const exclusions = new Set((overrideData.exclusions || []).map((name) => name.toLowerCase()));
+  const exclusions = new Set((overrides.exclusions || []).map((name) => name.toLowerCase()));
   return Array.from(companies.values()).filter((company) => {
     const name = (company.name || "").toLowerCase();
     const slug = (company.slug || "").toLowerCase();
@@ -85,23 +85,6 @@ function applyConfirmedState(sourceCompanies, overrideData) {
 }
 
 export async function GET() {
-  const [sourceResponse, overrideResponse] = await Promise.all([
-    fetch(SOURCE_URL, { cache: "no-store", headers: { Accept: "application/json" } }),
-    fetch(OVERRIDES_URL, { cache: "no-store", headers: { Accept: "application/json" } }),
-  ]);
-
-  if (!sourceResponse.ok) {
-    return Response.json(
-      { error: "Unable to load placement data", status: sourceResponse.status },
-      { status: 502 },
-    );
-  }
-
-  const sourceData = await sourceResponse.json();
-  const overrideData = overrideResponse.ok
-    ? await overrideResponse.json()
-    : { overrides: [], additions: [], exclusions: ["Google", "Flipkart"] };
-
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
   const overrideUpdated = overrideData.meta?.lastUpdated || sourceData.meta?.lastUpdated;
   const rawDataThrough = overrideData.meta?.rawDataThrough || sourceData.meta?.rawDataThrough || null;
