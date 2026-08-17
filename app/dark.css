@@ -1,0 +1,260 @@
+/*
+ * Permanent dark presentation for the placement dashboard.
+ * Kept separate from sheet.css so the existing layout and data UI stay untouched.
+ */
+html[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Current dashboard tokens from sheet.css */
+  --primary: #4da3ff;
+  --primary-hover: #66b1ff;
+  --primary-on-dark: #66b1ff;
+  --canvas: #0b0b0d;
+  --parchment: #101114;
+  --pearl: #16171b;
+  --tile: #18191d;
+  --tile-soft: #1e1f24;
+  --ink: #f5f5f7;
+  --muted: #a1a1a6;
+  --muted-light: #85858b;
+  --hairline: #2b2c31;
+  --divider: rgba(255, 255, 255, 0.1);
+  --focus-ring: rgba(77, 163, 255, 0.32);
+  --success: #70d58c;
+  --success-bg: rgba(52, 199, 89, 0.13);
+  --warning: #f5c451;
+  --warning-bg: rgba(255, 159, 10, 0.13);
+
+  /* Older global tokens, retained for any shared/fallback UI. */
+  --green: #3a9b68;
+  --green-dark: #297a50;
+  --green-soft: #15251c;
+  --grid: #292b30;
+  --grid-dark: #36383e;
+  --text: #f5f5f7;
+  --surface: #0b0b0d;
+  --page: #101114;
+}
+
+html[data-theme='dark'],
+html[data-theme='dark'] body {
+  background: var(--parchment);
+  color: var(--ink);
+}
+
+html[data-theme='dark'] ::selection {
+  background: rgba(77, 163, 255, 0.3);
+}
+
+/* Header remains intentionally near-black, with a slightly clearer separator. */
+html[data-theme='dark'] .app-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 8, 10, 0.9);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+html[data-theme='dark'] .logo-box {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Hero and summary areas */
+html[data-theme='dark'] .hero-section,
+html[data-theme='dark'] .summary-strip > div,
+html[data-theme='dark'] .company-card,
+html[data-theme='dark'] .table-card,
+html[data-theme='dark'] .empty-state,
+html[data-theme='dark'] .loading-card,
+html[data-theme='dark'] .calendar-panel,
+html[data-theme='dark'] .calendar-event {
+  background: var(--canvas);
+}
+
+html[data-theme='dark'] .next-up-panel {
+  border: 1px solid var(--hairline);
+  background: var(--tile);
+}
+
+html[data-theme='dark'] .compact-date {
+  background: #25262b;
+  color: #f5f5f7;
+}
+
+html[data-theme='dark'] .compact-date span,
+html[data-theme='dark'] .next-up-item small,
+html[data-theme='dark'] .next-up-heading strong,
+html[data-theme='dark'] .no-upcoming {
+  color: #a9a9af;
+}
+
+html[data-theme='dark'] .summary-strip .announcement-cell {
+  border-color: #303137;
+  background: var(--tile-soft);
+}
+
+/* Search/filter toolbar */
+html[data-theme='dark'] .toolbar {
+  border-color: var(--divider);
+  background: rgba(20, 21, 24, 0.88);
+}
+
+html[data-theme='dark'] .search-box,
+html[data-theme='dark'] .control-box,
+html[data-theme='dark'] .view-toggle {
+  border-color: var(--divider);
+  background: #15161a;
+}
+
+html[data-theme='dark'] .search-box:hover,
+html[data-theme='dark'] .control-box:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+html[data-theme='dark'] .search-box input,
+html[data-theme='dark'] .control-box select,
+html[data-theme='dark'] .control-box select option {
+  color: var(--ink);
+  background-color: #15161a;
+}
+
+html[data-theme='dark'] .view-toggle button.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Cards */
+html[data-theme='dark'] .company-card:hover {
+  border-color: #45474e;
+}
+
+html[data-theme='dark'] .company-summary,
+html[data-theme='dark'] .detail-group ul,
+html[data-theme='dark'] .description-cell {
+  color: #c7c7cc;
+}
+
+html[data-theme='dark'] .company-mark,
+html[data-theme='dark'] .compensation-grid > div,
+html[data-theme='dark'] .status-chip,
+html[data-theme='dark'] .role-chips span,
+html[data-theme='dark'] .skill-chips span,
+html[data-theme='dark'] .domain-pill {
+  border-color: var(--hairline);
+  background: var(--pearl);
+}
+
+html[data-theme='dark'] .status-upcoming,
+html[data-theme='dark'] .status-today {
+  background: rgba(41, 151, 255, 0.14);
+  color: #69b4ff;
+}
+
+html[data-theme='dark'] .status-completed {
+  background: #15161a;
+  color: var(--muted-light);
+}
+
+html[data-theme='dark'] .status-no-date {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+html[data-theme='dark'] .next-event {
+  border-color: var(--hairline);
+  background: #111216;
+}
+
+html[data-theme='dark'] .next-event.has-date {
+  border-color: rgba(77, 163, 255, 0.3);
+  background: rgba(41, 151, 255, 0.08);
+}
+
+html[data-theme='dark'] .details-content {
+  background: #111216;
+}
+
+/* Table view */
+html[data-theme='dark'] .placement-table th,
+html[data-theme='dark'] th.number-column,
+html[data-theme='dark'] th.company-column {
+  background: rgba(22, 23, 27, 0.97) !important;
+  color: var(--muted);
+}
+
+html[data-theme='dark'] .placement-table td {
+  background: var(--canvas);
+}
+
+html[data-theme='dark'] .placement-table tbody tr:hover td,
+html[data-theme='dark'] .placement-table tbody tr:hover .company-column {
+  background: #14151a !important;
+}
+
+html[data-theme='dark'] .number-column {
+  background: #111216 !important;
+}
+
+html[data-theme='dark'] .company-column {
+  background: var(--canvas) !important;
+  box-shadow: 1px 0 0 var(--hairline);
+}
+
+html[data-theme='dark'] .table-scroll {
+  scrollbar-color: #505159 transparent;
+}
+
+html[data-theme='dark'] .table-scroll::-webkit-scrollbar-thumb {
+  background: #505159;
+  background-clip: padding-box;
+}
+
+/* Calendar modal */
+html[data-theme='dark'] .calendar-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme='dark'] .calendar-close {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .calendar-filters {
+  background: rgba(18, 19, 22, 0.9);
+}
+
+html[data-theme='dark'] .calendar-filters button {
+  border-color: var(--hairline);
+  background: #16171b;
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .calendar-filters button.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+html[data-theme='dark'] .calendar-event.status-past,
+html[data-theme='dark'] .calendar-empty,
+html[data-theme='dark'] .loading-screen {
+  background: var(--parchment);
+}
+
+html[data-theme='dark'] .calendar-date-block {
+  border-color: var(--hairline);
+  background: var(--pearl);
+}
+
+/* Keep inputs and native controls consistent with the dark document. */
+html[data-theme='dark'] input,
+html[data-theme='dark'] select,
+html[data-theme='dark'] button {
+  color-scheme: dark;
+}
+
+@media (prefers-contrast: more) {
+  html[data-theme='dark'] {
+    --hairline: #3d3f46;
+    --muted: #b7b7bd;
+  }
+}
