@@ -9,6 +9,7 @@ const inter = Inter({
   display: "swap",
 });
 
+// Official RVITM assets are used for browser and home-screen identity.
 const rvLogo = "https://rvitm.edu.in/wp-content/uploads/2026/01/Logo-1-with-white-bg-300x300-1-150x150.png";
 const rvLogoLarge = "https://rvitm.edu.in/wp-content/uploads/2026/01/Logo-1-with-white-bg-300x300-1.png";
 
