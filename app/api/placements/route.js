@@ -94,6 +94,29 @@ function applyConfirmedState(sourceCompanies, overrides) {
     });
   }
 
+  // The official Pure Storage / EverPure registration sheet contains Puneet
+  // Dixit (1RF23CS119), so the earlier Considering state is superseded.
+  const pureStorage = companies.get("pure-storage-everpure");
+  if (pureStorage) {
+    companies.set("pure-storage-everpure", {
+      ...pureStorage,
+      applicationStatus: "Applied",
+      appliedDate: "2026-08-17",
+      currentStage:
+        "Registration confirmed in the official RVITM Pure Storage / EverPure sheet. Online Assessment is scheduled for 20-Aug-2026; exact time is TBD.",
+      nextAction:
+        "Prepare for the 20-Aug online assessment and monitor RVITM/company communication for exact test time and instructions.",
+      timeline: [
+        { stage: "Registration confirmed", date: "17 August 2026" },
+        { stage: "Online Assessment", date: "20 August 2026; time TBD" },
+        { stage: "Interviews", date: "24 August 2026; conditional on OA progression" },
+      ],
+      source: "Official RVITM Pure Storage / EverPure registration sheet + placement WhatsApp",
+      notes:
+        "Puneet Dixit (1RF23CS119) appears in the official registration sheet at row 64. This supersedes the earlier Considering state.",
+    });
+  }
+
   const exclusions = new Set((overrides.exclusions || []).map((name) => name.toLowerCase()));
   return Array.from(companies.values()).filter((company) => {
     const name = (company.name || "").toLowerCase();
@@ -104,7 +127,7 @@ function applyConfirmedState(sourceCompanies, overrides) {
 
 export async function GET() {
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
-  const overrideUpdated = "2026-08-17T19:08:00+05:30";
+  const overrideUpdated = "2026-08-17T21:08:00+05:30";
   const rawDataThrough = overrideData.meta?.rawDataThrough || sourceData.meta?.rawDataThrough || null;
 
   return Response.json(
@@ -118,9 +141,17 @@ export async function GET() {
         rawSourceLatestCommitAt: overrideData.meta?.rawSourceLatestCommitAt || null,
         rawSourceFreshness: overrideData.meta?.rawSourceFreshness || null,
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed after the 17-Aug OA-cleared list. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
+        {
+          id: "pure-storage-registration-2026-08-17",
+          title: "Pure Storage / EverPure registration confirmed",
+          message:
+            "The official RVITM registration sheet contains Puneet Dixit (1RF23CS119). The online assessment is scheduled for 20-Aug-2026; exact time is TBD. Interviews are scheduled for 24-Aug subject to OA progression.",
+          date: "2026-08-17",
+          type: "info",
+        },
         {
           id: "sharechat-result-2026-08-17",
           title: "ShareChat OA result updated",
@@ -141,7 +172,8 @@ export async function GET() {
           (announcement) =>
             announcement.id !== "confirmed-state-sync-2026-08-13" &&
             announcement.id !== "confirmed-state-sync-2026-08-15" &&
-            announcement.id !== "sharechat-result-2026-08-17",
+            announcement.id !== "sharechat-result-2026-08-17" &&
+            announcement.id !== "pure-storage-registration-2026-08-17",
         ),
       ],
       companies,
