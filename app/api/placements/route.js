@@ -76,6 +76,24 @@ function applyConfirmedState(sourceCompanies, overrides) {
     );
   }
 
+  // Newer RVITM placement communication on 17-Aug-2026 published the students
+  // who cleared the ShareChat OA. Puneet Dixit is not on the published list,
+  // so older conditional ShareChat placeholders are superseded for this drive.
+  const shareChat = companies.get("sharechat");
+  if (shareChat) {
+    companies.set("sharechat", {
+      ...shareChat,
+      applicationStatus: "Not Shortlisted",
+      currentStage:
+        "RVITM published the ShareChat OA-cleared list on 17-Aug-2026. Puneet Dixit is not on the published cleared list.",
+      nextAction:
+        "No further ShareChat action for the current drive unless a newer official correction or additional shortlist is published.",
+      timeline: [],
+      notes:
+        "RVITM Placement WhatsApp on 17-Aug-2026 published 16 students who cleared the ShareChat online assessment; Puneet Dixit is not among them. This supersedes the earlier unconfirmed shortlist state.",
+    });
+  }
+
   const exclusions = new Set((overrides.exclusions || []).map((name) => name.toLowerCase()));
   return Array.from(companies.values()).filter((company) => {
     const name = (company.name || "").toLowerCase();
@@ -86,7 +104,7 @@ function applyConfirmedState(sourceCompanies, overrides) {
 
 export async function GET() {
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
-  const overrideUpdated = overrideData.meta?.lastUpdated || sourceData.meta?.lastUpdated;
+  const overrideUpdated = "2026-08-17T19:08:00+05:30";
   const rawDataThrough = overrideData.meta?.rawDataThrough || sourceData.meta?.rawDataThrough || null;
 
   return Response.json(
@@ -100,21 +118,30 @@ export async function GET() {
         rawSourceLatestCommitAt: overrideData.meta?.rawSourceLatestCommitAt || null,
         rawSourceFreshness: overrideData.meta?.rawSourceFreshness || null,
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed after the 17-Aug OA-cleared list. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
+        {
+          id: "sharechat-result-2026-08-17",
+          title: "ShareChat OA result updated",
+          message:
+            "RVITM published the students who cleared the ShareChat online assessment on 17-Aug-2026. Puneet Dixit is not on the published list, so the conditional 18-Aug OA and 19-Aug interview placeholders are no longer active.",
+          date: "2026-08-17",
+          type: "info",
+        },
         {
           id: "confirmed-state-sync-2026-08-15",
           title: "Confirmed placement state synced",
           message:
-            "Authoritative corrections are active: IDFC OA completed; InMobi and BitGo current drives are not applicable to RVITM; Sama not applied. Tekion and Red Hat remain applied and awaiting next-stage communication.",
+            "Authoritative corrections are active: IDFC OA completed; InMobi and BitGo current drives are not applicable to RVITM; Sama not applied. Tekion and Red Hat remain awaiting next-stage communication.",
           date: "2026-08-15",
           type: "info",
         },
         ...(sourceData.announcements || []).filter(
           (announcement) =>
             announcement.id !== "confirmed-state-sync-2026-08-13" &&
-            announcement.id !== "confirmed-state-sync-2026-08-15",
+            announcement.id !== "confirmed-state-sync-2026-08-15" &&
+            announcement.id !== "sharechat-result-2026-08-17",
         ),
       ],
       companies,
