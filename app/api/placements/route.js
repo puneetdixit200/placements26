@@ -168,15 +168,15 @@ function applyConfirmedState(sourceCompanies, overrides) {
       { stage: "Interviews", date: "11 September 2026, 10:00 AM" },
       { stage: "Internship start", date: "4 January 2027" },
     ],
-    source: "Official RVITM Placement email received 18-Aug-2026",
+    source: "Official RVITM Placement email + official RVITM Cargill registration sheet",
     role: "DT&D Internship Program – Software Engineer pathway",
-    applicationStatus: "Considering",
+    applicationStatus: "Applying",
     currentStage:
-      "Official RVITM placement email received 18-Aug-2026. Both registrations are mandatory; RVITM T&P registration closes 19-Aug-2026 at 9:00 AM.",
+      "RVITM registration sheet contains Puneet Dixit / 1RF23CS119, but the mandatory 'Applied on Cargill Career Portal? (Yes/No)' field is blank as of 18-Aug-2026 afternoon. Both registrations are mandatory, so the application is incomplete.",
     nextAction:
-      "Complete both the RVITM T&P registration and Cargill career-site application before the deadline, then prepare for the 31-Aug online test.",
+      "Complete the Cargill career-site application and ensure the RVITM sheet reflects portal completion before 19-Aug-2026 at 9:00 AM, then prepare for the 31-Aug online test.",
     notes:
-      "Location: Cessna Business Park, Kadubeesanahalli, Bengaluru. Internship duration: 6 months. Open positions: 3. Official email states Cargill converted 100% of students from the last two internship cohorts into full-time offers.",
+      "Location: Cessna Business Park, Kadubeesanahalli, Bengaluru. Internship duration: 6 months. Open positions: 3. Official email states Cargill converted 100% of students from the last two internship cohorts into full-time offers. RVITM sheet row for 1RF23CS119 currently has the Cargill career-portal confirmation blank.",
   });
 
   const exclusions = new Set((overrides.exclusions || []).map((name) => name.toLowerCase()));
@@ -189,7 +189,7 @@ function applyConfirmedState(sourceCompanies, overrides) {
 
 export async function GET() {
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
-  const overrideUpdated = "2026-08-18T11:01:00+05:30";
+  const overrideUpdated = "2026-08-18T14:58:00+05:30";
   const rawDataThrough = "2026-08-18";
 
   return Response.json(
@@ -204,14 +204,14 @@ export async function GET() {
         rawSourceFreshness:
           "aging: collector last synced at 04:47 IST on 18-Aug; official Gmail has newer placement activity at 10:57 IST, so Gmail is the fresher source for this run",
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides and official email updates. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD; Cargill DT&D registration is now active. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides and official email updates. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD; Cargill DT&D registration is in progress but the mandatory Cargill career-portal confirmation is still missing. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
         {
           id: "cargill-dtd-2026-08-18",
-          title: "Cargill DT&D registration open",
+          title: "Cargill registration incomplete",
           message:
-            "Both the RVITM T&P registration and Cargill career-site application are mandatory. RVITM registration closes 19-Aug-2026 at 9:00 AM. Stipend is ₹42,000/month with potential PPO of ₹15–16 LPA + variables.",
+            "Your RVITM Cargill row exists, but the mandatory 'Applied on Cargill Career Portal?' field is still blank. Complete the Cargill career-site application and ensure the sheet reflects completion before the RVITM deadline of 19-Aug-2026 at 9:00 AM.",
           date: "2026-08-18",
           type: "urgent",
         },
