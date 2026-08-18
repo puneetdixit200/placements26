@@ -76,9 +76,6 @@ function applyConfirmedState(sourceCompanies, overrides) {
     );
   }
 
-  // Newer RVITM placement communication on 17-Aug-2026 published the students
-  // who cleared the ShareChat OA. Puneet Dixit is not on the published list,
-  // so older conditional ShareChat placeholders are superseded for this drive.
   const shareChat = companies.get("sharechat");
   if (shareChat) {
     companies.set("sharechat", {
@@ -94,8 +91,6 @@ function applyConfirmedState(sourceCompanies, overrides) {
     });
   }
 
-  // The official Pure Storage / EverPure registration sheet contains Puneet
-  // Dixit (1RF23CS119), so the earlier Considering state is superseded.
   const pureStorage = companies.get("pure-storage-everpure");
   if (pureStorage) {
     companies.set("pure-storage-everpure", {
@@ -117,9 +112,6 @@ function applyConfirmedState(sourceCompanies, overrides) {
     });
   }
 
-  // A later RVITM placement update on 17-Aug-2026 supersedes the 14-Aug BitGo
-  // non-consideration: BitGo is expected to conduct an exclusive RVITM drive.
-  // Registration/process details are not published yet, so keep it as Need Info.
   const bitGo = companies.get("bitgo");
   if (bitGo) {
     companies.set("bitgo", {
@@ -136,6 +128,57 @@ function applyConfirmedState(sourceCompanies, overrides) {
     });
   }
 
+  companies.set("cargill-dtd", {
+    slug: "cargill-dtd",
+    name: "Cargill",
+    shortName: "CA",
+    companyUrl: null,
+    industry: "Digital Technology & Data / Software Engineering",
+    package: { stipend: "₹42,000 per month" },
+    ppo: "₹15–16 LPA + variables, performance based",
+    description:
+      "Six-month Digital Technology & Data internship in Bengaluru with potential conversion to a full-time Software Engineer role.",
+    roles: ["DT&D Internship Program – Software Engineer pathway"],
+    requirements: [
+      "2027 B.Tech CSE/ISE and allied courses",
+      "CGPA 8.0 and above",
+      "No active backlogs",
+      "Both RVITM T&P and Cargill career-site registrations are mandatory",
+    ],
+    eligibility: [],
+    skills: ["DSA", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "APIs", "Software Engineering"],
+    deadline: "19 August 2026, 9:00 AM for RVITM T&P registration; Cargill career-site deadline 19 August 2026",
+    applicationUrl:
+      "https://career2.successfactors.eu/sfcareer/jobreqcareerpvt?jobId=332332&company=cargill&st=BC43C540E2084C53E23AE11EAC4C6D70261765C4",
+    jdUrl: null,
+    jdLinks: [
+      {
+        label: "RVITM T&P registration",
+        url: "https://docs.google.com/spreadsheets/d/1OGll8eEKk9ZU2Vb65EFJihvuz7Nco8mOc1Fg3T_7dmo/edit?usp=sharing",
+      },
+      {
+        label: "Cargill career site",
+        url: "https://career2.successfactors.eu/sfcareer/jobreqcareerpvt?jobId=332332&company=cargill&st=BC43C540E2084C53E23AE11EAC4C6D70261765C4",
+      },
+    ],
+    timeline: [
+      { stage: "Both registrations due", date: "19 August 2026; RVITM deadline 9:00 AM" },
+      { stage: "Pre-Placement Talk", date: "26 August 2026, 11:00 AM" },
+      { stage: "Online Test", date: "31 August 2026, 2:00 PM" },
+      { stage: "Interviews", date: "11 September 2026, 10:00 AM" },
+      { stage: "Internship start", date: "4 January 2027" },
+    ],
+    source: "Official RVITM Placement email received 18-Aug-2026",
+    role: "DT&D Internship Program – Software Engineer pathway",
+    applicationStatus: "Considering",
+    currentStage:
+      "Official RVITM placement email received 18-Aug-2026. Both registrations are mandatory; RVITM T&P registration closes 19-Aug-2026 at 9:00 AM.",
+    nextAction:
+      "Complete both the RVITM T&P registration and Cargill career-site application before the deadline, then prepare for the 31-Aug online test.",
+    notes:
+      "Location: Cessna Business Park, Kadubeesanahalli, Bengaluru. Internship duration: 6 months. Open positions: 3. Official email states Cargill converted 100% of students from the last two internship cohorts into full-time offers.",
+  });
+
   const exclusions = new Set((overrides.exclusions || []).map((name) => name.toLowerCase()));
   return Array.from(companies.values()).filter((company) => {
     const name = (company.name || "").toLowerCase();
@@ -146,7 +189,7 @@ function applyConfirmedState(sourceCompanies, overrides) {
 
 export async function GET() {
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
-  const overrideUpdated = "2026-08-18T07:01:00+05:30";
+  const overrideUpdated = "2026-08-18T11:01:00+05:30";
   const rawDataThrough = "2026-08-18";
 
   return Response.json(
@@ -158,11 +201,20 @@ export async function GET() {
         rawDataThrough,
         rawSourceLatestCommit: "d1577db1f4bc7122befca254d0bcbcf962806eaa",
         rawSourceLatestCommitAt: "2026-08-18T04:47:24+05:30",
-        rawSourceFreshness: "fresh: collector synced placement messages through 18-Aug-2026; the 18-Aug batch currently contains one unsupported/unknown WhatsApp message",
+        rawSourceFreshness:
+          "aging: collector last synced at 04:47 IST on 18-Aug; official Gmail has newer placement activity at 10:57 IST, so Gmail is the fresher source for this run",
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides and official email updates. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD; Cargill DT&D registration is now active. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
+        {
+          id: "cargill-dtd-2026-08-18",
+          title: "Cargill DT&D registration open",
+          message:
+            "Both the RVITM T&P registration and Cargill career-site application are mandatory. RVITM registration closes 19-Aug-2026 at 9:00 AM. Stipend is ₹42,000/month with potential PPO of ₹15–16 LPA + variables.",
+          date: "2026-08-18",
+          type: "urgent",
+        },
         {
           id: "bitgo-exclusive-rvitm-2026-08-17",
           title: "BitGo exclusive RVITM drive announced",
@@ -201,7 +253,8 @@ export async function GET() {
             announcement.id !== "confirmed-state-sync-2026-08-15" &&
             announcement.id !== "sharechat-result-2026-08-17" &&
             announcement.id !== "pure-storage-registration-2026-08-17" &&
-            announcement.id !== "bitgo-exclusive-rvitm-2026-08-17",
+            announcement.id !== "bitgo-exclusive-rvitm-2026-08-17" &&
+            announcement.id !== "cargill-dtd-2026-08-18",
         ),
       ],
       companies,
