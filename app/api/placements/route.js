@@ -117,6 +117,25 @@ function applyConfirmedState(sourceCompanies, overrides) {
     });
   }
 
+  // A later RVITM placement update on 17-Aug-2026 supersedes the 14-Aug BitGo
+  // non-consideration: BitGo is expected to conduct an exclusive RVITM drive.
+  // Registration/process details are not published yet, so keep it as Need Info.
+  const bitGo = companies.get("bitgo");
+  if (bitGo) {
+    companies.set("bitgo", {
+      ...bitGo,
+      applicationStatus: "Need Info",
+      currentStage:
+        "RVITM placement update on 17-Aug-2026 says BitGo will come to RVITM exclusively for RVITM students. Exact registration, OA/interview dates and process details are still TBD.",
+      nextAction:
+        "Watch for the official BitGo exclusive-drive registration link, eligibility and schedule. Do not assume the older 12-Aug application automatically registers you for the new drive.",
+      timeline: [],
+      source: "Private placement-raw-data WhatsApp archive / RVITM Placement",
+      notes:
+        "This supersedes the 14-Aug batch-level non-consideration. The earlier 12-Aug application list remains historical evidence. No newer BitGo email was found in connected Gmail on 18-Aug morning.",
+    });
+  }
+
   const exclusions = new Set((overrides.exclusions || []).map((name) => name.toLowerCase()));
   return Array.from(companies.values()).filter((company) => {
     const name = (company.name || "").toLowerCase();
@@ -127,8 +146,8 @@ function applyConfirmedState(sourceCompanies, overrides) {
 
 export async function GET() {
   const companies = applyConfirmedState(sourceData.companies || [], overrideData);
-  const overrideUpdated = "2026-08-17T21:08:00+05:30";
-  const rawDataThrough = overrideData.meta?.rawDataThrough || sourceData.meta?.rawDataThrough || null;
+  const overrideUpdated = "2026-08-18T07:01:00+05:30";
+  const rawDataThrough = "2026-08-18";
 
   return Response.json(
     {
@@ -137,13 +156,21 @@ export async function GET() {
         ...sourceData.meta,
         lastUpdated: overrideUpdated,
         rawDataThrough,
-        rawSourceLatestCommit: overrideData.meta?.rawSourceLatestCommit || null,
-        rawSourceLatestCommitAt: overrideData.meta?.rawSourceLatestCommitAt || null,
-        rawSourceFreshness: overrideData.meta?.rawSourceFreshness || null,
+        rawSourceLatestCommit: "d1577db1f4bc7122befca254d0bcbcf962806eaa",
+        rawSourceLatestCommitAt: "2026-08-18T04:47:24+05:30",
+        rawSourceFreshness: "fresh: collector synced placement messages through 18-Aug-2026; the 18-Aug batch currently contains one unsupported/unknown WhatsApp message",
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi and BitGo's current drives are not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides. IDFC OA remains completed on 10-Aug-2026; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure registration is confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: [
+        {
+          id: "bitgo-exclusive-rvitm-2026-08-17",
+          title: "BitGo exclusive RVITM drive announced",
+          message:
+            "A newer RVITM placement update says BitGo will come to RVITM exclusively for RVITM students. Registration, eligibility and schedule are still TBD, so the status is Need Info rather than Not Applicable.",
+          date: "2026-08-17",
+          type: "info",
+        },
         {
           id: "pure-storage-registration-2026-08-17",
           title: "Pure Storage / EverPure registration confirmed",
@@ -164,7 +191,7 @@ export async function GET() {
           id: "confirmed-state-sync-2026-08-15",
           title: "Confirmed placement state synced",
           message:
-            "Authoritative corrections are active: IDFC OA completed; InMobi and BitGo current drives are not applicable to RVITM; Sama not applied. Tekion and Red Hat remain awaiting next-stage communication.",
+            "Authoritative corrections are active: IDFC OA completed; InMobi is not applicable to RVITM; Sama not applied. Tekion remains unresolved, Red Hat remains awaiting next-stage communication, and BitGo now has an exclusive RVITM drive announced with details TBD.",
           date: "2026-08-15",
           type: "info",
         },
@@ -173,7 +200,8 @@ export async function GET() {
             announcement.id !== "confirmed-state-sync-2026-08-13" &&
             announcement.id !== "confirmed-state-sync-2026-08-15" &&
             announcement.id !== "sharechat-result-2026-08-17" &&
-            announcement.id !== "pure-storage-registration-2026-08-17",
+            announcement.id !== "pure-storage-registration-2026-08-17" &&
+            announcement.id !== "bitgo-exclusive-rvitm-2026-08-17",
         ),
       ],
       companies,
