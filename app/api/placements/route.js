@@ -1,5 +1,6 @@
 import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
+import rawSourceMeta from "../../../data/raw-source-meta.json";
 
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
@@ -169,10 +170,10 @@ export async function GET() {
       meta: {
         ...sourceData.meta,
         lastUpdated: meta.lastUpdated || sourceData.meta?.lastUpdated,
-        rawDataThrough: meta.rawDataThrough || sourceData.meta?.rawDataThrough,
-        rawSourceLatestCommit: meta.rawSourceLatestCommit,
-        rawSourceLatestCommitAt: meta.rawSourceLatestCommitAt,
-        rawSourceFreshness: meta.rawSourceFreshness,
+        rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
+        rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
+        rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
+        rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
         notice:
           "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
