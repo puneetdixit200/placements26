@@ -2,6 +2,8 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
+const RUNTIME_LAST_UPDATED = "2026-08-20T12:58:00+05:30";
+
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
   return {
@@ -88,6 +90,42 @@ function applyConfirmedState(sourceCompanies, overrides) {
   });
 }
 
+function applyRuntimeCorrections(sourceCompanies) {
+  return sourceCompanies.map((company) => {
+    if (company.slug === "evertz-india") {
+      return {
+        ...company,
+        currentStage:
+          "Evertz online assessment was held on 19-Aug-2026. Official RVITM email on 20-Aug published the absentee blacklist; Puneet Dixit is not among the listed absentees. Personal result/next-round status is not yet announced.",
+        nextAction:
+          "Wait for Evertz result / next-round communication. No blacklisting action is indicated for Puneet based on the published absentee list.",
+        timeline: [
+          ...(company.timeline || []).filter((item) => item.stage !== "Online Test"),
+          { stage: "Online Test held", date: "19 August 2026, 1:30 PM IST at RVITM campus" },
+          { stage: "Absentee blacklist published", date: "20 August 2026; Puneet not listed" },
+        ],
+        notes:
+          "Official RVITM Placement email dated 20-Aug-2026 blacklists students absent from the 19-Aug Evertz OA. Puneet Dixit is not in the published blacklist. This supports a non-absent post-test state, but does not by itself confirm test score, shortlist, or next round.",
+      };
+    }
+
+    if (company.slug === "relyntis-software") {
+      return {
+        ...company,
+        applicationStatus: "Need Info",
+        currentStage:
+          "Registration deadline passed on 19-Aug-2026 at 5:00 PM. No connected-source evidence currently confirms whether Puneet submitted the RELYNTIS form.",
+        nextAction:
+          "No active deadline. Treat personal application status as unconfirmed unless a submission confirmation, shortlist, or newer placement update appears.",
+        notes:
+          "Official RVITM RELYNTIS opportunity closed 19-Aug-2026 at 5:00 PM. No application confirmation was found in connected Gmail/Drive evidence, so the prior Considering state is now replaced by Need Info rather than assumed Applied or Not Applied.",
+      };
+    }
+
+    return company;
+  });
+}
+
 function buildAnnouncements(companies) {
   const bySlug = new Map(companies.map((company) => [company.slug, company]));
   const announcements = [];
@@ -95,12 +133,12 @@ function buildAnnouncements(companies) {
   const evertz = bySlug.get("evertz-india");
   if (evertz) {
     announcements.push({
-      id: "evertz-instructions-2026-08-18",
-      title: "Evertz online-test instructions confirmed",
+      id: "evertz-post-oa-2026-08-20",
+      title: "Evertz OA absentee notice published",
       message:
-        "Official RVITM email confirms the Evertz test on 19-Aug at 1:30 PM. Report well before 1:30 PM to the designated RVITM computer lab with your own camera-enabled laptop; the Teams invite is shared after assembly.",
-      date: "2026-08-18",
-      type: "urgent",
+        "RVITM published the students blacklisted for absence from the 19-Aug Evertz OA. Puneet Dixit is not on the published absentee list; result and next-round status are still pending.",
+      date: "2026-08-20",
+      type: "info",
     });
   }
 
@@ -161,7 +199,9 @@ function buildAnnouncements(companies) {
 }
 
 export async function GET() {
-  const companies = applyConfirmedState(sourceData.companies || [], overrideData);
+  const companies = applyRuntimeCorrections(
+    applyConfirmedState(sourceData.companies || [], overrideData),
+  );
   const meta = overrideData.meta || {};
 
   return Response.json(
@@ -169,13 +209,13 @@ export async function GET() {
       ...sourceData,
       meta: {
         ...sourceData.meta,
-        lastUpdated: meta.lastUpdated || sourceData.meta?.lastUpdated,
+        lastUpdated: RUNTIME_LAST_UPDATED,
         rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
         rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
         rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
         rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Evertz OA has concluded and Puneet is not on the published absentee blacklist. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: buildAnnouncements(companies),
       companies,
