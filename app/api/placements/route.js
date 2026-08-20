@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-20T12:58:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-20T14:59:00+05:30";
 
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
@@ -91,7 +91,7 @@ function applyConfirmedState(sourceCompanies, overrides) {
 }
 
 function applyRuntimeCorrections(sourceCompanies) {
-  return sourceCompanies.map((company) => {
+  const corrected = sourceCompanies.map((company) => {
     if (company.slug === "evertz-india") {
       return {
         ...company,
@@ -122,13 +122,119 @@ function applyRuntimeCorrections(sourceCompanies) {
       };
     }
 
+    if (company.slug === "eurofins") {
+      return {
+        ...company,
+        applicationStatus: "Applied",
+        appliedDate: "2026-08-10",
+        currentStage:
+          "Official Eurofins registration sheet confirms Puneet Dixit / 1RF23CS119 is already registered. Eurofins will conduct a 2-day on-campus Associate Software Engineer recruitment process during 9–11 Sep 2026; exact two days/reporting schedule are still TBD.",
+        nextAction:
+          "No re-registration needed. Prepare programming/OOP, SQL/DBMS, REST APIs, debugging, SDLC and .NET/C# basics; monitor RVITM for exact reporting dates/times within the 9–11 Sep window.",
+        timeline: [
+          { stage: "Registration confirmed", date: "Already registered before the reopened 20-Aug deadline" },
+          { stage: "On-campus recruitment window", date: "9–11 September 2026; 2-day process, exact days/times TBD" },
+        ],
+        notes:
+          "Newer RVITM Placement WhatsApp update dated 20-Aug-2026 says Eurofins will visit RVITM during 9–11 Sep for a 2-day on-campus process and reopened registration until EOD 20-Aug for students who missed the earlier window. The official Eurofins registration sheet already contains Puneet Dixit / 1RF23CS119, so no re-registration is needed.",
+      };
+    }
+
+    if (company.slug === "cargill-dtd") {
+      return {
+        ...company,
+        notes:
+          "Both mandatory Cargill registrations are complete and Cargill directly acknowledged the Software Engineer Intern application. A newer RVITM Placement WhatsApp update on 20-Aug-2026 extended the registration deadline to 25-Aug; this does not require action because Puneet is already Applied. Confirmed schedule remains PPT 26-Aug 11:00 AM, Online Test 31-Aug 2:00 PM, and Interviews 11-Sep 10:00 AM if progressed.",
+      };
+    }
+
     return company;
   });
+
+  if (!corrected.some((company) => company.slug === "amd-india")) {
+    corrected.push(
+      normalizeAddition({
+        slug: "amd-india",
+        name: "AMD India Pvt Ltd",
+        role: "Co-Op / Internship (with PPO) — Software/Hardware domain allocation",
+        industry: "Semiconductors / Software / Hardware / Systems",
+        package: { stipend: "₹40,000 per month for B.Tech" },
+        ppo: "BE FTE Year-1 earning potential ₹19.45 LPA",
+        description:
+          "Six-month Jan–Jun 2027 fully offline co-op, five days per week in office. Multiple domain roles are grouped under the drive and candidates are evaluated/allocated based on fitment.",
+        requirements: [
+          "2027 BE CS/EC clusters including CSE",
+          "10th and 12th: 70% and above",
+          "UG: 7.5 CGPA and above",
+          "No active backlogs",
+          "Eligible to work in India; no visa sponsorship",
+        ],
+        applicationUrl:
+          "https://docs.google.com/spreadsheets/d/1Ffvn1TI6f6Z_o8QFyqUFA4h5vFAldff_5V_653TX59I/edit?usp=sharing",
+        documentsFolderUrl:
+          "https://drive.google.com/drive/folders/1JQ-NOvPjVnHdHf5nVi41s-nwke0aM01Z?usp=sharing",
+        applicationStatus: "Applying",
+        appliedDate: "2026-08-20",
+        currentStage:
+          "AMD registration row exists for 1RF23CS119, but required fields are incomplete: Full Name as per Aadhaar, Gender, Skills and Role Preference are blank. No Puneet resume was visible in the required AMD upload folder at the 20-Aug afternoon check.",
+        nextAction:
+          "URGENT before 21-Aug-2026 7:00 AM: complete every required AMD sheet field, use the exact Aadhaar name, choose Software/Hardware role preference, and upload the resume in name-RVITM.pdf format.",
+        deadline: "21 August 2026, 7:00 AM IST",
+        timeline: [
+          { stage: "Registration and resume deadline", date: "21 August 2026, 7:00 AM IST" },
+          { stage: "Resume Shortlisting", date: "TBD" },
+          { stage: "2 Technical Rounds → Hiring Manager → HR", date: "TBD" },
+          { stage: "Interviews", date: "28 August 2026; exact time TBD" },
+          { stage: "Co-op period", date: "January–June 2027" },
+        ],
+        skills: [
+          "DSA",
+          "C/C++",
+          "Python",
+          "OOP",
+          "Operating Systems",
+          "Computer Architecture",
+          "Systems fundamentals",
+          "Role-specific software/hardware skills",
+        ],
+        source:
+          "Fresh RVITM Placement WhatsApp archive corroborated by the official AMD registration sheet and resume-upload folder",
+        notes:
+          "Raw source commit d2819eb8… dated 20-Aug-2026. Drive corroboration shows 1RF23CS119 in AMD row 86 with academic details but mandatory fields still blank; no Puneet-named resume was visible in the required upload folder during this check. B.Tech stipend ₹40,000/month; BE FTE Year-1 earning potential ₹19.45 LPA; locations Bengaluru, Hyderabad and Delhi.",
+      }),
+    );
+  }
+
+  return corrected;
 }
 
 function buildAnnouncements(companies) {
   const bySlug = new Map(companies.map((company) => [company.slug, company]));
   const announcements = [];
+
+  const amd = bySlug.get("amd-india");
+  if (amd?.applicationStatus === "Applying") {
+    announcements.push({
+      id: "amd-incomplete-2026-08-20",
+      title: "AMD registration incomplete — deadline 21 Aug 7:00 AM",
+      message:
+        "Your AMD row exists, but mandatory fields and the required resume upload are still incomplete. Complete the sheet and upload the resume before 7:00 AM on 21-Aug.",
+      date: "2026-08-20",
+      type: "warning",
+    });
+  }
+
+  const eurofins = bySlug.get("eurofins");
+  if (eurofins?.applicationStatus === "Applied") {
+    announcements.push({
+      id: "eurofins-campus-window-2026-08-20",
+      title: "Eurofins registration confirmed",
+      message:
+        "Your name is already present in the official Eurofins registration sheet. The 2-day on-campus process will happen within 9–11 Sep; exact reporting schedule is TBD.",
+      date: "2026-08-20",
+      type: "info",
+    });
+  }
 
   const evertz = bySlug.get("evertz-india");
   if (evertz) {
@@ -148,8 +254,8 @@ function buildAnnouncements(companies) {
       id: "cargill-complete-2026-08-18",
       title: "Cargill registration complete",
       message:
-        "The official RVITM Cargill sheet now shows your career-portal confirmation as Yes. Both mandatory registrations are complete; next confirmed stage is the 26-Aug PPT, followed by the 31-Aug online test.",
-      date: "2026-08-18",
+        "Both mandatory Cargill registrations are complete. The reopened registration deadline was extended to 25-Aug, but no further application action is needed for you; next stage is the 26-Aug PPT.",
+      date: "2026-08-20",
       type: "info",
     });
   }
@@ -172,8 +278,8 @@ function buildAnnouncements(companies) {
       id: "pure-storage-registration-2026-08-17",
       title: "Pure Storage / EverPure registration confirmed",
       message:
-        "The official RVITM registration sheet contains Puneet Dixit (1RF23CS119). The online assessment is scheduled for 20-Aug; exact time is TBD.",
-      date: "2026-08-17",
+        "The official RVITM registration sheet contains Puneet Dixit (1RF23CS119). The online assessment is scheduled for 20-Aug; exact time is still TBD.",
+      date: "2026-08-20",
       type: "info",
     });
   }
@@ -215,7 +321,7 @@ export async function GET() {
         rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
         rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Evertz OA has concluded and Puneet is not on the published absentee blacklist. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Evertz OA has concluded and Puneet is not on the published absentee blacklist. AMD is currently Applying with mandatory registration fields/resume still incomplete before 21-Aug 7:00 AM. Eurofins registration is confirmed with a 9–11 Sep campus window. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: buildAnnouncements(companies),
       companies,
