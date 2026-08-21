@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-21T17:00:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-21T19:10:00+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -99,7 +99,7 @@ function applyRuntimeCorrections(sourceCompanies) {
           { stage: "Final shortlist published", date: "21 August 2026; Puneet not listed" },
           { stage: "Campus recruitment", date: "9–10 September 2026; not actionable for Puneet unless shortlist changes" },
         ],
-        notes: "Official RVITM Placement email dated 21-Aug-2026 says Eurofins will visit RVITM on 9–10 Sep and attaches the final company shortlist after eligibility verification, including the 70%+ requirement. The attachment contains no Puneet Dixit / 1RF23CS119, superseding the prior Applied/registered state.",
+        notes: "Official RVITM Placement email dated 21-Aug-2026 says Eurofins will visit RVITM on 9–10 Sep and attaches the final company shortlist after eligibility verification. The attachment contains no Puneet Dixit / 1RF23CS119, superseding the prior Applied state.",
       };
     }
 
@@ -115,10 +115,9 @@ function applyRuntimeCorrections(sourceCompanies) {
         timeline: [
           { stage: "Technical interview process", date: "Completed before 21 August 2026" },
           { stage: "Final selection published", date: "21 August 2026; Puneet not selected" },
-          { stage: "Internship joining", date: "Joining date/procedure to be communicated by Sartorius to selected students" },
         ],
         source: "Official RVITM Placement email dated 21-Aug-2026",
-        notes: "Final selected students: Amruta Bhargav Krishnakumar (1RF23IS012), Nettem Nithya Sree (1RF23IS061), and Samanyu Manohar (1RF23CS144). Stipend ₹20,000/month plus cab facility; full-time opportunity is performance/business-requirement based.",
+        notes: "Final selected students: Amruta Bhargav Krishnakumar, Nettem Nithya Sree, and Samanyu Manohar. Stipend ₹20,000/month plus cab facility; full-time opportunity is performance/business-requirement based.",
       };
     }
 
@@ -133,24 +132,46 @@ function applyRuntimeCorrections(sourceCompanies) {
   });
 
   if (!corrected.some((company) => company.slug === "amd-india")) {
-    corrected.push(
-      normalizeAddition({
-        slug: "amd-india",
-        name: "AMD India Pvt Ltd",
-        role: "Co-Op / Internship (with PPO) — Software/Hardware domain allocation",
-        industry: "Semiconductors / Software / Hardware / Systems",
-        package: { stipend: "₹40,000 per month for B.Tech" },
-        ppo: "BE FTE Year-1 earning potential ₹19.45 LPA",
-        description: "Six-month Jan–Jun 2027 fully offline co-op, five days per week in office. Multiple domain roles are grouped under the drive and candidates are evaluated/allocated based on fitment.",
-        requirements: ["2027 BE CS/EC clusters including CSE", "10th and 12th: 70% and above", "UG: 7.5 CGPA and above", "No active backlogs", "Eligible to work in India; no visa sponsorship"],
-        applicationStatus: "Not Applied",
-        currentStage: "AMD registration deadline passed on 21-Aug-2026 at 7:00 AM. The final verification found no Puneet / 1RF23CS119 row in the current official sheet and no Puneet-named resume in the required upload folder.",
-        nextAction: "No current action unless RVITM/AMD reopens registration or sends a direct shortlist/exception notice.",
-        deadline: null,
-        timeline: [],
-        source: "RVITM Placement WhatsApp archive plus deadline verification against official AMD registration sources",
-      }),
-    );
+    corrected.push(normalizeAddition({
+      slug: "amd-india",
+      name: "AMD India Pvt Ltd",
+      role: "Co-Op / Internship (with PPO) — Software/Hardware domain allocation",
+      industry: "Semiconductors / Software / Hardware / Systems",
+      package: { stipend: "₹40,000 per month for B.Tech" },
+      ppo: "BE FTE Year-1 earning potential ₹19.45 LPA",
+      applicationStatus: "Not Applied",
+      currentStage: "AMD registration deadline passed on 21-Aug-2026 at 7:00 AM. Final verification found no completed Puneet / 1RF23CS119 registration and no required resume upload.",
+      nextAction: "No current action unless RVITM/AMD reopens registration or sends a direct shortlist/exception notice.",
+      timeline: [],
+      source: "RVITM Placement WhatsApp archive plus deadline verification",
+    }));
+  }
+
+  if (!corrected.some((company) => company.slug === "dover-india")) {
+    corrected.push(normalizeAddition({
+      slug: "dover-india",
+      name: "Dover India",
+      role: "Associate Software Engineer",
+      industry: "Software Engineering / Industrial Technology",
+      package: { stipend: "₹25,000 per month" },
+      ppo: "₹12 LPA FTE + ₹2 lakh joining bonus",
+      description: "2027 Graduate Engineer Trainee drive. Internship runs February–June 2027, followed by full-time joining on 1 July 2027 in Bengaluru.",
+      requirements: ["B.E. CS/IS/IT/EEE/ECE", "All academics 80% or 8.0 CGPA and above", "No active backlogs", "Indian nationality"],
+      applicationUrl: "https://docs.google.com/spreadsheets/d/1taTsQbOJP4AofvTMbE25ytkDSEfNaPLFy4qerfa98D0/edit",
+      applicationStatus: "Applying",
+      currentStage: "Dover registration sheet already contains Puneet Dixit / 1RF23CS119, but Gender and Resume Link are blank. Registration closes 22-Aug-2026 at 9:00 AM.",
+      nextAction: "Complete Gender and Resume Link in the Dover registration sheet before 9:00 AM on 22-Aug-2026.",
+      deadline: "22 August 2026, 9:00 AM IST",
+      timeline: [
+        { stage: "Registration deadline", date: "22 August 2026, 9:00 AM IST" },
+        { stage: "Pre-Placement Talk", date: "31 August 2026, 12:00–1:00 PM; virtual" },
+        { stage: "Online Test", date: "31 August 2026, 2:00–3:30 PM; virtual" },
+        { stage: "Interviews", date: "3 September 2026, 10:00 AM onwards; on-campus" },
+      ],
+      skills: ["DSA", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "Debugging", "APIs"],
+      source: "RVITM Placement WhatsApp dated 21-Aug-2026 plus official Dover registration sheet",
+      notes: "Selection process: Online Test → Technical Interview → Manager Round → HR Round. The official registration sheet row for Puneet exists but is incomplete because Gender and Resume Link are blank.",
+    }));
   }
 
   return corrected;
@@ -160,111 +181,43 @@ function buildAnnouncements(companies) {
   const bySlug = new Map(companies.map((company) => [company.slug, company]));
   const announcements = [];
 
-  if (bySlug.get("eurofins")?.applicationStatus === "Not Shortlisted") {
+  if (bySlug.get("dover-india")?.applicationStatus === "Applying") {
     announcements.push({
-      id: "eurofins-final-shortlist-2026-08-21",
-      title: "Eurofins final shortlist published",
-      message: "The final company shortlist for the 9–10 Sep RVITM process does not contain Puneet Dixit / 1RF23CS119, so Eurofins is now marked Not Shortlisted.",
-      date: "2026-08-21",
-      type: "info",
-    });
-  }
-
-  if (bySlug.get("sartorius-india")?.applicationStatus === "Not Selected") {
-    announcements.push({
-      id: "sartorius-final-result-2026-08-21",
-      title: "Sartorius final result published",
-      message: "Sartorius selected three RVITM students for the LCM & Quality Team internship. Puneet is not among the final selects.",
-      date: "2026-08-21",
-      type: "info",
-    });
-  }
-
-  if (bySlug.get("amd-india")?.applicationStatus === "Not Applied") {
-    announcements.push({
-      id: "amd-deadline-closed-2026-08-21",
-      title: "AMD registration closed incomplete",
-      message: "The AMD deadline passed at 7:00 AM on 21-Aug. Final verification found no completed Puneet/1RF23CS119 registration and no required resume upload, so the drive is marked Not Applied.",
+      id: "dover-registration-2026-08-21",
+      title: "Dover India registration incomplete",
+      message: "Dover India closes registration at 9:00 AM on 22-Aug. Puneet's row exists, but Gender and Resume Link are still blank.",
       date: "2026-08-21",
       type: "warning",
     });
   }
+  if (bySlug.get("eurofins")?.applicationStatus === "Not Shortlisted") announcements.push({ id: "eurofins-final-shortlist-2026-08-21", title: "Eurofins final shortlist published", message: "The final company shortlist for the 9–10 Sep RVITM process does not contain Puneet Dixit / 1RF23CS119.", date: "2026-08-21", type: "info" });
+  if (bySlug.get("sartorius-india")?.applicationStatus === "Not Selected") announcements.push({ id: "sartorius-final-result-2026-08-21", title: "Sartorius final result published", message: "Sartorius selected three RVITM students; Puneet is not among the final selects.", date: "2026-08-21", type: "info" });
+  if (bySlug.get("amd-india")?.applicationStatus === "Not Applied") announcements.push({ id: "amd-deadline-closed-2026-08-21", title: "AMD registration closed incomplete", message: "The AMD deadline passed incomplete, so the drive is marked Not Applied.", date: "2026-08-21", type: "warning" });
+  if (bySlug.get("evertz-india")) announcements.push({ id: "evertz-post-oa-2026-08-20", title: "Evertz OA absentee notice published", message: "Puneet is not on the 19-Aug Evertz OA absentee blacklist; result/next-round status is still pending.", date: "2026-08-20", type: "info" });
+  if (bySlug.get("cargill-dtd")?.applicationStatus === "Applied") announcements.push({ id: "cargill-complete-2026-08-18", title: "Cargill registration complete", message: "Both mandatory Cargill registrations are complete. Next stage is the 26-Aug PPT.", date: "2026-08-20", type: "info" });
+  if (bySlug.get("bitgo")?.applicationStatus === "Need Info") announcements.push({ id: "bitgo-exclusive-rvitm-2026-08-17", title: "BitGo exclusive RVITM drive announced", message: "BitGo will come to RVITM exclusively; registration, eligibility and schedule are still TBD.", date: "2026-08-17", type: "info" });
+  if (bySlug.get("pure-storage-everpure")?.applicationStatus === "Applied") announcements.push({ id: "pure-storage-registration-2026-08-17", title: "Pure Storage / EverPure registration confirmed", message: "Registration is confirmed; post-OA progression still awaits a verified follow-up.", date: "2026-08-20", type: "info" });
+  if (bySlug.get("sharechat")?.applicationStatus === "Not Shortlisted") announcements.push({ id: "sharechat-result-2026-08-17", title: "ShareChat OA result updated", message: "Puneet is not on the published OA-cleared list.", date: "2026-08-17", type: "info" });
 
-  if (bySlug.get("evertz-india")) {
-    announcements.push({
-      id: "evertz-post-oa-2026-08-20",
-      title: "Evertz OA absentee notice published",
-      message: "RVITM published the students blacklisted for absence from the 19-Aug Evertz OA. Puneet is not on the absentee list; result/next-round status is still pending.",
-      date: "2026-08-20",
-      type: "info",
-    });
-  }
-
-  if (bySlug.get("cargill-dtd")?.applicationStatus === "Applied") {
-    announcements.push({
-      id: "cargill-complete-2026-08-18",
-      title: "Cargill registration complete",
-      message: "Both mandatory Cargill registrations are complete. No further application action is needed; next stage is the 26-Aug PPT.",
-      date: "2026-08-20",
-      type: "info",
-    });
-  }
-
-  if (bySlug.get("bitgo")?.applicationStatus === "Need Info") {
-    announcements.push({
-      id: "bitgo-exclusive-rvitm-2026-08-17",
-      title: "BitGo exclusive RVITM drive announced",
-      message: "A newer RVITM placement update says BitGo will come to RVITM exclusively for RVITM students. Registration, eligibility and schedule are still TBD.",
-      date: "2026-08-17",
-      type: "info",
-    });
-  }
-
-  if (bySlug.get("pure-storage-everpure")?.applicationStatus === "Applied") {
-    announcements.push({
-      id: "pure-storage-registration-2026-08-17",
-      title: "Pure Storage / EverPure registration confirmed",
-      message: "The official RVITM registration sheet contains Puneet Dixit (1RF23CS119). The OA was scheduled for 20-Aug; personal progression is still awaiting confirmed follow-up.",
-      date: "2026-08-20",
-      type: "info",
-    });
-  }
-
-  if (bySlug.get("sharechat")?.applicationStatus === "Not Shortlisted") {
-    announcements.push({
-      id: "sharechat-result-2026-08-17",
-      title: "ShareChat OA result updated",
-      message: "RVITM published the students who cleared the ShareChat OA. Puneet is not on the published list, so the current process is closed for now.",
-      date: "2026-08-17",
-      type: "info",
-    });
-  }
-
-  return [
-    ...announcements,
-    ...(sourceData.announcements || []).filter((announcement) => !announcements.some((item) => item.id === announcement.id)),
-  ];
+  return [...announcements, ...(sourceData.announcements || []).filter((announcement) => !announcements.some((item) => item.id === announcement.id))];
 }
 
 export async function GET() {
   const companies = applyRuntimeCorrections(applyConfirmedState(sourceData.companies || [], overrideData));
   const meta = overrideData.meta || {};
 
-  return Response.json(
-    {
-      ...sourceData,
-      meta: {
-        ...sourceData.meta,
-        lastUpdated: RUNTIME_LAST_UPDATED,
-        rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
-        rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
-        rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
-        rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
-        notice: "Placement records combine the primary tracker with authoritative overrides and newer official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat is Not Shortlisted; AMD is Not Applied; Eurofins final shortlist is now closed for Puneet; Sartorius final selection is also closed for Puneet; Pure Storage/EverPure and Cargill registrations remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
-      },
-      announcements: buildAnnouncements(companies),
-      companies,
+  return Response.json({
+    ...sourceData,
+    meta: {
+      ...sourceData.meta,
+      lastUpdated: RUNTIME_LAST_UPDATED,
+      rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
+      rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
+      rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
+      rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Dover India is currently Applying/incomplete with a 22-Aug 9:00 AM deadline. IDFC OA remains completed; InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
-    { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } },
-  );
+    announcements: buildAnnouncements(companies),
+    companies,
+  }, { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } });
 }
