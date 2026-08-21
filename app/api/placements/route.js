@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-20T14:59:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-21T07:05:00+05:30";
 
 function supplementSartorius(company) {
   if (company.slug !== "sartorius-india" || company.package?.stipend) return company;
@@ -173,20 +173,13 @@ function applyRuntimeCorrections(sourceCompanies) {
           "https://docs.google.com/spreadsheets/d/1Ffvn1TI6f6Z_o8QFyqUFA4h5vFAldff_5V_653TX59I/edit?usp=sharing",
         documentsFolderUrl:
           "https://drive.google.com/drive/folders/1JQ-NOvPjVnHdHf5nVi41s-nwke0aM01Z?usp=sharing",
-        applicationStatus: "Applying",
-        appliedDate: "2026-08-20",
+        applicationStatus: "Not Applied",
         currentStage:
-          "AMD registration row exists for 1RF23CS119, but required fields are incomplete: Full Name as per Aadhaar, Gender, Skills and Role Preference are blank. No Puneet resume was visible in the required AMD upload folder at the 20-Aug afternoon check.",
+          "AMD registration deadline passed on 21-Aug-2026 at 7:00 AM. The current official AMD sheet no longer returns Puneet / 1RF23CS119, and no Puneet-named resume is present in the required AMD upload folder. The earlier row was incomplete before the deadline.",
         nextAction:
-          "URGENT before 21-Aug-2026 7:00 AM: complete every required AMD sheet field, use the exact Aadhaar name, choose Software/Hardware role preference, and upload the resume in name-RVITM.pdf format.",
-        deadline: "21 August 2026, 7:00 AM IST",
-        timeline: [
-          { stage: "Registration and resume deadline", date: "21 August 2026, 7:00 AM IST" },
-          { stage: "Resume Shortlisting", date: "TBD" },
-          { stage: "2 Technical Rounds → Hiring Manager → HR", date: "TBD" },
-          { stage: "Interviews", date: "28 August 2026; exact time TBD" },
-          { stage: "Co-op period", date: "January–June 2027" },
-        ],
+          "No current action unless RVITM/AMD reopens registration or sends a direct shortlist/exception notice.",
+        deadline: null,
+        timeline: [],
         skills: [
           "DSA",
           "C/C++",
@@ -198,9 +191,9 @@ function applyRuntimeCorrections(sourceCompanies) {
           "Role-specific software/hardware skills",
         ],
         source:
-          "Fresh RVITM Placement WhatsApp archive corroborated by the official AMD registration sheet and resume-upload folder",
+          "RVITM Placement WhatsApp archive plus deadline verification against the official AMD registration sheet and resume-upload folder",
         notes:
-          "Raw source commit d2819eb8… dated 20-Aug-2026. Drive corroboration shows 1RF23CS119 in AMD row 86 with academic details but mandatory fields still blank; no Puneet-named resume was visible in the required upload folder during this check. B.Tech stipend ₹40,000/month; BE FTE Year-1 earning potential ₹19.45 LPA; locations Bengaluru, Hyderabad and Delhi.",
+          "Deadline verification on 21-Aug-2026: the earlier AMD row had mandatory fields blank. After the 7:00 AM deadline, the official AMD sheet no longer contains Puneet / 1RF23CS119, and the required resume folder still has no Puneet-named upload. Treat the current drive as Not Applied/incomplete unless a newer official exception or shortlist appears. B.Tech stipend ₹40,000/month; BE FTE Year-1 earning potential ₹19.45 LPA; interviews are scheduled for 28-Aug for shortlisted candidates.",
       }),
     );
   }
@@ -213,13 +206,13 @@ function buildAnnouncements(companies) {
   const announcements = [];
 
   const amd = bySlug.get("amd-india");
-  if (amd?.applicationStatus === "Applying") {
+  if (amd?.applicationStatus === "Not Applied") {
     announcements.push({
-      id: "amd-incomplete-2026-08-20",
-      title: "AMD registration incomplete — deadline 21 Aug 7:00 AM",
+      id: "amd-deadline-closed-2026-08-21",
+      title: "AMD registration closed incomplete",
       message:
-        "Your AMD row exists, but mandatory fields and the required resume upload are still incomplete. Complete the sheet and upload the resume before 7:00 AM on 21-Aug.",
-      date: "2026-08-20",
+        "The AMD deadline passed at 7:00 AM on 21-Aug. The final verification found no Puneet/1RF23CS119 row in the current sheet and no Puneet-named resume in the required upload folder, so this drive is marked Not Applied unless an official exception appears.",
+      date: "2026-08-21",
       type: "warning",
     });
   }
@@ -321,7 +314,7 @@ export async function GET() {
         rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
         rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
         notice:
-          "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Evertz OA has concluded and Puneet is not on the published absentee blacklist. AMD is currently Applying with mandatory registration fields/resume still incomplete before 21-Aug 7:00 AM. Eurofins registration is confirmed with a 9–11 Sep campus window. Google and Flipkart remain excluded unless a fresh official notice appears.",
+          "Placement records combine the primary tracker with authoritative confirmed overrides and official placement updates. IDFC OA remains completed; InMobi is not applicable to RVITM; Sama is Not Applied; ShareChat current drive is closed; Pure Storage / EverPure and Cargill registrations are confirmed; BitGo has reopened as an upcoming exclusive RVITM drive with details TBD. Evertz OA has concluded and Puneet is not on the published absentee blacklist. AMD current drive is marked Not Applied after the 21-Aug 7:00 AM deadline verification found the earlier incomplete registration no longer present and no required resume upload. Eurofins registration is confirmed with a 9–11 Sep campus window. Google and Flipkart remain excluded unless a fresh official notice appears.",
       },
       announcements: buildAnnouncements(companies),
       companies,
