@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-22T07:10:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-22T09:05:00+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -123,17 +123,12 @@ function applyRuntimeCorrections(sourceCompanies) {
     description: "2027 Graduate Engineer Trainee drive. Internship runs February–June 2027, followed by full-time joining on 1 July 2027 in Bengaluru.",
     requirements: ["B.E. CS/IS/IT/EEE/ECE", "All academics 80% or 8.0 CGPA and above", "No active backlogs", "Indian nationality"],
     applicationUrl: "https://docs.google.com/spreadsheets/d/1taTsQbOJP4AofvTMbE25ytkDSEfNaPLFy4qerfa98D0/edit",
-    applicationStatus: "Applying",
-    currentStage: "Official Dover registration sheet row 69 contains Puneet Dixit / 1RF23CS119 and a resume entry, but Gender is still blank. Registration closes 22-Aug-2026 at 9:00 AM.",
-    nextAction: "Fill the Gender field in the Dover registration sheet before 9:00 AM on 22-Aug-2026. Resume entry is already present.",
-    deadline: "22 August 2026, 9:00 AM IST",
-    timeline: [
-      { stage: "Registration deadline", date: "22 August 2026, 9:00 AM IST" },
-      { stage: "Pre-Placement Talk", date: "31 August 2026, 12:00–1:00 PM; virtual" },
-      { stage: "Online Test", date: "31 August 2026, 2:00–3:30 PM; virtual" },
-      { stage: "Interviews", date: "3 September 2026, 10:00 AM onwards; on-campus" },
-    ],
-    source: "RVITM Placement WhatsApp dated 21-Aug-2026 plus official Dover registration sheet",
+    applicationStatus: "Not Applied",
+    currentStage: "Dover registration deadline passed on 22-Aug-2026 at 9:00 AM. Final recheck of the official sheet still showed Gender blank for Puneet's row; resume entry was present, but registration remained incomplete.",
+    nextAction: "No current action unless RVITM/Dover reopens registration or accepts a correction.",
+    deadline: null,
+    timeline: [],
+    source: "Official Dover registration sheet rechecked at the 22-Aug-2026 9:00 AM deadline",
   });
 
   upsert({
@@ -147,10 +142,32 @@ function applyRuntimeCorrections(sourceCompanies) {
     requirements: ["B.E. CSE/ISE/AIML/DS/CY/ECE/EEE/EIE/ETCE", "8.5+ CGPA", "No active backlogs", "7th semester"],
     applicationUrl: "https://docs.google.com/spreadsheets/d/1QDHZ0QB8zvpl5hq0r68cz7HF_4XNXjfPbTaGkLJ0OcQ/edit?usp=sharing",
     applicationStatus: "Not Shortlisted",
-    currentStage: "RVITM placement leadership confirmed on 21-Aug-2026 that no student from RVITM was shortlisted by Arctic Wolf. The 22-Aug offline hiring drive is therefore not active for Puneet.",
+    currentStage: "RVITM placement leadership confirmed on 21-Aug-2026 that no student from RVITM was shortlisted by Arctic Wolf.",
     nextAction: "No action unless Arctic Wolf/RVITM publishes a revised shortlist or reopening.",
     timeline: [{ stage: "RVITM no-shortlist confirmation", date: "21 August 2026" }],
     source: "RVITM Placement WhatsApp dated 21-Aug-2026",
+  });
+
+  upsert({
+    slug: "juspay",
+    name: "Juspay Technologies",
+    role: "Software Development Engineer (SDE)",
+    industry: "Payments Technology / Backend / Distributed Systems / Infrastructure",
+    package: { stipend: "₹40,000 per month" },
+    ppo: "₹27 LPA CTC",
+    description: "Juspay SDE campus opportunity spanning SDK/UI engineering, payment backend, data science and highly reliable distributed infrastructure.",
+    requirements: ["RVITM eligible students; detailed eligibility/shortlist criteria to be communicated separately"],
+    applicationUrl: "https://forms.gle/s1z8C3X2iuuNwQGe6",
+    applicationStatus: "Considering",
+    currentStage: "Official RVITM Placement email received 22-Aug-2026. Registration is open until 23-Aug-2026 at 11:00 AM. Tentative campus visit is 25-Aug-2026; exact eligibility, shortlist and reporting logistics are still TBD.",
+    nextAction: "Register before 23-Aug-2026 at 11:00 AM if interested and prepare immediately for coding, CS fundamentals, technical interview and hackathon-style rounds.",
+    deadline: "23 August 2026, 11:00 AM IST",
+    timeline: [
+      { stage: "Registration deadline", date: "23 August 2026, 11:00 AM IST" },
+      { stage: "Tentative campus visit", date: "25 August 2026; time TBD" },
+    ],
+    skills: ["DSA", "Algorithms", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "System Design basics", "Backend Engineering", "Distributed Systems", "Reliability", "Performance"],
+    source: "Official RVITM Placement email dated 22-Aug-2026",
   });
 
   return corrected;
@@ -159,12 +176,19 @@ function applyRuntimeCorrections(sourceCompanies) {
 function buildAnnouncements(companies) {
   const bySlug = new Map(companies.map((company) => [company.slug, company]));
   const announcements = [];
-  if (bySlug.get("dover-india")?.applicationStatus === "Applying") announcements.push({
-    id: "dover-registration-2026-08-22",
-    title: "Dover India registration incomplete",
-    message: "Dover India closes registration at 9:00 AM today. Puneet's resume entry is present, but Gender is still blank.",
+  if (bySlug.get("juspay")?.applicationStatus === "Considering") announcements.push({
+    id: "juspay-registration-2026-08-23",
+    title: "Juspay SDE registration open",
+    message: "Juspay offers ₹40,000/month internship + ₹27 LPA CTC. Registration closes 23-Aug at 11:00 AM; tentative RVITM campus visit is 25-Aug.",
     date: "2026-08-22",
     type: "warning",
+  });
+  if (bySlug.get("dover-india")?.applicationStatus === "Not Applied") announcements.push({
+    id: "dover-registration-closed-2026-08-22",
+    title: "Dover registration closed incomplete",
+    message: "Dover's 9:00 AM deadline passed with Puneet's Gender field still blank in the official registration sheet.",
+    date: "2026-08-22",
+    type: "info",
   });
   if (bySlug.get("arctic-wolf-networks")?.applicationStatus === "Not Shortlisted") announcements.push({
     id: "arctic-wolf-no-shortlist-2026-08-21",
@@ -189,8 +213,8 @@ export async function GET() {
       rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
-      rawSourceFreshness: rawSourceMeta.rawSourceFreshness || meta.rawSourceFreshness,
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Dover India is Applying/incomplete with a 22-Aug 9:00 AM deadline; Arctic Wolf has no RVITM shortlist. IDFC OA remains completed; InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      rawSourceFreshness: "Raw WhatsApp mirror is synced through 21-Aug-2026 (latest commit 1a29ca5e… at 9:06 PM IST), but official Gmail is fresher: the Juspay SDE notice arrived on 22-Aug-2026 at 8:36 AM. Treat Gmail as the current source until a 22-Aug raw sync appears.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Juspay SDE registration is open until 23-Aug 11:00 AM with a tentative 25-Aug campus visit. Dover closed incomplete at its 22-Aug 9:00 AM deadline. IDFC OA remains completed; InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
