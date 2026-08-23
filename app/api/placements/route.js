@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-23T11:03:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-23T16:57:55+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -59,6 +59,18 @@ function applyConfirmedState(sourceCompanies, overrides) {
 
 function applyRuntimeCorrections(sourceCompanies) {
   const corrected = sourceCompanies.map((company) => {
+    if (company.slug === "idfc-first-bank") return {
+      ...company,
+      applicationStatus: "Not Selected",
+      currentStage: "OA completed on 10-Aug-2026. IDFC FIRST Bank sent a direct application update on 22-Aug-2026 confirming they will not move forward with Puneet's Application Engineer application.",
+      nextAction: "No further action for this application. Keep IDFC open only for a new future role or a fresh official application opportunity.",
+      deadline: null,
+      timeline: [
+        { stage: "OA completed", date: "10 August 2026" },
+        { stage: "Application closed by IDFC FIRST Bank", date: "22 August 2026" },
+      ],
+      notes: "OA completion on 10-Aug-2026 remains historical fact. Direct IDFC FIRST Bank email dated 22-Aug-2026 says the bank will not be moving forward with Puneet's Application Engineer application. This supersedes the older awaiting-result/interview-placeholder state.",
+    };
     if (company.slug === "evertz-india") return {
       ...company,
       currentStage: "Evertz online assessment was held on 19-Aug-2026. Official RVITM email on 20-Aug published the absentee blacklist; Puneet Dixit is not among the listed absentees. Personal result/next-round status is not yet announced.",
@@ -177,6 +189,13 @@ function applyRuntimeCorrections(sourceCompanies) {
 function buildAnnouncements(companies) {
   const bySlug = new Map(companies.map((company) => [company.slug, company]));
   const announcements = [];
+  if (bySlug.get("idfc-first-bank")?.applicationStatus === "Not Selected") announcements.push({
+    id: "idfc-application-closed-2026-08-22",
+    title: "IDFC FIRST Bank application closed",
+    message: "IDFC FIRST Bank directly confirmed on 22-Aug that it will not move forward with Puneet's Application Engineer application. The 10-Aug OA remains recorded as completed.",
+    date: "2026-08-22",
+    type: "info",
+  });
   if (bySlug.get("juspay")?.applicationStatus === "Need Info") announcements.push({
     id: "juspay-registration-unverified-2026-08-23",
     title: "Juspay deadline passed; registration unverified",
@@ -215,7 +234,7 @@ export async function GET() {
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
       rawSourceFreshness: "Raw WhatsApp mirror is synced only through 21-Aug-2026 (latest commit 1a29ca5e… at 9:06 PM IST), while official Gmail and Drive contain newer activity through 23-Aug. Treat Gmail/Drive as current until a newer raw sync appears.",
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Juspay's 23-Aug 11:00 AM registration deadline has passed: resume upload is confirmed but mandatory form submission remains unverified, so the 25-Aug campus visit is conditional on registration confirmation. Dover closed incomplete at its 22-Aug 9:00 AM deadline. IDFC OA remains completed; InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug; no further IDFC action is active. Juspay's 23-Aug 11:00 AM registration deadline has passed: resume upload is confirmed but mandatory form submission remains unverified, so the 25-Aug campus visit is conditional on registration confirmation. Dover closed incomplete at its 22-Aug 9:00 AM deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
