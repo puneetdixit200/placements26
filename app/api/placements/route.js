@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-24T11:00:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-24T13:22:00+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -69,7 +69,7 @@ function applyRuntimeCorrections(sourceCompanies) {
         { stage: "OA completed", date: "10 August 2026" },
         { stage: "Application closed by IDFC FIRST Bank", date: "22 August 2026" },
       ],
-      notes: "OA completion on 10-Aug-2026 remains historical fact. Direct IDFC FIRST Bank email dated 22-Aug-2026 says the bank will not be moving forward with Puneet's Application Engineer application. This supersedes the older awaiting-result/interview-placeholder state.",
+      notes: "OA completion on 10-Aug-2026 remains historical fact. Direct IDFC FIRST Bank email dated 22-Aug-2026 says the bank will not be moving forward with Puneet's Application Engineer application.",
     };
     if (company.slug === "evertz-india") return {
       ...company,
@@ -168,20 +168,21 @@ function applyRuntimeCorrections(sourceCompanies) {
     package: { stipend: "₹40,000 per month" },
     ppo: "₹27 LPA CTC",
     description: "Juspay SDE campus opportunity spanning SDK/UI engineering, payment backend, data science and highly reliable distributed infrastructure.",
-    requirements: ["RVITM eligible students; detailed eligibility/shortlist criteria to be communicated separately"],
+    requirements: ["RVITM eligible/registered students"],
     applicationUrl: "https://forms.gle/s1z8C3X2iuuNwQGe6",
     applicationStatus: "Applied",
     appliedDate: "2026-08-23",
-    currentStage: "Registration is confirmed. RVITM shared the official Juspay registered-student list on 24-Aug-2026, and it contains Puneet Dixit at row 148 with timestamp 23/08/2026 03:54:58 and a resume link. RVITM also extended/reopened registration until 10:00 AM on 24-Aug.",
-    nextAction: "Treat the tentative 25-Aug RVITM campus hiring drive as active. Monitor official RVITM/Juspay communication for exact reporting time, venue, shortlist/assessment instructions and any changes.",
+    currentStage: "Registration is confirmed. Official RVITM email on 24-Aug-2026 confirms a mandatory Virtual Pre-Placement Talk on 25-Aug-2026 at 3:45 PM via Google Meet.",
+    nextAction: "Join the Juspay Virtual PPT by 3:35 PM on 25-Aug-2026 at https://meet.google.com/zup-jrux-kvm. Attendance is mandatory for eligible/registered students. Keep stable internet, laptop/desktop and a quiet environment ready; monitor for subsequent assessment/hiring instructions.",
     deadline: null,
     timeline: [
       { stage: "Registration confirmed", date: "23 August 2026, 03:54:58; official registered-student list published 24 August" },
       { stage: "Registration extension/reopening", date: "24 August 2026 until 10:00 AM" },
-      { stage: "Tentative campus visit", date: "25 August 2026; time and venue TBD" },
+      { stage: "Virtual Pre-Placement Talk", date: "25 August 2026, 3:45 PM IST; join by 3:35 PM; Google Meet zup-jrux-kvm" },
     ],
     skills: ["DSA", "Algorithms", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "System Design basics", "Backend Engineering", "Distributed Systems", "Reliability", "Performance"],
-    source: "Official RVITM Juspay registered-student sheet shared 24-Aug-2026 plus RVITM placement WhatsApp and official Juspay Drive folder",
+    source: "Official RVITM Placement email dated 24-Aug-2026, attached JusPay RV Group Students List Data.xlsx, RVITM placement WhatsApp and official Juspay Drive folder",
+    notes: "Official RVITM email says the 25-Aug PPT is mandatory for all eligible/registered students and students should join at least 10 minutes early. Meet: https://meet.google.com/zup-jrux-kvm.",
   });
 
   return corrected;
@@ -198,9 +199,9 @@ function buildAnnouncements(companies) {
     type: "info",
   });
   if (bySlug.get("juspay")?.applicationStatus === "Applied") announcements.push({
-    id: "juspay-registration-unverified-2026-08-23",
-    title: "Juspay registration confirmed",
-    message: "RVITM's official registered-student list shared on 24-Aug contains Puneet Dixit, confirming the Juspay registration. The tentative 25-Aug campus drive is now active; exact time and venue remain TBD.",
+    id: "juspay-ppt-2026-08-25",
+    title: "Juspay Virtual PPT confirmed",
+    message: "Mandatory Juspay Virtual PPT is confirmed for 25-Aug at 3:45 PM. Registered students should join by 3:35 PM at meet.google.com/zup-jrux-kvm.",
     date: "2026-08-24",
     type: "info",
   });
@@ -234,8 +235,8 @@ export async function GET() {
       rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
-      rawSourceFreshness: "Raw WhatsApp mirror is current through 24-Aug-2026 (latest commit 3b2ab78e… at 10:34 AM IST). It contains the latest Juspay registration-extension notice and official registered-student-list link.",
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug. Juspay registration is now confirmed by the official RVITM registered-student list shared on 24-Aug; the tentative 25-Aug campus drive is active with time/venue TBD. Dover closed incomplete at its 22-Aug deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      rawSourceFreshness: "Raw WhatsApp mirror is current through 24-Aug-2026 (latest commit 3b2ab78e… at 10:34 AM IST). Official Gmail is fresher for the Juspay PPT schedule: RVITM email at 1:03 PM confirms the 25-Aug 3:45 PM virtual PPT.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug. Juspay registration is confirmed and a mandatory Virtual PPT is scheduled for 25-Aug at 3:45 PM via Google Meet. Dover closed incomplete at its 22-Aug deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
