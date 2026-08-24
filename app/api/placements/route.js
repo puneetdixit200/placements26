@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-23T16:57:55+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-24T11:00:00+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -170,17 +170,18 @@ function applyRuntimeCorrections(sourceCompanies) {
     description: "Juspay SDE campus opportunity spanning SDK/UI engineering, payment backend, data science and highly reliable distributed infrastructure.",
     requirements: ["RVITM eligible students; detailed eligibility/shortlist criteria to be communicated separately"],
     applicationUrl: "https://forms.gle/s1z8C3X2iuuNwQGe6",
-    applicationStatus: "Need Info",
-    currentStage: "The 23-Aug-2026 11:00 AM registration deadline has passed. Juspay-specific resume PDF is uploaded in the official Drive folder, but no accessible source confirms whether the mandatory Google Form was submitted before the deadline.",
-    nextAction: "Wait for an official RVITM/Juspay registered-candidate list or direct confirmation. Treat the tentative 25-Aug campus visit as active only if registration is confirmed.",
+    applicationStatus: "Applied",
+    appliedDate: "2026-08-23",
+    currentStage: "Registration is confirmed. RVITM shared the official Juspay registered-student list on 24-Aug-2026, and it contains Puneet Dixit at row 148 with timestamp 23/08/2026 03:54:58 and a resume link. RVITM also extended/reopened registration until 10:00 AM on 24-Aug.",
+    nextAction: "Treat the tentative 25-Aug RVITM campus hiring drive as active. Monitor official RVITM/Juspay communication for exact reporting time, venue, shortlist/assessment instructions and any changes.",
     deadline: null,
     timeline: [
-      { stage: "Resume uploaded", date: "23 August 2026 before deadline" },
-      { stage: "Registration deadline passed", date: "23 August 2026, 11:00 AM IST; form submission unverified" },
-      { stage: "Tentative campus visit", date: "25 August 2026; conditional on confirmed registration" },
+      { stage: "Registration confirmed", date: "23 August 2026, 03:54:58; official registered-student list published 24 August" },
+      { stage: "Registration extension/reopening", date: "24 August 2026 until 10:00 AM" },
+      { stage: "Tentative campus visit", date: "25 August 2026; time and venue TBD" },
     ],
     skills: ["DSA", "Algorithms", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "System Design basics", "Backend Engineering", "Distributed Systems", "Reliability", "Performance"],
-    source: "Official RVITM Placement email dated 22-Aug-2026 plus official Juspay Drive folder",
+    source: "Official RVITM Juspay registered-student sheet shared 24-Aug-2026 plus RVITM placement WhatsApp and official Juspay Drive folder",
   });
 
   return corrected;
@@ -196,12 +197,12 @@ function buildAnnouncements(companies) {
     date: "2026-08-22",
     type: "info",
   });
-  if (bySlug.get("juspay")?.applicationStatus === "Need Info") announcements.push({
+  if (bySlug.get("juspay")?.applicationStatus === "Applied") announcements.push({
     id: "juspay-registration-unverified-2026-08-23",
-    title: "Juspay deadline passed; registration unverified",
-    message: "The Juspay resume upload is confirmed, but accessible sources do not confirm whether the mandatory form was submitted before the 23-Aug 11:00 AM deadline. The 25-Aug campus visit is conditional on registration confirmation.",
-    date: "2026-08-23",
-    type: "warning",
+    title: "Juspay registration confirmed",
+    message: "RVITM's official registered-student list shared on 24-Aug contains Puneet Dixit, confirming the Juspay registration. The tentative 25-Aug campus drive is now active; exact time and venue remain TBD.",
+    date: "2026-08-24",
+    type: "info",
   });
   if (bySlug.get("dover-india")?.applicationStatus === "Not Applied") announcements.push({
     id: "dover-registration-closed-2026-08-22",
@@ -233,8 +234,8 @@ export async function GET() {
       rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
-      rawSourceFreshness: "Raw WhatsApp mirror is synced only through 21-Aug-2026 (latest commit 1a29ca5e… at 9:06 PM IST), while official Gmail and Drive contain newer activity through 23-Aug. Treat Gmail/Drive as current until a newer raw sync appears.",
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug; no further IDFC action is active. Juspay's 23-Aug 11:00 AM registration deadline has passed: resume upload is confirmed but mandatory form submission remains unverified, so the 25-Aug campus visit is conditional on registration confirmation. Dover closed incomplete at its 22-Aug 9:00 AM deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      rawSourceFreshness: "Raw WhatsApp mirror is current through 24-Aug-2026 (latest commit 3b2ab78e… at 10:34 AM IST). It contains the latest Juspay registration-extension notice and official registered-student-list link.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug. Juspay registration is now confirmed by the official RVITM registered-student list shared on 24-Aug; the tentative 25-Aug campus drive is active with time/venue TBD. Dover closed incomplete at its 22-Aug deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
