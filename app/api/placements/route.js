@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-24T13:22:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-24T17:00:00+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -172,17 +172,19 @@ function applyRuntimeCorrections(sourceCompanies) {
     applicationUrl: "https://forms.gle/s1z8C3X2iuuNwQGe6",
     applicationStatus: "Applied",
     appliedDate: "2026-08-23",
-    currentStage: "Registration is confirmed. Official RVITM email on 24-Aug-2026 confirms a mandatory Virtual Pre-Placement Talk on 25-Aug-2026 at 3:45 PM via Google Meet.",
-    nextAction: "Join the Juspay Virtual PPT by 3:35 PM on 25-Aug-2026 at https://meet.google.com/zup-jrux-kvm. Attendance is mandatory for eligible/registered students. Keep stable internet, laptop/desktop and a quiet environment ready; monitor for subsequent assessment/hiring instructions.",
+    currentStage: "Registration is confirmed. Mandatory Virtual PPT is on 25-Aug-2026 at 3:45 PM. Newer RVITM Placement WhatsApp on 24-Aug-2026 confirms the campus hiring process on 27-Aug-2026 at RVITM Auditorium, reporting 9:30 AM; every round is eliminatory.",
+    nextAction: "Attend the mandatory Virtual PPT on 25-Aug, then report to RVITM Auditorium by 9:30 AM on 27-Aug with college ID, updated resume, a fully charged laptop and a black pen. Prepare DSA, coding, CS fundamentals, OMR/MCQ and hackathon-style problem solving.",
     deadline: null,
     timeline: [
       { stage: "Registration confirmed", date: "23 August 2026, 03:54:58; official registered-student list published 24 August" },
-      { stage: "Registration extension/reopening", date: "24 August 2026 until 10:00 AM" },
       { stage: "Virtual Pre-Placement Talk", date: "25 August 2026, 3:45 PM IST; join by 3:35 PM; Google Meet zup-jrux-kvm" },
+      { stage: "Campus Hiring Process", date: "27 August 2026, report 9:30 AM at RVITM Auditorium" },
+      { stage: "Same-day initial eliminatory rounds", date: "Online pre-assessment coding test + pen-and-paper MCQ/OMR + Hackathon Part A" },
+      { stage: "Later eliminatory stages", date: "Online technical interview (DSA + CS fundamentals) → 1-day hackathon → final technical + cultural-fit interview" },
     ],
     skills: ["DSA", "Algorithms", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "System Design basics", "Backend Engineering", "Distributed Systems", "Reliability", "Performance"],
-    source: "Official RVITM Placement email dated 24-Aug-2026, attached JusPay RV Group Students List Data.xlsx, RVITM placement WhatsApp and official Juspay Drive folder",
-    notes: "Official RVITM email says the 25-Aug PPT is mandatory for all eligible/registered students and students should join at least 10 minutes early. Meet: https://meet.google.com/zup-jrux-kvm.",
+    source: "Official RVITM Placement email dated 24-Aug-2026, attached JusPay RV Group Students List Data.xlsx, and newer RVITM Placement WhatsApp dated 24-Aug-2026",
+    notes: "25-Aug PPT attendance is mandatory and absentees may be blacklisted. For 27-Aug campus hiring, carry college ID, updated resume, fully charged laptop and black pen. Every round is eliminatory.",
   });
 
   return corrected;
@@ -199,9 +201,9 @@ function buildAnnouncements(companies) {
     type: "info",
   });
   if (bySlug.get("juspay")?.applicationStatus === "Applied") announcements.push({
-    id: "juspay-ppt-2026-08-25",
-    title: "Juspay Virtual PPT confirmed",
-    message: "Mandatory Juspay Virtual PPT is confirmed for 25-Aug at 3:45 PM. Registered students should join by 3:35 PM at meet.google.com/zup-jrux-kvm.",
+    id: "juspay-campus-hiring-2026-08-27",
+    title: "Juspay campus hiring confirmed",
+    message: "Mandatory Juspay Virtual PPT is 25-Aug at 3:45 PM. Campus hiring follows on 27-Aug at RVITM Auditorium with 9:30 AM reporting; every round is eliminatory.",
     date: "2026-08-24",
     type: "info",
   });
@@ -235,8 +237,8 @@ export async function GET() {
       rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
-      rawSourceFreshness: "Raw WhatsApp mirror is current through 24-Aug-2026 (latest commit 3b2ab78e… at 10:34 AM IST). Official Gmail is fresher for the Juspay PPT schedule: RVITM email at 1:03 PM confirms the 25-Aug 3:45 PM virtual PPT.",
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug. Juspay registration is confirmed and a mandatory Virtual PPT is scheduled for 25-Aug at 3:45 PM via Google Meet. Dover closed incomplete at its 22-Aug deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      rawSourceFreshness: rawSourceMeta.rawSourceFreshness,
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. IDFC OA was completed on 10-Aug and the Application Engineer application was closed by IDFC FIRST Bank on 22-Aug. Juspay registration is confirmed: mandatory Virtual PPT is 25-Aug at 3:45 PM and campus hiring is 27-Aug at 9:30 AM in the RVITM Auditorium. Dover closed incomplete at its 22-Aug deadline. InMobi is not applicable; Sama is Not Applied; ShareChat and Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD is Not Applied; Pure Storage/EverPure and Cargill remain confirmed; BitGo remains an upcoming exclusive RVITM drive with details TBD. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
