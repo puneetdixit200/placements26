@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-25T07:03:34+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-25T09:02:30+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -206,19 +206,14 @@ function applyRuntimeCorrections(sourceCompanies) {
     description: "Associate Consultant campus opportunity in supply-chain software, with Chennai/Bangalore locations and a hybrid hiring process.",
     requirements: ["BE CS, DS, IS, AIML, CY, Mech & IEM", "7.5 CGPA & above", "No current backlogs"],
     applicationUrl: "https://docs.google.com/spreadsheets/d/1puYcMXWtwps4UbGe48pcouIfJR2p2jzFEK1pg4aaoDA/edit?usp=sharing",
-    applicationStatus: "Applying",
-    currentStage: "Official Kinaxis registration sheet contains Puneet / 1RF23CS119 with CSE and 8.43 CGPA, but several required-looking fields remain blank and the required Name-RVITM.pdf resume upload is not verified. Deadline is before 9:00 AM on 25-Aug-2026.",
-    nextAction: "Complete all blank Kinaxis fields and upload the required resume before 9:00 AM on 25-Aug. If accepted, OA is 26-Aug at 10:00 AM.",
-    deadline: "25 August 2026, before 9:00 AM IST",
-    timeline: [
-      { stage: "Registration deadline", date: "25 August 2026, before 9:00 AM" },
-      { stage: "Online Assessment", date: "26 August 2026, 10:00 AM" },
-      { stage: "PPT", date: "28 August 2026, 11:00 AM at RVCE" },
-      { stage: "Interviews", date: "28 August 2026, 12:00 PM onwards at RVCE" },
-    ],
+    applicationStatus: "Not Applied",
+    currentStage: "Kinaxis registration closed before 9:00 AM on 25-Aug-2026. Final recheck after the deadline no longer finds Puneet / 1RF23CS119 in the official registration sheet, and the required resume folder has no Puneet-named Name-RVITM.pdf upload. The earlier incomplete row is historical evidence only.",
+    nextAction: "No active Kinaxis action unless RVITM/Kinaxis reopens registration or accepts a correction.",
+    deadline: null,
+    timeline: [],
     skills: ["Problem Solving", "Analytical Reasoning", "SQL", "DBMS", "OOP", "CS Fundamentals", "Communication", "Consulting Mindset"],
-    source: "RVITM Placement WhatsApp dated 24-Aug-2026 plus official registration sheet",
-    notes: "Puneet is academically eligible based on CSE and 8.43 CGPA. Registration remains incomplete/unverified until the blank fields and resume upload are completed.",
+    source: "Official Kinaxis registration sheet and required resume folder rechecked immediately after the 25-Aug-2026 9:00 AM deadline",
+    notes: "Academic eligibility was met, but registration was not completed. Final post-deadline verification found no Puneet/1RF23CS119 registration row and no required Puneet-named resume upload.",
   });
 
   return companies;
@@ -263,7 +258,7 @@ export async function GET() {
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
       rawSourceFreshness: rawSourceMeta.rawSourceFreshness,
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Qnance registration is confirmed complete; Kinaxis remains incomplete before the 25-Aug 9:00 AM deadline. Juspay registration is confirmed with mandatory PPT on 25-Aug and campus hiring on 27-Aug. IDFC is closed Not Selected; InMobi is Not Applicable; Sama is Not Applied; ShareChat/Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD/Dover are Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Qnance registration is confirmed complete; Kinaxis is Not Applied after the 25-Aug 9:00 AM deadline verification. Juspay registration is confirmed with mandatory PPT on 25-Aug and campus hiring on 27-Aug. IDFC is closed Not Selected; InMobi is Not Applicable; Sama is Not Applied; ShareChat/Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD/Dover are Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
