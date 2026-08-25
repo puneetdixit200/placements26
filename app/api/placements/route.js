@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-25T09:02:30+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-25T13:01:00+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -65,156 +65,20 @@ function applyRuntimeCorrections(sourceCompanies) {
     else companies.push(normalizeAddition(addition));
   };
 
-  upsert({
-    slug: "idfc-first-bank",
-    applicationStatus: "Not Selected",
-    currentStage: "OA completed on 10-Aug-2026. IDFC FIRST Bank sent a direct update on 22-Aug-2026 confirming they will not move forward with Puneet's Application Engineer application.",
-    nextAction: "No further action for this application unless a new IDFC role opens.",
-    deadline: null,
-    timeline: [
-      { stage: "OA completed", date: "10 August 2026" },
-      { stage: "Application closed by IDFC FIRST Bank", date: "22 August 2026" },
-    ],
-  });
+  upsert({ slug: "idfc-first-bank", applicationStatus: "Not Selected", currentStage: "OA completed on 10-Aug-2026. IDFC FIRST Bank sent a direct update on 22-Aug-2026 confirming they will not move forward with Puneet's Application Engineer application.", nextAction: "No further action for this application unless a new IDFC role opens.", deadline: null, timeline: [{ stage: "OA completed", date: "10 August 2026" }, { stage: "Application closed by IDFC FIRST Bank", date: "22 August 2026" }] });
+  upsert({ slug: "evertz-india", currentStage: "Evertz online assessment was held on 19-Aug-2026. The official 20-Aug absentee blacklist did not include Puneet; personal result/next-round status is still pending.", nextAction: "Wait for Evertz result / next-round communication." });
+  upsert({ slug: "relyntis-software", applicationStatus: "Need Info", currentStage: "Registration deadline passed on 19-Aug-2026 at 5:00 PM. No connected-source evidence confirms whether Puneet submitted the RELYNTIS form.", nextAction: "No active deadline; treat personal application status as unconfirmed unless newer evidence appears." });
+  upsert({ slug: "eurofins", applicationStatus: "Not Shortlisted", currentStage: "Official Eurofins final shortlist for the 9–10 Sep process was published on 21-Aug-2026; Puneet is not on it.", nextAction: "No Eurofins action unless a corrected/additional shortlist is published.", timeline: [{ stage: "Final shortlist published", date: "21 August 2026; Puneet not listed" }] });
+  upsert({ slug: "sartorius-india", package: { stipend: "₹20,000 per month" }, applicationStatus: "Not Selected", currentStage: "Sartorius Stedim India published the final LCM & Quality Team internship result on 21-Aug-2026; Puneet is not among the final selects.", nextAction: "No Sartorius action unless a newer official correction/additional selection appears.", timeline: [{ stage: "Final selection published", date: "21 August 2026; Puneet not selected" }] });
+  upsert({ slug: "amd-india", name: "AMD India Pvt Ltd", role: "Co-Op / Internship (with PPO) — Software/Hardware domain allocation", industry: "Semiconductors / Software / Hardware / Systems", package: { stipend: "₹40,000 per month for B.Tech" }, ppo: "BE FTE Year-1 earning potential ₹19.45 LPA", applicationStatus: "Not Applied", currentStage: "AMD registration deadline passed on 21-Aug-2026 at 7:00 AM without a completed registration/resume upload.", nextAction: "No current action unless RVITM/AMD reopens registration.", deadline: null, timeline: [], source: "RVITM Placement WhatsApp archive plus deadline verification" });
+  upsert({ slug: "dover-india", name: "Dover India", role: "Associate Software Engineer", industry: "Software Engineering / Industrial Technology", package: { stipend: "₹25,000 per month" }, ppo: "₹12 LPA FTE + ₹2 lakh joining bonus", applicationStatus: "Not Applied", currentStage: "Dover registration deadline passed on 22-Aug-2026 at 9:00 AM with Puneet's Gender field still blank; resume entry was present but registration remained incomplete.", nextAction: "No current action unless RVITM/Dover reopens registration or accepts a correction.", deadline: null, timeline: [], source: "Official Dover registration sheet" });
+  upsert({ slug: "arctic-wolf-networks", name: "Arctic Wolf Networks", role: "Security / Software Intern (Internship + PPO)", industry: "Cybersecurity / Software Engineering", package: { stipend: "₹60,000 per month" }, ppo: "₹22 LPA last-year CTC reference", applicationStatus: "Not Shortlisted", currentStage: "RVITM placement leadership confirmed on 21-Aug-2026 that no student from RVITM was shortlisted by Arctic Wolf.", nextAction: "No action unless a revised shortlist/reopening appears.", timeline: [{ stage: "RVITM no-shortlist confirmation", date: "21 August 2026" }], source: "RVITM Placement WhatsApp dated 21-Aug-2026" });
+  upsert({ slug: "juspay", name: "Juspay Technologies", role: "Software Development Engineer (SDE)", industry: "Payments Technology / Backend / Distributed Systems / Infrastructure", package: { stipend: "₹40,000 per month" }, ppo: "₹27 LPA CTC", applicationStatus: "Applied", appliedDate: "2026-08-23", currentStage: "Registration is confirmed. Mandatory Virtual PPT is 25-Aug-2026 at 3:45 PM (join by 3:35 PM). Campus hiring is 27-Aug-2026 at RVITM Auditorium, reporting 9:30 AM; every round is eliminatory.", nextAction: "Attend the mandatory 25-Aug PPT, then report to RVITM Auditorium by 9:30 AM on 27-Aug with college ID, updated resume, fully charged laptop and black pen.", deadline: null, timeline: [{ stage: "Registration confirmed", date: "23 August 2026" }, { stage: "Virtual Pre-Placement Talk", date: "25 August 2026, 3:45 PM IST; join by 3:35 PM" }, { stage: "Campus Hiring Process", date: "27 August 2026, report 9:30 AM at RVITM Auditorium" }], source: "Official RVITM Placement email and WhatsApp dated 24-Aug-2026" });
+  upsert({ slug: "qnance-technologies", name: "Qnance Technologies LLP", role: "Software Developer Intern", industry: "Software Engineering / Product Development", package: { stipend: "₹70,000 per month" }, ppo: "> ₹12 LPA FTE, performance-based conversion", description: "2027 RV placement drive for a Bangalore-based Software Developer Intern role with internship-to-FTE conversion based on performance.", requirements: ["BE CS & EC cluster", "8.0 CGPA & above", "No current backlogs"], applicationUrl: "https://docs.google.com/spreadsheets/d/1YDv76kXupmefO6V77VGUER_B06uYK1oY0pe8PRUYZAg/edit?usp=sharing", applicationStatus: "Applied", appliedDate: "2026-08-25", currentStage: "Official Qnance registration sheet row 84 shows Puneet / 1RF23CS119 fully populated with Gender = Male and the Qnance resume link present. Registration is complete.", nextAction: "Prepare for the Qnance PPT + Online Assessment on 4-Sep-2026 and monitor RVITM communication for exact time/venue.", deadline: null, timeline: [{ stage: "Registration completed", date: "25 August 2026" }, { stage: "PPT + Online Assessment", date: "4 September 2026; time TBD" }, { stage: "Interviews", date: "5–7 September 2026; personal slot TBD" }], skills: ["DSA", "Coding", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "Debugging"], source: "RVITM Placement WhatsApp plus official registration sheet", notes: "Registration confirmed complete." });
+  upsert({ slug: "kinaxis", name: "Kinaxis", role: "Associate Consultant", industry: "Supply Chain Software / Enterprise SaaS / Consulting", package: { stipend: "₹35,000 per month" }, ppo: "₹8 LPA base FTE; 6-month internship + FTE conversion LOI", description: "Associate Consultant campus opportunity in supply-chain software.", requirements: ["BE CS, DS, IS, AIML, CY, Mech & IEM", "7.5 CGPA & above", "No current backlogs"], applicationUrl: "https://docs.google.com/spreadsheets/d/1puYcMXWtwps4UbGe48pcouIfJR2p2jzFEK1pg4aaoDA/edit?usp=sharing", applicationStatus: "Not Applied", currentStage: "Kinaxis registration closed before 9:00 AM on 25-Aug-2026. Final recheck found no Puneet / 1RF23CS119 registration row and no required Puneet-named resume upload.", nextAction: "No active Kinaxis action unless RVITM/Kinaxis reopens registration or accepts a correction.", deadline: null, timeline: [], skills: ["Problem Solving", "Analytical Reasoning", "SQL", "DBMS", "OOP", "CS Fundamentals", "Communication", "Consulting Mindset"], source: "Official Kinaxis registration sheet and resume folder", notes: "Academic eligibility was met, but registration was not completed." });
 
-  upsert({
-    slug: "evertz-india",
-    currentStage: "Evertz online assessment was held on 19-Aug-2026. The official 20-Aug absentee blacklist did not include Puneet; personal result/next-round status is still pending.",
-    nextAction: "Wait for Evertz result / next-round communication.",
-  });
-
-  upsert({
-    slug: "relyntis-software",
-    applicationStatus: "Need Info",
-    currentStage: "Registration deadline passed on 19-Aug-2026 at 5:00 PM. No connected-source evidence confirms whether Puneet submitted the RELYNTIS form.",
-    nextAction: "No active deadline; treat personal application status as unconfirmed unless newer evidence appears.",
-  });
-
-  upsert({
-    slug: "eurofins",
-    applicationStatus: "Not Shortlisted",
-    currentStage: "Official Eurofins final shortlist for the 9–10 Sep process was published on 21-Aug-2026; Puneet is not on it.",
-    nextAction: "No Eurofins action unless a corrected/additional shortlist is published.",
-    timeline: [{ stage: "Final shortlist published", date: "21 August 2026; Puneet not listed" }],
-  });
-
-  upsert({
-    slug: "sartorius-india",
-    package: { stipend: "₹20,000 per month" },
-    applicationStatus: "Not Selected",
-    currentStage: "Sartorius Stedim India published the final LCM & Quality Team internship result on 21-Aug-2026; Puneet is not among the final selects.",
-    nextAction: "No Sartorius action unless a newer official correction/additional selection appears.",
-    timeline: [{ stage: "Final selection published", date: "21 August 2026; Puneet not selected" }],
-  });
-
-  upsert({
-    slug: "amd-india",
-    name: "AMD India Pvt Ltd",
-    role: "Co-Op / Internship (with PPO) — Software/Hardware domain allocation",
-    industry: "Semiconductors / Software / Hardware / Systems",
-    package: { stipend: "₹40,000 per month for B.Tech" },
-    ppo: "BE FTE Year-1 earning potential ₹19.45 LPA",
-    applicationStatus: "Not Applied",
-    currentStage: "AMD registration deadline passed on 21-Aug-2026 at 7:00 AM without a completed registration/resume upload.",
-    nextAction: "No current action unless RVITM/AMD reopens registration.",
-    deadline: null,
-    timeline: [],
-    source: "RVITM Placement WhatsApp archive plus deadline verification",
-  });
-
-  upsert({
-    slug: "dover-india",
-    name: "Dover India",
-    role: "Associate Software Engineer",
-    industry: "Software Engineering / Industrial Technology",
-    package: { stipend: "₹25,000 per month" },
-    ppo: "₹12 LPA FTE + ₹2 lakh joining bonus",
-    applicationStatus: "Not Applied",
-    currentStage: "Dover registration deadline passed on 22-Aug-2026 at 9:00 AM with Puneet's Gender field still blank; resume entry was present but registration remained incomplete.",
-    nextAction: "No current action unless RVITM/Dover reopens registration or accepts a correction.",
-    deadline: null,
-    timeline: [],
-    source: "Official Dover registration sheet",
-  });
-
-  upsert({
-    slug: "arctic-wolf-networks",
-    name: "Arctic Wolf Networks",
-    role: "Security / Software Intern (Internship + PPO)",
-    industry: "Cybersecurity / Software Engineering",
-    package: { stipend: "₹60,000 per month" },
-    ppo: "₹22 LPA last-year CTC reference",
-    applicationStatus: "Not Shortlisted",
-    currentStage: "RVITM placement leadership confirmed on 21-Aug-2026 that no student from RVITM was shortlisted by Arctic Wolf.",
-    nextAction: "No action unless a revised shortlist/reopening appears.",
-    timeline: [{ stage: "RVITM no-shortlist confirmation", date: "21 August 2026" }],
-    source: "RVITM Placement WhatsApp dated 21-Aug-2026",
-  });
-
-  upsert({
-    slug: "juspay",
-    name: "Juspay Technologies",
-    role: "Software Development Engineer (SDE)",
-    industry: "Payments Technology / Backend / Distributed Systems / Infrastructure",
-    package: { stipend: "₹40,000 per month" },
-    ppo: "₹27 LPA CTC",
-    applicationStatus: "Applied",
-    appliedDate: "2026-08-23",
-    currentStage: "Registration is confirmed. Mandatory Virtual PPT is 25-Aug-2026 at 3:45 PM (join by 3:35 PM). Campus hiring is 27-Aug-2026 at RVITM Auditorium, reporting 9:30 AM; every round is eliminatory.",
-    nextAction: "Attend the mandatory 25-Aug PPT, then report to RVITM Auditorium by 9:30 AM on 27-Aug with college ID, updated resume, fully charged laptop and black pen.",
-    deadline: null,
-    timeline: [
-      { stage: "Registration confirmed", date: "23 August 2026" },
-      { stage: "Virtual Pre-Placement Talk", date: "25 August 2026, 3:45 PM IST; join by 3:35 PM" },
-      { stage: "Campus Hiring Process", date: "27 August 2026, report 9:30 AM at RVITM Auditorium" },
-    ],
-    source: "Official RVITM Placement email and WhatsApp dated 24-Aug-2026",
-  });
-
-  upsert({
-    slug: "qnance-technologies",
-    name: "Qnance Technologies LLP",
-    role: "Software Developer Intern",
-    industry: "Software Engineering / Product Development",
-    package: { stipend: "₹70,000 per month" },
-    ppo: "> ₹12 LPA FTE, performance-based conversion",
-    description: "2027 RV placement drive for a Bangalore-based Software Developer Intern role with internship-to-FTE conversion based on performance.",
-    requirements: ["BE CS & EC cluster", "8.0 CGPA & above", "No current backlogs"],
-    applicationUrl: "https://docs.google.com/spreadsheets/d/1YDv76kXupmefO6V77VGUER_B06uYK1oY0pe8PRUYZAg/edit?usp=sharing",
-    applicationStatus: "Applied",
-    appliedDate: "2026-08-25",
-    currentStage: "Official Qnance registration sheet row 84 now shows Puneet / 1RF23CS119 fully populated for the required registration fields: Gender = Male and the Qnance resume link is present. Registration is complete before the 25-Aug 8:00 AM deadline.",
-    nextAction: "Prepare for the Qnance PPT + Online Assessment on 4-Sep-2026 and monitor RVITM communication for the exact time and venue.",
-    deadline: null,
-    timeline: [
-      { stage: "Registration completed", date: "25 August 2026" },
-      { stage: "PPT + Online Assessment", date: "4 September 2026; time TBD" },
-      { stage: "Interviews", date: "5–7 September 2026; personal slot TBD" },
-    ],
-    skills: ["DSA", "Coding", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "Debugging"],
-    source: "RVITM Placement WhatsApp dated 24-Aug-2026 plus official registration sheet rechecked 25-Aug-2026",
-    notes: "Official Qnance row 84 confirms CSE, 8.43 CGPA, Gender = Male and the Qnance resume link. Registration is complete.",
-  });
-
-  upsert({
-    slug: "kinaxis",
-    name: "Kinaxis",
-    role: "Associate Consultant",
-    industry: "Supply Chain Software / Enterprise SaaS / Consulting",
-    package: { stipend: "₹35,000 per month" },
-    ppo: "₹8 LPA base FTE; 6-month internship + FTE conversion LOI",
-    description: "Associate Consultant campus opportunity in supply-chain software, with Chennai/Bangalore locations and a hybrid hiring process.",
-    requirements: ["BE CS, DS, IS, AIML, CY, Mech & IEM", "7.5 CGPA & above", "No current backlogs"],
-    applicationUrl: "https://docs.google.com/spreadsheets/d/1puYcMXWtwps4UbGe48pcouIfJR2p2jzFEK1pg4aaoDA/edit?usp=sharing",
-    applicationStatus: "Not Applied",
-    currentStage: "Kinaxis registration closed before 9:00 AM on 25-Aug-2026. Final recheck after the deadline no longer finds Puneet / 1RF23CS119 in the official registration sheet, and the required resume folder has no Puneet-named Name-RVITM.pdf upload. The earlier incomplete row is historical evidence only.",
-    nextAction: "No active Kinaxis action unless RVITM/Kinaxis reopens registration or accepts a correction.",
-    deadline: null,
-    timeline: [],
-    skills: ["Problem Solving", "Analytical Reasoning", "SQL", "DBMS", "OOP", "CS Fundamentals", "Communication", "Consulting Mindset"],
-    source: "Official Kinaxis registration sheet and required resume folder rechecked immediately after the 25-Aug-2026 9:00 AM deadline",
-    notes: "Academic eligibility was met, but registration was not completed. Final post-deadline verification found no Puneet/1RF23CS119 registration row and no required Puneet-named resume upload.",
-  });
+  upsert({ slug: "cargill-dtd", name: "Cargill", role: "DT&D Internship Program – Software Engineer pathway", applicationStatus: "Applied", currentStage: "Both mandatory registrations are complete. Official RVITM email dated 25-Aug-2026 confirms the in-person Cargill PPT on 26-Aug-2026: report by 10:00 AM sharp; session starts 10:30 AM onwards at RVITM Auditorium, JP Nagar.", nextAction: "Report to RVITM Auditorium by 10:00 AM on 26-Aug with college ID and updated resume. Attend the 10:30 AM onwards PPT and complete any pre-screening questionnaire accurately. Then prepare for the 31-Aug 2:00 PM online test if shortlisted.", timeline: [{ stage: "Both registrations completed", date: "18 August 2026" }, { stage: "Pre-Placement Talk", date: "26 August 2026; report 10:00 AM, session 10:30 AM onwards at RVITM Auditorium" }, { stage: "Online Test", date: "31 August 2026, 2:00 PM" }, { stage: "Interviews", date: "11 September 2026, 10:00 AM; conditional on progression" }], notes: "The 25-Aug official RVITM email supersedes the earlier 11:00 AM PPT marker. Carry college ID and updated resume. Pre-screening/eligibility finalisation remains part of the process.", source: "Official RVITM Placement email dated 25-Aug-2026 plus prior Cargill application/Drive evidence" });
+  upsert({ slug: "outbox", name: "OutBox", role: "Software Development Engineer – Intern", industry: "Full Stack Development / Software Engineering", package: { stipend: "₹30,000–₹40,000 per month" }, ppo: "₹10–12 LPA", description: "SDE internship for the 2027 batch focused on full-stack development, with PPO and a mandatory take-home assignment.", requirements: ["2027 graduating batch", "Detailed branch/CGPA criteria not specified in the official RVITM email", "Must be willing to complete the mandatory assignment within 48 hours"], applicationUrl: "https://forms.gle/KyAVJRTPRrNnnibG7", jdUrl: "https://sumptuous-word-80f.notion.site/Software-Development-Engineer-Internship-2d21596f45e880bfab34c82421b7c132", applicationStatus: "Considering", currentStage: "Official RVITM opportunity received 25-Aug-2026. Registration closes today at 6:00 PM. The mandatory SDE assignment must be completed within 48 hours of receiving the opportunity.", nextAction: "Review the JD and assignment, then register before 6:00 PM today only if willing to complete the assignment within 48 hours.", deadline: "25 August 2026, 6:00 PM IST", timeline: [{ stage: "Registration deadline", date: "25 August 2026, 6:00 PM IST" }, { stage: "Mandatory SDE assignment", date: "Within 48 hours of receiving the opportunity" }], skills: ["Full Stack Development", "DSA", "JavaScript/TypeScript", "APIs", "Databases", "Debugging"], source: "Official RVITM Placement email dated 25-Aug-2026" });
 
   return companies;
 }
@@ -222,27 +86,8 @@ function applyRuntimeCorrections(sourceCompanies) {
 function buildAnnouncements(companies) {
   const bySlug = new Map(companies.map((company) => [company.slug, company]));
   const announcements = [];
-  if (bySlug.get("qnance-technologies")?.applicationStatus === "Applying") announcements.push({
-    id: "qnance-registration-2026-08-25",
-    title: "Qnance registration incomplete",
-    message: "Qnance closes before 8:00 AM on 25-Aug. Puneet's row exists, but Gender and Resume Link are still blank.",
-    date: "2026-08-24",
-    type: "urgent",
-  });
-  if (bySlug.get("kinaxis")?.applicationStatus === "Applying") announcements.push({
-    id: "kinaxis-registration-2026-08-25",
-    title: "Kinaxis registration incomplete",
-    message: "Kinaxis closes before 9:00 AM on 25-Aug. Puneet's row exists, but required fields/resume upload still need completion.",
-    date: "2026-08-24",
-    type: "urgent",
-  });
-  if (bySlug.get("juspay")?.applicationStatus === "Applied") announcements.push({
-    id: "juspay-campus-hiring-2026-08-27",
-    title: "Juspay campus hiring confirmed",
-    message: "Mandatory Juspay Virtual PPT is 25-Aug at 3:45 PM. Campus hiring follows on 27-Aug at RVITM Auditorium with 9:30 AM reporting.",
-    date: "2026-08-24",
-    type: "info",
-  });
+  if (bySlug.get("outbox")?.applicationStatus === "Considering") announcements.push({ id: "outbox-registration-2026-08-25", title: "OutBox registration closes today", message: "OutBox SDE Intern closes at 6:00 PM on 25-Aug. The selection includes a mandatory assignment that must be completed within 48 hours.", date: "2026-08-25", type: "urgent" });
+  if (bySlug.get("juspay")?.applicationStatus === "Applied") announcements.push({ id: "juspay-campus-hiring-2026-08-27", title: "Juspay campus hiring confirmed", message: "Mandatory Juspay Virtual PPT is 25-Aug at 3:45 PM. Campus hiring follows on 27-Aug at RVITM Auditorium with 9:30 AM reporting.", date: "2026-08-24", type: "info" });
   return [...announcements, ...(sourceData.announcements || []).filter((a) => !announcements.some((x) => x.id === a.id))];
 }
 
@@ -258,9 +103,9 @@ export async function GET() {
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
       rawSourceFreshness: rawSourceMeta.rawSourceFreshness,
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Qnance registration is confirmed complete; Kinaxis is Not Applied after the 25-Aug 9:00 AM deadline verification. Juspay registration is confirmed with mandatory PPT on 25-Aug and campus hiring on 27-Aug. IDFC is closed Not Selected; InMobi is Not Applicable; Sama is Not Applied; ShareChat/Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD/Dover are Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. OutBox registration closes 25-Aug at 6:00 PM with a mandatory 48-hour assignment. Cargill PPT reporting is 26-Aug at 10:00 AM, session 10:30 AM onwards. Qnance is Applied; Kinaxis is Not Applied; Juspay is Applied with campus hiring on 27-Aug. IDFC is Not Selected; InMobi is Not Applicable; Sama is Not Applied; ShareChat/Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD/Dover are Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
-  }, { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } });
+  }, { headers: { "Cache-Control": "no-store" } });
 }
