@@ -2,7 +2,7 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-24T21:02:00+05:30";
+const RUNTIME_LAST_UPDATED = "2026-08-25T07:03:34+05:30";
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -181,18 +181,19 @@ function applyRuntimeCorrections(sourceCompanies) {
     description: "2027 RV placement drive for a Bangalore-based Software Developer Intern role with internship-to-FTE conversion based on performance.",
     requirements: ["BE CS & EC cluster", "8.0 CGPA & above", "No current backlogs"],
     applicationUrl: "https://docs.google.com/spreadsheets/d/1YDv76kXupmefO6V77VGUER_B06uYK1oY0pe8PRUYZAg/edit?usp=sharing",
-    applicationStatus: "Applying",
-    currentStage: "Official Qnance registration sheet already contains Puneet / 1RF23CS119 with 8.43 CGPA, but Gender and Resume Link are blank. Interested-student list is due before 8:00 AM on 25-Aug-2026.",
-    nextAction: "Complete Gender and Resume Link in the Qnance sheet before 8:00 AM on 25-Aug. Treat later stages as conditional until registration is complete.",
-    deadline: "25 August 2026, before 8:00 AM IST",
+    applicationStatus: "Applied",
+    appliedDate: "2026-08-25",
+    currentStage: "Official Qnance registration sheet row 84 now shows Puneet / 1RF23CS119 fully populated for the required registration fields: Gender = Male and the Qnance resume link is present. Registration is complete before the 25-Aug 8:00 AM deadline.",
+    nextAction: "Prepare for the Qnance PPT + Online Assessment on 4-Sep-2026 and monitor RVITM communication for the exact time and venue.",
+    deadline: null,
     timeline: [
-      { stage: "Registration deadline", date: "25 August 2026, before 8:00 AM" },
+      { stage: "Registration completed", date: "25 August 2026" },
       { stage: "PPT + Online Assessment", date: "4 September 2026; time TBD" },
       { stage: "Interviews", date: "5–7 September 2026; personal slot TBD" },
     ],
     skills: ["DSA", "Coding", "OOP", "DBMS/SQL", "Operating Systems", "Computer Networks", "Debugging"],
-    source: "RVITM Placement WhatsApp dated 24-Aug-2026 plus official registration sheet",
-    notes: "Puneet is academically eligible based on the official row showing CSE and 8.43 CGPA, but the registration is still incomplete as of the evening of 24-Aug.",
+    source: "RVITM Placement WhatsApp dated 24-Aug-2026 plus official registration sheet rechecked 25-Aug-2026",
+    notes: "Official Qnance row 84 confirms CSE, 8.43 CGPA, Gender = Male and the Qnance resume link. Registration is complete.",
   });
 
   upsert({
@@ -262,7 +263,7 @@ export async function GET() {
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
       rawSourceFreshness: rawSourceMeta.rawSourceFreshness,
-      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Qnance and Kinaxis are newly active but Puneet's registration rows remain incomplete as of 24-Aug evening. Juspay registration is confirmed with mandatory PPT on 25-Aug and campus hiring on 27-Aug. IDFC is closed Not Selected; InMobi is Not Applicable; Sama is Not Applied; ShareChat/Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD/Dover are Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
+      notice: "Placement records combine the primary tracker with authoritative overrides and newer official updates. Qnance registration is confirmed complete; Kinaxis remains incomplete before the 25-Aug 9:00 AM deadline. Juspay registration is confirmed with mandatory PPT on 25-Aug and campus hiring on 27-Aug. IDFC is closed Not Selected; InMobi is Not Applicable; Sama is Not Applied; ShareChat/Eurofins are Not Shortlisted; Sartorius is Not Selected; AMD/Dover are Not Applied. Google and Flipkart remain excluded unless a fresh official notice appears.",
     },
     announcements: buildAnnouncements(companies),
     companies,
