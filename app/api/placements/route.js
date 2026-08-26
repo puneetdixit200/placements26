@@ -2,7 +2,13 @@ import sourceData from "../../../data/placements.json";
 import overrideData from "../../../data/confirmed-overrides.json";
 import rawSourceMeta from "../../../data/raw-source-meta.json";
 
-const RUNTIME_LAST_UPDATED = "2026-08-26T06:57:00+05:30";
+function newestTimestamp(...candidates) {
+  return candidates.reduce((latest, current) => {
+    if (!current || Number.isNaN(Date.parse(current))) return latest;
+    if (!latest || Date.parse(current) > Date.parse(latest)) return current;
+    return latest;
+  }, null);
+}
 
 function normalizeAddition(addition) {
   const shortName = (addition.name || addition.slug || "NA")
@@ -95,11 +101,17 @@ function buildAnnouncements(companies) {
 export async function GET() {
   const companies = applyRuntimeCorrections(applyConfirmedState(sourceData.companies || [], overrideData));
   const meta = overrideData.meta || {};
+  const lastUpdated = newestTimestamp(
+    sourceData.meta?.lastUpdated,
+    meta.lastUpdated,
+    rawSourceMeta.lastUpdated,
+    rawSourceMeta.rawSourceLatestCommitAt,
+  );
   return Response.json({
     ...sourceData,
     meta: {
       ...sourceData.meta,
-      lastUpdated: RUNTIME_LAST_UPDATED,
+      lastUpdated: lastUpdated || sourceData.meta?.lastUpdated,
       rawDataThrough: rawSourceMeta.rawDataThrough || meta.rawDataThrough || sourceData.meta?.rawDataThrough,
       rawSourceLatestCommit: rawSourceMeta.rawSourceLatestCommit || meta.rawSourceLatestCommit,
       rawSourceLatestCommitAt: rawSourceMeta.rawSourceLatestCommitAt || meta.rawSourceLatestCommitAt,
