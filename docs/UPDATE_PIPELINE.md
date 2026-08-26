@@ -60,7 +60,7 @@ Set `verified` to `true` only after both confirmations.
 2. Never infer a package, deadline, eligibility rule or result.
 3. Use ISO dates in JSON, for example `2026-08-14T17:00:00+05:30`.
 4. Keep raw source links in `applicationUrl` and `jdUrl`.
-5. Update `meta.lastUpdated` on every content change.
+5. The update workflow should stamp the relevant source metadata when it changes. The public API derives its displayed `lastUpdated` automatically from the newest valid timestamp in the primary data, confirmed overrides, or raw-source metadata. Never hard-code a separate API timestamp.
 6. Treat resume URLs as personal data and publish them only with permission.
 7. Prefer a GitHub pull request for large batches; direct commits are suitable for urgent verified corrections.
 
