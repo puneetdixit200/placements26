@@ -1,10 +1,10 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-26T17:05:00+05:30",
-    "rawDataThrough": "2026-08-26",
-    "rawSourceLatestCommit": "ca0b91c9a747a669594280098ab38fd1be6ea50e",
-    "rawSourceLatestCommitAt": "2026-08-26T13:43:55+05:30",
-    "rawSourceFreshness": "Raw WhatsApp mirror is current through 26-Aug-2026, but official Gmail is fresher for Qualcomm: a direct registered-candidate email arrived at 3:09 PM IST on 26-Aug with the HirePro registration link and an extended 27-Aug 8:00 AM deadline.",
+    "lastUpdated": "2026-08-31T15:00:00+05:30",
+    "rawDataThrough": "2026-08-29",
+    "rawSourceLatestCommit": "a0e4682dbdae288096633a7fbe11455faf7bce19",
+    "rawSourceLatestCommitAt": "2026-08-29T21:58:43+05:30",
+    "rawSourceFreshness": "The private WhatsApp mirror is only current through 29-Aug-2026. Official placement Gmail has newer 31-Aug activity including TechFabric, HSD2C, Dover, Bosch and Cargill, so absence of newer raw messages must not be treated as absence of placement activity.",
     "source": "User-confirmed state plus official placement Gmail/Drive plus private placement-raw-data archive",
     "purpose": "Authoritative corrections/additions that must not be regressed by older placement notices."
   },
@@ -33,14 +33,27 @@
     },
     {
       "slug": "hsd2c-consulting",
-      "currentStage": "AI Intern shortlist published 14-Aug-2026; Puneet's personal shortlist status remains unconfirmed.",
-      "nextAction": "No case-study action unless Puneet/1RF23CS119 is confirmed on the AI shortlist.",
+      "currentStage": "AI Intern shortlist was published 14-Aug-2026. A newer official RVITM update on 31-Aug confirms Ananth Seshadri (1RF23CS019, CSE) secured the HSD2C AI Internship. Puneet's personal application/selection status remains unconfirmed because the announcement does not state that it is an exhaustive final list.",
+      "nextAction": "No action unless a newer HSD2C/RVITM communication explicitly involves Puneet or confirms his application/selection status.",
       "timeline": [
         {"stage": "Registration deadline", "date": "11 August 2026, 9:00 PM"},
         {"stage": "AI Intern shortlist published", "date": "14 August 2026"},
-        {"stage": "AI Intern basic case study for shortlisted candidates", "date": "Deadline/time TBD"}
+        {"stage": "Ananth Seshadri selection announced", "date": "31 August 2026"}
       ],
-      "notes": "Official RVITM Placement email dated 14-Aug-2026 published the AI Intern shortlist and attached the case study; Puneet's personal shortlist status was not confirmed."
+      "notes": "Official RVITM Placement email dated 31-Aug-2026 confirms Ananth Seshadri secured the AI Internship at ₹10,000/month with performance-based PPO ₹6–7 LPA. Do not infer Puneet was rejected from a non-exhaustive announcement."
+    },
+    {
+      "slug": "bosch",
+      "package": {"stipend": "₹15,000 per month for selected internship offer"},
+      "ppo": "Performance-based PPO",
+      "applicationStatus": "Need Info",
+      "currentStage": "Official RVITM final selection on 31-Aug-2026 confirms D. Gaurav Rahtor and Priaansh Gupta, both ECE, were selected for the six-month Bosch MLFF internship. Puneet's personal application/submission status remains unconfirmed.",
+      "nextAction": "No action unless a newer Bosch/RVITM communication explicitly involves Puneet or confirms his earlier registration status.",
+      "timeline": [
+        {"stage": "Registration deadline", "date": "11 August 2026, 9:00 PM"},
+        {"stage": "Final selection announced", "date": "31 August 2026"}
+      ],
+      "notes": "The selected internship offer is ₹15,000/month, superseding the ₹10,000/month amount in the original 11-Aug registration notice for the actual selected offer. PPO is performance-based."
     },
     {
       "slug": "evertz-india",
@@ -89,12 +102,14 @@
       "slug": "bitgo",
       "name": "BitGo",
       "role": "Software Engineer Intern",
-      "applicationStatus": "Need Info",
+      "applicationStatus": "Not Applicable",
       "appliedDate": "2026-08-12",
-      "currentStage": "Newer RVITM placement WhatsApp on 17-Aug-2026 says BitGo will be coming to RVITM exclusively for RVITM students after placement-leadership discussions. Exact registration, eligibility and process dates are still TBD.",
-      "nextAction": "Monitor official RVITM/BitGo communication for registration, eligibility, OA/interview dates and process details; reactivate fully when those are published.",
-      "source": "Private placement-raw-data WhatsApp archive / RVITM Placement",
-      "notes": "This supersedes the 14-Aug batch-level non-consideration. The earlier 12-Aug application list remains historical evidence."
+      "currentStage": "Explicit user-confirmed state takes priority: the current BitGo placement drive is Not Applicable to RVITM. Preserve the 12-Aug application-list entry only as historical evidence; do not promote the lower-priority raw WhatsApp reopening claim without newer official corroboration.",
+      "nextAction": "No action unless a fresh official BitGo or placement-cell communication explicitly reopens the opportunity for RVITM.",
+      "deadline": null,
+      "timeline": [],
+      "source": "Explicit user-confirmed state",
+      "notes": "The 12-Aug application list remains historical evidence only."
     },
     {
       "slug": "honeywell",
@@ -191,6 +206,32 @@
       "skills": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Python", "Java", "PHP", "SQL", "Git", "Databases", "APIs", "Cloud basics"],
       "source": "Official RVITM Placement email dated 19-Aug-2026 and attached RELYNTIS JD",
       "notes": "Compensation: first 3 months unpaid training/onboarding; next 3 months ₹5,000–₹10,000/month performance-based. After 6 months, eligible for permanent-role consideration with packages starting from ₹3 LPA. RVITM explicitly notes this internship counts as zero offer and students remain eligible for other companies."
+    },
+    {
+      "slug": "techfabric",
+      "name": "TechFabric LLC",
+      "role": "Data Engineering Intern – Talent Pipeline",
+      "roles": ["Data Engineering Intern – Talent Pipeline"],
+      "industry": "Data Engineering / Cloud Data Platforms / AI-ML Infrastructure",
+      "package": {"stipend": "₹10,000 per month"},
+      "ppo": "₹4 LPA, performance- and opportunity-based",
+      "description": "Six-month remote internship in the 8th semester after a structured Databricks learning and certification pathway. Work includes data pipelines, Python automation, optimized SQL, data cleaning/transformation, scalable database schemas, Databricks/lakehouse architectures and analytics/AI-ML support.",
+      "requirements": ["2027 batch", "B.E./B.Tech CSE, CS-AI/ML or CS-Data Science, or MCA Data Science/Data Analytics", "Minimum 75% aggregate or equivalent CGPA throughout the degree", "Strong Python, SQL and problem-solving fundamentals"],
+      "skills": ["Python", "SQL", "Relational Databases", "Joins", "Subqueries", "Indexing", "Data Engineering", "Databricks", "Data Pipelines", "ETL", "Lakehouse"],
+      "applicationUrl": "https://forms.gle/qH1SpRog79wohQc39",
+      "applicationStatus": "Considering",
+      "currentStage": "Official RVITM opportunity received 31-Aug-2026. Registration is open and closes 1-Sep-2026 at 9:00 AM IST. Personal registration is not yet confirmed.",
+      "nextAction": "Review the TechFabric commitment requirements and register before 1-Sep-2026 9:00 AM if interested and eligible.",
+      "deadline": "1 September 2026, 9:00 AM IST",
+      "timeline": [
+        {"stage": "Registration deadline", "date": "1 September 2026, 9:00 AM IST"},
+        {"stage": "Online Assessment", "date": "TBD — programming, aptitude, communication and logical reasoning"},
+        {"stage": "Interview", "date": "TBD"},
+        {"stage": "Databricks learning/certification preparation", "date": "Approximately September–December 2026"},
+        {"stage": "Six-month remote paid internship", "date": "8th semester, after certification requirement"}
+      ],
+      "source": "Official RVITM Placement email dated 31-Aug-2026",
+      "notes": "Candidates who clear the internal mock benchmark receive a company-sponsored Databricks certification voucher worth USD 200. The PPO is explicitly subject to internship performance and business opportunity availability."
     },
     {
       "slug": "qualcomm-hw-2027",
