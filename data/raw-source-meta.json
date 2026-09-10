@@ -1,1 +1,175 @@
-{"lastUpdated":"2026-09-10T15:00:00+05:30","rawDataThrough":"2026-09-09","rawSourceLatestCommit":"720b245f783c8c1be497c0818e7929fa4ff9bfb6","rawSourceLatestCommitAt":"2026-09-09T23:07:43+05:30","rawSourceLatestDataCommit":"720b245f783c8c1be497c0818e7929fa4ff9bfb6","rawSourceLatestDataCommitAt":"2026-09-09T23:07:43+05:30","rawSourceFreshness":"The private WhatsApp archive is current through 9-Sep-2026 at commit 720b245f783c8c1be497c0818e7929fa4ff9bfb6 (11:07:43 PM IST on 9-Sep). A newer official RVITM placement email arrived on 10-Sep at 2:01 PM IST, so the raw archive does not yet cover today's official activity. Treat this as a same-day source-freshness limitation, not yet as evidence that the ingestion pipeline is broken. The archive remains corroborating evidence below newer official Gmail/Drive and explicit user confirmations, and some captured WhatsApp messages still have unsupported/unknown types.","latestUserConfirmedUpdate":{"date":"2026-09-09","company":"Societe Generale Global Solutions","role":"Software Engineer","applicationStatus":"Selected","evidence":"After the 9-Sep-2026 Societe Generale Software Engineer interview, Puneet explicitly confirmed in chat that he got placed. Under the configured source priority, this user-confirmed state supersedes the older shortlist/interview state even though a formal result/offer email has not yet appeared in Gmail.","nextAction":"Await formal offer/onboarding communication, joining documentation, background-verification instructions, internship start details, and any official compensation follow-up."},"latestOfficialUpdate":{"date":"2026-09-10","company":"RVITM pool-campus placement outcomes","role":"Qualcomm / ZS Associates / Baker Hughes / GyanSys outcomes","applicationStatus":"Final placement outcome update","evidence":"Official RVITM Placement email on 10-Sep-2026 states that six RVITM 2027-batch students secured offers through RVCE pool campus drives: one Qualcomm, one ZS Associates, two Baker Hughes and two GyanSys. Puneet is not in the listed final placed set. This closes his previously unresolved Qualcomm waitlist and Baker Hughes applied/post-round states as not selected for those concluded processes.","nextAction":"No Qualcomm or Baker Hughes action for these concluded processes unless a fresh official opportunity opens."},"latestDriveUpdate":{"date":"2026-09-10","company":"Placement Tracker 2026","role":"Source tracker synchronization","applicationStatus":"Updated","evidence":"Primary tracker updated on 10-Sep-2026 to mark Societe Generale Software Engineer Selected based on explicit user confirmation, and to close Qualcomm and Baker Hughes as not selected based on the official 10-Sep RVITM final pool-placement update.","nextAction":"Preserve these states against older source regressions; await formal Societe Generale offer/onboarding communication."},"recentOfficialUpdates":[{"date":"2026-09-10","company":"RVITM pool-campus placement outcomes","role":"Qualcomm / ZS Associates / Baker Hughes / GyanSys","applicationStatus":"Final placement outcome update","evidence":"Official RVITM placement email says six RVITM students secured offers through RVCE pool drives. It identifies Aditya Jaiswal at Qualcomm; Rishabh Singh at ZS Associates; Sai Vinyas B S and Anukriti Sharma at Baker Hughes; and Jyothiradithya P and Prarthana Nagol at GyanSys. Puneet is not among the final placed students.","nextAction":"Close Puneet's older Qualcomm waitlist and Baker Hughes unresolved process as not selected. GyanSys remains Not Eligible; no ZS tracker row existed."},{"date":"2026-09-09","company":"Eurofins","role":"Associate Software Engineer","applicationStatus":"Not Shortlisted","evidence":"Official RVITM placement email published the 17-student Eurofins Technical Interview shortlist for 10-Sep-2026; Puneet is not listed.","nextAction":"No action unless a corrected/additional shortlist appears."},{"date":"2026-09-09","company":"Cargill","role":"DT&D Internship Program – Software Engineer pathway","applicationStatus":"Shortlisted","evidence":"Official RVITM placement email and attached final shortlist explicitly include Puneet Dixit at rank 3 for the Cargill Technical Interview on 11-Sep-2026. Original official schedule gives 10:00 AM start.","nextAction":"Report for the 11-Sep 10:00 AM technical interview; recovered newer RVITM placement-channel logistics give venue as RVITM Campus, T&P Cell, 7th Floor. Carry College ID and updated resume, wear formal attire, and prioritize Cargill over other recruitment processes that day."},{"date":"2026-09-09","company":"Societe Generale Global Solutions","role":"Software Engineer","applicationStatus":"Selected","evidence":"Puneet explicitly confirmed after the 9-Sep interview that he got placed. This higher-priority user confirmation supersedes the older 8-Sep shortlist state; no newer official result email has yet been found.","nextAction":"Await formal offer/onboarding communication only."},{"date":"2026-09-08","company":"Societe Generale Global Solutions","role":"Data Scientist / DAI Associate Data Scientist","applicationStatus":"Not Shortlisted","evidence":"The official 8-Sep Societe Generale email states that 9 students are shortlisted for Data Science. Its attached Data Science shortlist contains exactly 9 candidates and does not include Puneet Dixit.","nextAction":"No Data Scientist action unless Societe Generale/RVITM publishes a correction or additional shortlist."},{"date":"2026-09-08","company":"Stellantis","role":"Internship – role allocation across CSE-related specializations","applicationStatus":"Need Info","evidence":"The official 7-Sep Stellantis registration deadline of 3:00 PM IST has passed. No official Gmail/Drive evidence confirms Puneet submitted.","nextAction":"No current action unless submission confirmation, shortlist, or a reopened notice appears."},{"date":"2026-09-04","company":"Warner Music Group","role":"Software Engineer","applicationStatus":"Applied","evidence":"Official Drive application sheet row 60 lists PUNEET DIXIT / 1RF23CS119, CSE, RVITM, with a matching Warner Music Group Software Engineer resume.","nextAction":"Wait for shortlist, assessment, interview, JD, compensation and deadline details."}],"recentDriveUpdates":[{"date":"2026-09-10","company":"Placement Tracker 2026","role":"Tracker synchronization","applicationStatus":"Updated","evidence":"Societe Generale Software Engineer changed from Shortlisted to Selected based on explicit user confirmation; Qualcomm and Baker Hughes changed from unresolved active states to Rejected/not selected after the official final RVITM pool-placement update.","personalImpact":"Selection at Societe Generale is now the authoritative personal outcome; older interview-stage text must not regress it."},{"date":"2026-09-09","company":"SAP Labs India","role":"GTM Global Delivery Hub – role/title TBD","applicationStatus":"Need Info","evidence":"Puneet-filled registration workbook and tailored resume exist in Drive. No official submission acknowledgement or official hiring details found.","personalImpact":"Primary tracker remains Need Info only; do not infer Applied from a locally filled registration copy."}],"recentRawUpdates":[{"date":"2026-09-09","company":"Cargill","source":"Private placement-raw-data WhatsApp archive / RVITM Placements 2027","evidence":"Newer placement-cell message states the 11-Sep technical interview venue is RVITM Campus, T&P Cell (7th Floor). Candidates must carry College ID and updated resume, wear formal attire, prepare technical fundamentals/projects/resume, and prioritize the Cargill interview over any other recruitment process that day.","personalImpact":"Tracker and primary Calendar updated with venue and logistics. Official 10:00 AM interview time and rank-3 shortlist remain unchanged."},{"date":"2026-09-09","company":"UsefulBI","source":"Private placement-raw-data WhatsApp archive / RVITM Placements 2027","evidence":"Campus drive announced for Full Stack Development / Generative AI: 4-month internship, ₹30,000/month, performance-based FTE at ₹7 LPA, Pune/Bangalore, 6.0+ CGPA, no active backlogs, GD → Technical → HR, deadline 9-Sep at 4:00 PM.","personalImpact":"Added to tracker as Need Info. Deadline has passed and no Gmail/Drive or personal submission evidence was found, so do not infer Applied or Not Applied."},{"date":"2026-09-09","company":"GE Aerospace","source":"Private placement-raw-data WhatsApp archive / forwarded placement-channel item","evidence":"Forwarded Data Science Intern opportunity for Bengaluru, 2027/2028 B.Tech CS/IT, Data Science/AI preferred, 7 CGPA/70%+, no active backlogs, with an official GE Aerospace careers link.","personalImpact":"Added to tracker as Need Info/raw-source-only. No official RVITM Gmail/Drive campus notice or personal application confirmation found."},{"date":"2026-09-09","source":"Private placement-raw-data WhatsApp archive","evidence":"Several captured WhatsApp messages still have unsupported/unknown types with no readable text/caption.","personalImpact":"Do not promote unsupported messages into tracker state without corroboration."}],"confirmedStates":{"idfcFirstBank":"OA completed 10-Aug-2026; do not regress. Newer direct 22-Aug company communication closed the application as Not Selected while preserving the completed-OA history.","inMobi":"Not Applicable – RVITM not considered; not a personal rejection.","sama":"Not Applied – registration form not filled.","bitGo":"Not Applicable to RVITM current process unless newer official communication reopens it; 12-Aug application-list evidence is historical only.","qualcomm":"Rejected/not selected for the concluded RVCE pool process. Puneet had been INFRA SW Waitlist; official 10-Sep RVITM final placement update identifies Aditya Jaiswal as the Qualcomm placement and Puneet is not in the final placed set.","bakerHughes":"Rejected/not selected for the concluded pool process. Puneet's registration was confirmed, but the official 10-Sep RVITM final placement update identifies Sai Vinyas B S and Anukriti Sharma as the Baker Hughes selections and Puneet is not in the final placed set.","cargill":"Shortlisted for Cargill Technical Interview on 11-Sep-2026. Official RVITM email dated 9-Sep and attached final list explicitly include PUNEET DIXIT at rank 3; original official schedule gives 10:00 AM. Recovered newer RVITM placement-channel logistics give venue RVITM Campus, T&P Cell (7th Floor), College ID + updated resume + formal attire requirements, and instruction to prioritize Cargill over other recruitment processes that day.","societeGenerale":"Selected/placed in the Software Engineer track per explicit user confirmation on 9-Sep-2026 after the interview. Preserve this higher-priority state over older shortlist/interview records. No newer official result email has yet been found; await formal offer/onboarding communication.","smartsheet":"Applied – Integration Engineering; proposed campus process 9–10 Sep 2026; exact times TBD.","warnerMusicGroup":"Applied – Software Engineer; official Drive application sheet confirms Puneet.","relyntisSoftware":"Need Info for personal application submission; official 4-Sep selection list does not include Puneet. Do not convert this to Rejected or Not Applied without submission evidence.","eurofins":"Not Shortlisted for the current process. Fresh official RVITM email on 9-Sep-2026 publishes the 17-student Technical Interview shortlist for 10-Sep and again does not contain Puneet / 1RF23CS119.","societeGeneraleDataScientist":"Not Shortlisted for the current interview process; official 8-Sep 9-candidate list excludes Puneet.","stellantis":"Need Info – official registration deadline passed 7-Sep-2026 at 3:00 PM IST; personal submission unconfirmed.","sapLabsIndia":"Need Info – Drive evidence proves a filled registration copy and tailored resume were prepared on 9-Sep-2026, but official submission, role title, compensation, deadline and process are not corroborated yet.","usefulBI":"Need Info – raw RVITM placement-channel notice dated 9-Sep-2026; deadline 4:00 PM has passed and personal submission is unconfirmed.","geAerospace":"Need Info – forwarded raw placement-channel Data Science Intern opportunity with official GE Aerospace careers link; no official RVITM Gmail/Drive campus notice or personal application confirmation found."},"sourcePriority":"Explicit user-confirmed state > newer official placement/company communication > official Drive evidence > raw WhatsApp archive > existing site state."}
+{
+  "lastUpdated": "2026-09-10T19:00:00+05:30",
+  "rawDataThrough": "2026-09-09",
+  "rawSourceLatestCommit": "720b245f783c8c1be497c0818e7929fa4ff9bfb6",
+  "rawSourceLatestCommitAt": "2026-09-09T23:07:43+05:30",
+  "rawSourceLatestDataCommit": "720b245f783c8c1be497c0818e7929fa4ff9bfb6",
+  "rawSourceLatestDataCommitAt": "2026-09-09T23:07:43+05:30",
+  "rawSourceFreshness": "The private WhatsApp archive is current through 9-Sep-2026 at commit 720b245f783c8c1be497c0818e7929fa4ff9bfb6 (11:07:43 PM IST on 9-Sep). Official placement activity continued on 10-Sep, including Societe Generale acceptance communication and a Gnani.ai shortlist update, so the raw archive has a same-day freshness gap. Treat this as a source-freshness limitation, not proof that the ingestion pipeline is broken. The archive remains corroborating evidence below newer official Gmail/Drive and explicit user confirmations, and some captured WhatsApp messages still have unsupported/unknown types.",
+  "latestUserConfirmedUpdate": {
+    "date": "2026-09-09",
+    "company": "Societe Generale Global Solutions",
+    "role": "Software Engineer",
+    "applicationStatus": "Selected",
+    "evidence": "After the 9-Sep-2026 Societe Generale Software Engineer interview, Puneet explicitly confirmed in chat that he got placed. This higher-priority confirmation remains authoritative.",
+    "nextAction": "Selection remains confirmed. Verify whether the formal acceptance letter was submitted before the 6:00 PM IST deadline on 10-Sep-2026; if not, contact the placement cell/Societe Generale contact immediately for guidance, then await formal offer/onboarding communication."
+  },
+  "latestOfficialUpdate": {
+    "date": "2026-09-10",
+    "company": "Societe Generale Global Solutions",
+    "role": "Software Engineer",
+    "applicationStatus": "Selected / offer extended; acceptance unconfirmed after deadline",
+    "evidence": "Official Societe Generale/RVCE communication required selected candidates to share formal acceptance by 6:00 PM IST on 10-Sep-2026. As of 6:59 PM IST, Gmail contains no sent or received evidence confirming Puneet's acceptance; the 4:21 PM placement-executive reply attached acceptance letters from two other students only. Missing email evidence must not be treated as rejection.",
+    "nextAction": "Immediately verify whether acceptance was submitted before 6:00 PM. If not, contact the placement cell/Societe Generale contact and request acceptance guidance."
+  },
+  "latestDriveUpdate": {
+    "date": "2026-09-10",
+    "company": "Placement Tracker 2026",
+    "role": "Source tracker synchronization",
+    "applicationStatus": "Updated",
+    "evidence": "The Societe Generale Software Engineer row remains Selected but now records that the formal acceptance deadline has passed and submission is unconfirmed. Priority was raised to High and the next action is immediate verification/follow-up. The malformed extra value in column W was cleared and row fields K:V were realigned to their intended tracker columns.",
+    "nextAction": "Preserve Selected status; verify acceptance submission immediately."
+  },
+  "recentOfficialUpdates": [
+    {
+      "date": "2026-09-10",
+      "company": "Societe Generale Global Solutions",
+      "role": "Software Engineer",
+      "applicationStatus": "Selected / offer extended; acceptance unconfirmed after deadline",
+      "evidence": "Official selected-candidates communication required acceptance by 6:00 PM IST on 10-Sep. Gmail still has no confirmation that Puneet's acceptance was submitted as of 6:59 PM.",
+      "nextAction": "Verify acceptance submission immediately; if absent, contact placement cell/Societe Generale."
+    },
+    {
+      "date": "2026-09-10",
+      "company": "Gnani.ai",
+      "role": "Forward Deployed Engineer Intern",
+      "applicationStatus": "Not Applied / historical only",
+      "evidence": "Official RVITM email published the Gnani.ai shortlist. Puneet is not among the listed candidates, but the tracker already records that he decided not to apply, so this does not create a rejection state.",
+      "nextAction": "No action unless a fresh Gnani.ai opportunity opens."
+    },
+    {
+      "date": "2026-09-10",
+      "company": "RVITM pool-campus placement outcomes",
+      "role": "Qualcomm / ZS Associates / Baker Hughes / GyanSys",
+      "applicationStatus": "Final placement outcome update",
+      "evidence": "Official RVITM placement email says six RVITM students secured offers through RVCE pool drives. Puneet is not among the final placed students.",
+      "nextAction": "Qualcomm and Baker Hughes remain closed as not selected."
+    },
+    {
+      "date": "2026-09-09",
+      "company": "Eurofins",
+      "role": "Associate Software Engineer",
+      "applicationStatus": "Not Shortlisted",
+      "evidence": "Official RVITM placement email published the 17-student Technical Interview shortlist for 10-Sep-2026; Puneet is not listed.",
+      "nextAction": "No action unless a corrected/additional shortlist appears."
+    },
+    {
+      "date": "2026-09-09",
+      "company": "Cargill",
+      "role": "DT&D Internship Program – Software Engineer pathway",
+      "applicationStatus": "Shortlisted",
+      "evidence": "Official RVITM email and attached final shortlist explicitly include Puneet Dixit at rank 3 for the Cargill Technical Interview on 11-Sep-2026. Original official schedule gives 10:00 AM start.",
+      "nextAction": "Report 11-Sep at 10:00 AM to RVITM Campus, T&P Cell, 7th Floor. Carry College ID and updated resume, wear formal attire, and prioritize Cargill over other recruitment processes that day."
+    },
+    {
+      "date": "2026-09-09",
+      "company": "Societe Generale Global Solutions",
+      "role": "Software Engineer",
+      "applicationStatus": "Selected",
+      "evidence": "Puneet explicitly confirmed after the 9-Sep interview that he got placed.",
+      "nextAction": "Superseded by the 10-Sep official offer/acceptance communication."
+    },
+    {
+      "date": "2026-09-08",
+      "company": "Societe Generale Global Solutions",
+      "role": "Data Scientist / DAI Associate Data Scientist",
+      "applicationStatus": "Not Shortlisted",
+      "evidence": "The official 8-Sep 9-candidate Data Science shortlist does not include Puneet Dixit.",
+      "nextAction": "No action unless a correction/additional shortlist appears."
+    },
+    {
+      "date": "2026-09-08",
+      "company": "Stellantis",
+      "role": "Internship – role allocation across CSE-related specializations",
+      "applicationStatus": "Need Info",
+      "evidence": "The official 7-Sep Stellantis registration deadline passed and no official evidence confirms Puneet submitted.",
+      "nextAction": "No action unless submission confirmation, shortlist, or reopened notice appears."
+    },
+    {
+      "date": "2026-09-04",
+      "company": "Warner Music Group",
+      "role": "Software Engineer",
+      "applicationStatus": "Applied",
+      "evidence": "Official Drive application sheet row 60 lists PUNEET DIXIT / 1RF23CS119 with a matching Software Engineer resume.",
+      "nextAction": "Wait for shortlist, assessment, interview, JD, compensation and deadline details."
+    }
+  ],
+  "recentDriveUpdates": [
+    {
+      "date": "2026-09-10",
+      "company": "Placement Tracker 2026",
+      "role": "Tracker synchronization",
+      "applicationStatus": "Updated",
+      "evidence": "Societe Generale remains Selected, with acceptance submission now explicitly unconfirmed after the 6:00 PM deadline and immediate follow-up required. The row's shifted trailing fields were corrected.",
+      "personalImpact": "Selection remains authoritative; acceptance requires immediate verification."
+    },
+    {
+      "date": "2026-09-09",
+      "company": "SAP Labs India",
+      "role": "GTM Global Delivery Hub – role/title TBD",
+      "applicationStatus": "Need Info",
+      "evidence": "Puneet-filled registration workbook and tailored resume exist in Drive. No official submission acknowledgement or hiring details found.",
+      "personalImpact": "Do not infer Applied from a filled registration copy."
+    }
+  ],
+  "recentRawUpdates": [
+    {
+      "date": "2026-09-09",
+      "company": "Cargill",
+      "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
+      "evidence": "Placement-cell message gives venue RVITM Campus, T&P Cell, 7th Floor, plus College ID, updated resume, formal attire and preparation requirements.",
+      "personalImpact": "Tracker and Calendar contain the venue/logistics; official 10:00 AM time remains unchanged."
+    },
+    {
+      "date": "2026-09-09",
+      "company": "UsefulBI",
+      "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
+      "evidence": "Full Stack Development / Generative AI drive: 4-month internship, ₹30,000/month, performance-based FTE at ₹7 LPA, Pune/Bangalore, deadline 9-Sep at 4:00 PM.",
+      "personalImpact": "Need Info; deadline passed and submission is unconfirmed."
+    },
+    {
+      "date": "2026-09-09",
+      "company": "GE Aerospace",
+      "source": "Private placement-raw-data WhatsApp archive / forwarded placement-channel item",
+      "evidence": "Forwarded Data Science Intern opportunity for Bengaluru with official GE Aerospace careers link.",
+      "personalImpact": "Need Info/raw-source-only; no official RVITM campus notice or personal application confirmation found."
+    },
+    {
+      "date": "2026-09-09",
+      "source": "Private placement-raw-data WhatsApp archive",
+      "evidence": "Several captured WhatsApp messages still have unsupported/unknown types with no readable text/caption.",
+      "personalImpact": "Do not promote unsupported messages without corroboration."
+    }
+  ],
+  "confirmedStates": {
+    "idfcFirstBank": "OA completed 10-Aug-2026; do not regress. Newer direct 22-Aug company communication closed the application as Not Selected while preserving completed-OA history.",
+    "inMobi": "Not Applicable – RVITM not considered; not a personal rejection.",
+    "sama": "Not Applied – registration form not filled.",
+    "bitGo": "Not Applicable to RVITM current process unless newer official communication reopens it; 12-Aug application-list evidence is historical only.",
+    "qualcomm": "Rejected/not selected for the concluded RVCE pool process; preserve prior INFRA SW Waitlist history.",
+    "bakerHughes": "Rejected/not selected for the concluded pool process; preserve confirmed registration/history.",
+    "cargill": "Shortlisted for Cargill Technical Interview on 11-Sep-2026 at 10:00 AM; venue RVITM Campus, T&P Cell, 7th Floor; College ID + updated resume + formal attire required.",
+    "societeGenerale": "Selected/placed in the Software Engineer track per explicit user confirmation on 9-Sep and official offer communication on 10-Sep. Acceptance was due 6:00 PM IST on 10-Sep; as of 6:59 PM Gmail does not confirm submission. Preserve Selected status and treat acceptance as unconfirmed, not rejected.",
+    "smartsheet": "Applied – Integration Engineering; proposed campus process 9–10 Sep 2026; exact times TBD.",
+    "warnerMusicGroup": "Applied – Software Engineer; official Drive application sheet confirms Puneet.",
+    "relyntisSoftware": "Need Info for personal application submission; official 4-Sep selection list does not include Puneet. Do not convert to Rejected or Not Applied without submission evidence.",
+    "eurofins": "Not Shortlisted for the current process; official 9-Sep shortlist excludes Puneet.",
+    "societeGeneraleDataScientist": "Not Shortlisted for the current interview process; official 8-Sep list excludes Puneet.",
+    "stellantis": "Need Info – official registration deadline passed 7-Sep-2026 at 3:00 PM IST; personal submission unconfirmed.",
+    "sapLabsIndia": "Need Info – Drive proves a filled registration copy and tailored resume, but official submission and hiring details are uncorroborated.",
+    "usefulBI": "Need Info – raw placement-channel notice dated 9-Sep; deadline passed and personal submission is unconfirmed.",
+    "geAerospace": "Need Info – forwarded raw placement-channel Data Science Intern opportunity with official careers link; no official RVITM campus notice or personal application confirmation found.",
+    "gnaniAi": "Not Applied / historical only – tracker records that Puneet decided not to apply. Official 10-Sep shortlist does not include him and must not be converted into a rejection."
+  },
+  "sourcePriority": "Explicit user-confirmed state > newer official placement/company communication > official Drive evidence > raw WhatsApp archive > existing site state."
+}
