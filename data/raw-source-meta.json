@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-09-10T19:00:00+05:30",
+  "lastUpdated": "2026-09-11T13:02:00+05:30",
   "rawDataThrough": "2026-09-09",
   "rawSourceLatestCommit": "720b245f783c8c1be497c0818e7929fa4ff9bfb6",
   "rawSourceLatestCommitAt": "2026-09-09T23:07:43+05:30",
   "rawSourceLatestDataCommit": "720b245f783c8c1be497c0818e7929fa4ff9bfb6",
   "rawSourceLatestDataCommitAt": "2026-09-09T23:07:43+05:30",
-  "rawSourceFreshness": "The private WhatsApp archive is current through 9-Sep-2026 at commit 720b245f783c8c1be497c0818e7929fa4ff9bfb6 (11:07:43 PM IST on 9-Sep). Official placement activity continued on 10-Sep, including Societe Generale acceptance communication and a Gnani.ai shortlist update, so the raw archive has a same-day freshness gap. Treat this as a source-freshness limitation, not proof that the ingestion pipeline is broken. The archive remains corroborating evidence below newer official Gmail/Drive and explicit user confirmations, and some captured WhatsApp messages still have unsupported/unknown types.",
+  "rawSourceFreshness": "The private WhatsApp archive is still current only through 9-Sep-2026 at commit 720b245f783c8c1be497c0818e7929fa4ff9bfb6 (11:07:43 PM IST on 9-Sep). Official placement activity continued on 10-Sep and 11-Sep, including Societe Generale acceptance communication, Gnani.ai shortlist activity, and the 11-Sep Eurofins final selection. The raw archive therefore has a material multi-day freshness gap. Treat this as a source-freshness limitation, not proof that the ingestion pipeline is broken. The archive remains corroborating evidence below newer official Gmail/Drive and explicit user confirmations, and some captured WhatsApp messages still have unsupported/unknown types.",
   "latestUserConfirmedUpdate": {
     "date": "2026-09-09",
     "company": "Societe Generale Global Solutions",
@@ -15,28 +15,36 @@
     "nextAction": "Selection remains confirmed. Verify whether the formal acceptance letter was submitted before the 6:00 PM IST deadline on 10-Sep-2026; if not, contact the placement cell/Societe Generale contact immediately for guidance, then await formal offer/onboarding communication."
   },
   "latestOfficialUpdate": {
-    "date": "2026-09-10",
-    "company": "Societe Generale Global Solutions",
-    "role": "Software Engineer",
-    "applicationStatus": "Selected / offer extended; acceptance unconfirmed after deadline",
-    "evidence": "Official Societe Generale/RVCE communication required selected candidates to share formal acceptance by 6:00 PM IST on 10-Sep-2026. As of 6:59 PM IST, Gmail contains no sent or received evidence confirming Puneet's acceptance; the 4:21 PM placement-executive reply attached acceptance letters from two other students only. Missing email evidence must not be treated as rejection.",
-    "nextAction": "Immediately verify whether acceptance was submitted before 6:00 PM. If not, contact the placement cell/Societe Generale contact and request acceptance guidance."
+    "date": "2026-09-11",
+    "company": "Eurofins",
+    "role": "Associate Software Engineer",
+    "applicationStatus": "Not Selected",
+    "evidence": "Official RVITM Placement email published the final Eurofins selection after the 9-10 Sep campus process. Four students were selected and Puneet is not among them, finalizing the earlier Not Shortlisted state as Not Selected.",
+    "nextAction": "No Eurofins action unless RVITM/Eurofins publishes a corrected or additional selection involving Puneet."
   },
   "latestDriveUpdate": {
-    "date": "2026-09-10",
+    "date": "2026-09-11",
     "company": "Placement Tracker 2026",
-    "role": "Source tracker synchronization",
+    "role": "Eurofins tracker synchronization",
     "applicationStatus": "Updated",
-    "evidence": "The Societe Generale Software Engineer row remains Selected but now records that the formal acceptance deadline has passed and submission is unconfirmed. Priority was raised to High and the next action is immediate verification/follow-up. The malformed extra value in column W was cleared and row fields K:V were realigned to their intended tracker columns.",
-    "nextAction": "Preserve Selected status; verify acceptance submission immediately."
+    "evidence": "Eurofins was advanced from Not Shortlisted to Not Selected after the official 11-Sep final selection list confirmed four other students. Earlier shortlist history was preserved.",
+    "nextAction": "No action unless a corrected/additional Eurofins selection appears."
   },
   "recentOfficialUpdates": [
+    {
+      "date": "2026-09-11",
+      "company": "Eurofins",
+      "role": "Associate Software Engineer",
+      "applicationStatus": "Not Selected",
+      "evidence": "Official RVITM Placement email confirms four final Eurofins selections: Yashika M Gowda, Tejas NG, V. Rethash Dev Reddy, and Varshitha N. Puneet is not listed.",
+      "nextAction": "No action unless a corrected/additional selection appears."
+    },
     {
       "date": "2026-09-10",
       "company": "Societe Generale Global Solutions",
       "role": "Software Engineer",
       "applicationStatus": "Selected / offer extended; acceptance unconfirmed after deadline",
-      "evidence": "Official selected-candidates communication required acceptance by 6:00 PM IST on 10-Sep. Gmail still has no confirmation that Puneet's acceptance was submitted as of 6:59 PM.",
+      "evidence": "Official selected-candidates communication required acceptance by 6:00 PM IST on 10-Sep. Gmail still has no confirmation that Puneet's acceptance was submitted as of the last verification.",
       "nextAction": "Verify acceptance submission immediately; if absent, contact placement cell/Societe Generale."
     },
     {
@@ -61,7 +69,7 @@
       "role": "Associate Software Engineer",
       "applicationStatus": "Not Shortlisted",
       "evidence": "Official RVITM placement email published the 17-student Technical Interview shortlist for 10-Sep-2026; Puneet is not listed.",
-      "nextAction": "No action unless a corrected/additional shortlist appears."
+      "nextAction": "Superseded by the 11-Sep final selection list."
     },
     {
       "date": "2026-09-09",
@@ -69,7 +77,7 @@
       "role": "DT&D Internship Program – Software Engineer pathway",
       "applicationStatus": "Shortlisted",
       "evidence": "Official RVITM email and attached final shortlist explicitly include Puneet Dixit at rank 3 for the Cargill Technical Interview on 11-Sep-2026. Original official schedule gives 10:00 AM start.",
-      "nextAction": "Report 11-Sep at 10:00 AM to RVITM Campus, T&P Cell, 7th Floor. Carry College ID and updated resume, wear formal attire, and prioritize Cargill over other recruitment processes that day."
+      "nextAction": "Await a confirmed interview outcome or newer official communication; do not infer selection/rejection from elapsed schedule time."
     },
     {
       "date": "2026-09-09",
@@ -106,12 +114,20 @@
   ],
   "recentDriveUpdates": [
     {
+      "date": "2026-09-11",
+      "company": "Placement Tracker 2026",
+      "role": "Eurofins tracker synchronization",
+      "applicationStatus": "Updated",
+      "evidence": "The Eurofins row now records Not Selected and cites the official 11-Sep final-selection email while preserving the earlier not-shortlisted history.",
+      "personalImpact": "Eurofins current process is closed for Puneet."
+    },
+    {
       "date": "2026-09-10",
       "company": "Placement Tracker 2026",
       "role": "Tracker synchronization",
       "applicationStatus": "Updated",
-      "evidence": "Societe Generale remains Selected, with acceptance submission now explicitly unconfirmed after the 6:00 PM deadline and immediate follow-up required. The row's shifted trailing fields were corrected.",
-      "personalImpact": "Selection remains authoritative; acceptance requires immediate verification."
+      "evidence": "Societe Generale remains Selected, with acceptance submission explicitly unconfirmed after the 6:00 PM deadline and immediate follow-up required. The row's shifted trailing fields were corrected.",
+      "personalImpact": "Selection remains authoritative; acceptance requires verification."
     },
     {
       "date": "2026-09-09",
@@ -158,12 +174,12 @@
     "bitGo": "Not Applicable to RVITM current process unless newer official communication reopens it; 12-Aug application-list evidence is historical only.",
     "qualcomm": "Rejected/not selected for the concluded RVCE pool process; preserve prior INFRA SW Waitlist history.",
     "bakerHughes": "Rejected/not selected for the concluded pool process; preserve confirmed registration/history.",
-    "cargill": "Shortlisted for Cargill Technical Interview on 11-Sep-2026 at 10:00 AM; venue RVITM Campus, T&P Cell, 7th Floor; College ID + updated resume + formal attire required.",
-    "societeGenerale": "Selected/placed in the Software Engineer track per explicit user confirmation on 9-Sep and official offer communication on 10-Sep. Acceptance was due 6:00 PM IST on 10-Sep; as of 6:59 PM Gmail does not confirm submission. Preserve Selected status and treat acceptance as unconfirmed, not rejected.",
+    "cargill": "Shortlisted for Cargill Technical Interview scheduled 11-Sep-2026 at 10:00 AM, venue RVITM Campus, T&P Cell, 7th Floor. As of the 11-Sep 13:02 sync there is no newer official outcome; do not infer selection or rejection from elapsed time.",
+    "societeGenerale": "Selected/placed in the Software Engineer track per explicit user confirmation on 9-Sep and official offer communication on 10-Sep. Acceptance was due 6:00 PM IST on 10-Sep; Gmail has not confirmed submission. Preserve Selected status and treat acceptance as unconfirmed, not rejected.",
     "smartsheet": "Applied – Integration Engineering; proposed campus process 9–10 Sep 2026; exact times TBD.",
     "warnerMusicGroup": "Applied – Software Engineer; official Drive application sheet confirms Puneet.",
     "relyntisSoftware": "Need Info for personal application submission; official 4-Sep selection list does not include Puneet. Do not convert to Rejected or Not Applied without submission evidence.",
-    "eurofins": "Not Shortlisted for the current process; official 9-Sep shortlist excludes Puneet.",
+    "eurofins": "Not Selected for the concluded current process; official 9-Sep technical-interview shortlist excluded Puneet and the official 11-Sep final selection lists four other students.",
     "societeGeneraleDataScientist": "Not Shortlisted for the current interview process; official 8-Sep list excludes Puneet.",
     "stellantis": "Need Info – official registration deadline passed 7-Sep-2026 at 3:00 PM IST; personal submission unconfirmed.",
     "sapLabsIndia": "Need Info – Drive proves a filled registration copy and tailored resume, but official submission and hiring details are uncorroborated.",
