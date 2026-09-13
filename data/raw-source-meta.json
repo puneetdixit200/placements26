@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-09-11T13:02:00+05:30",
-  "rawDataThrough": "2026-09-09",
-  "rawSourceLatestCommit": "720b245f783c8c1be497c0818e7929fa4ff9bfb6",
-  "rawSourceLatestCommitAt": "2026-09-09T23:07:43+05:30",
-  "rawSourceLatestDataCommit": "720b245f783c8c1be497c0818e7929fa4ff9bfb6",
-  "rawSourceLatestDataCommitAt": "2026-09-09T23:07:43+05:30",
-  "rawSourceFreshness": "The private WhatsApp archive is still current only through 9-Sep-2026 at commit 720b245f783c8c1be497c0818e7929fa4ff9bfb6 (11:07:43 PM IST on 9-Sep). Official placement activity continued on 10-Sep and 11-Sep, including Societe Generale acceptance communication, Gnani.ai shortlist activity, and the 11-Sep Eurofins final selection. The raw archive therefore has a material multi-day freshness gap. Treat this as a source-freshness limitation, not proof that the ingestion pipeline is broken. The archive remains corroborating evidence below newer official Gmail/Drive and explicit user confirmations, and some captured WhatsApp messages still have unsupported/unknown types.",
+  "lastUpdated": "2026-09-13T06:57:49+05:30",
+  "rawDataThrough": "2026-09-12",
+  "rawSourceLatestCommit": "61d2a6198a8d273ba76eb72d922c7eb1fd34559e",
+  "rawSourceLatestCommitAt": "2026-09-12T21:22:17+05:30",
+  "rawSourceLatestDataCommit": "61d2a6198a8d273ba76eb72d922c7eb1fd34559e",
+  "rawSourceLatestDataCommitAt": "2026-09-12T21:22:17+05:30",
+  "rawSourceFreshness": "The private WhatsApp archive recovered on 12-Sep-2026 and now covers placement messages through 12-Sep at commit 61d2a6198a8d273ba76eb72d922c7eb1fd34559e (9:22:17 PM IST). This closes the prior multi-day freshness gap. The archive remains corroborating evidence below explicit user confirmations and newer official Gmail/Drive evidence, and the 12-Sep capture still contains several unsupported/unknown WhatsApp message types with no readable text/caption.",
   "latestUserConfirmedUpdate": {
     "date": "2026-09-09",
     "company": "Societe Generale Global Solutions",
@@ -15,22 +15,46 @@
     "nextAction": "Selection remains confirmed. Verify whether the formal acceptance letter was submitted before the 6:00 PM IST deadline on 10-Sep-2026; if not, contact the placement cell/Societe Generale contact immediately for guidance, then await formal offer/onboarding communication."
   },
   "latestOfficialUpdate": {
-    "date": "2026-09-11",
-    "company": "Eurofins",
-    "role": "Associate Software Engineer",
-    "applicationStatus": "Not Selected",
-    "evidence": "Official RVITM Placement email published the final Eurofins selection after the 9-10 Sep campus process. Four students were selected and Puneet is not among them, finalizing the earlier Not Shortlisted state as Not Selected.",
-    "nextAction": "No Eurofins action unless RVITM/Eurofins publishes a corrected or additional selection involving Puneet."
+    "date": "2026-09-13",
+    "company": "HSBC Technology India / Prodapt / UsefulBI",
+    "role": "Tracker cross-check from recovered RVITM placement messages and official registration sheets",
+    "applicationStatus": "Tracker synchronized",
+    "evidence": "Recovered 11-Sep RVITM placement messages exposed HSBC and Prodapt drives plus a UsefulBI registered-student follow-up. Official Google registration sheets were cross-checked: Puneet is absent from HSBC and UsefulBI after their deadlines; Puneet is also absent from the current Prodapt registration workbook, but the recovered Prodapt notice did not state a registration deadline.",
+    "nextAction": "HSBC and UsefulBI are closed as Not Applied unless reopened. Prodapt remains Need Info because round dates are upcoming but no registration cutoff was found; if registration is still open, submit immediately."
   },
   "latestDriveUpdate": {
-    "date": "2026-09-11",
+    "date": "2026-09-13",
     "company": "Placement Tracker 2026",
-    "role": "Eurofins tracker synchronization",
+    "role": "Raw-recovery synchronization",
     "applicationStatus": "Updated",
-    "evidence": "Eurofins was advanced from Not Shortlisted to Not Selected after the official 11-Sep final selection list confirmed four other students. Earlier shortlist history was preserved.",
-    "nextAction": "No action unless a corrected/additional Eurofins selection appears."
+    "evidence": "UsefulBI was advanced from Need Info to Not Applied using the official registration sheet. New Prodapt and HSBC Technology India rows were added; HSBC is Not Applied after the 12-Sep 9:00 AM deadline and official-sheet cross-check, while Prodapt remains Need Info because no registration deadline was recovered.",
+    "nextAction": "Monitor Prodapt registration/shortlisting and any newer official communication; preserve HSBC/UsefulBI as Not Applied unless reopened."
   },
   "recentOfficialUpdates": [
+    {
+      "date": "2026-09-13",
+      "company": "HSBC Technology India",
+      "role": "Trainee Software Engineer – Emerging Talent Graduate Programme",
+      "applicationStatus": "Not Applied",
+      "evidence": "RVITM placement-channel notice set registration deadline at 12-Sep-2026 9:00 AM. The official HSBC registration sheet contains no Puneet entry after the deadline.",
+      "nextAction": "No action unless HSBC/RVITM reopens or corrects the registration list."
+    },
+    {
+      "date": "2026-09-13",
+      "company": "UsefulBI",
+      "role": "Full Stack Development / Generative AI",
+      "applicationStatus": "Not Applied",
+      "evidence": "A recovered 11-Sep follow-up asked registered students to update profile preference by 8:00 PM. The official UsefulBI registration workbook contains no Puneet entry, superseding the previous Need Info state.",
+      "nextAction": "No action unless UsefulBI/RVITM reopens registration."
+    },
+    {
+      "date": "2026-09-13",
+      "company": "Prodapt",
+      "role": "Campus Recruitment – Dream / Super Dream software roles",
+      "applicationStatus": "Need Info",
+      "evidence": "Recovered 11-Sep RVITM placement notice gives 17-Sep PPT/assessment, 19-Sep hackathon and 20-Sep technical interview. The official Prodapt registration workbook currently contains no Puneet entry, but the recovered notice provides no registration cutoff.",
+      "nextAction": "If registration remains open and interested, submit immediately; do not treat round dates as personally applicable until registration/shortlisting is confirmed."
+    },
     {
       "date": "2026-09-11",
       "company": "Eurofins",
@@ -114,6 +138,14 @@
   ],
   "recentDriveUpdates": [
     {
+      "date": "2026-09-13",
+      "company": "Placement Tracker 2026",
+      "role": "UsefulBI / Prodapt / HSBC synchronization",
+      "applicationStatus": "Updated",
+      "evidence": "UsefulBI is now Not Applied after official-sheet verification; Prodapt and HSBC were added from recovered RVITM placement data and official registration workbooks.",
+      "personalImpact": "HSBC and UsefulBI are closed as Not Applied; Prodapt remains Need Info with 17/19/20-Sep round dates but no recovered registration deadline."
+    },
+    {
       "date": "2026-09-11",
       "company": "Placement Tracker 2026",
       "role": "Eurofins tracker synchronization",
@@ -140,18 +172,38 @@
   ],
   "recentRawUpdates": [
     {
+      "date": "2026-09-12",
+      "source": "Private placement-raw-data WhatsApp archive",
+      "evidence": "Ingestion recovered through 12-Sep at commit 61d2a6198a8d273ba76eb72d922c7eb1fd34559e, adding 10-Sep, 11-Sep and 12-Sep incoming folders.",
+      "personalImpact": "Previous multi-day source-freshness warning is cleared; raw data can again be used as timely corroborating evidence, subject to unsupported message types."
+    },
+    {
+      "date": "2026-09-11",
+      "company": "HSBC Technology India",
+      "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
+      "evidence": "Trainee Software Engineer FTE drive, ₹16,34,123 annual CTC, 12-Sep 9:00 AM registration deadline, 16-Sep PPT/assessments and 29-Sep interviews; Engineering and Data JDs were attached.",
+      "personalImpact": "Official registration sheet contains no Puneet entry after deadline, so tracker records Not Applied."
+    },
+    {
+      "date": "2026-09-11",
+      "company": "Prodapt",
+      "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
+      "evidence": "Campus drive announced for 17-Sep PPT/assessment, 19-Sep hackathon and 20-Sep technical interview; Dream ₹8 LPA and Super Dream ₹10 LPA. Sample assessment and candidate guide were attached.",
+      "personalImpact": "Official registration workbook has no Puneet entry; no registration deadline was recovered, so tracker remains Need Info."
+    },
+    {
+      "date": "2026-09-11",
+      "company": "UsefulBI",
+      "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
+      "evidence": "Follow-up instructed registered students to update profile preference to Full Stack, Gen AI or Both by 8:00 PM.",
+      "personalImpact": "Official registration workbook contains no Puneet entry, allowing the prior Need Info state to be resolved as Not Applied."
+    },
+    {
       "date": "2026-09-09",
       "company": "Cargill",
       "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
       "evidence": "Placement-cell message gives venue RVITM Campus, T&P Cell, 7th Floor, plus College ID, updated resume, formal attire and preparation requirements.",
       "personalImpact": "Tracker and Calendar contain the venue/logistics; official 10:00 AM time remains unchanged."
-    },
-    {
-      "date": "2026-09-09",
-      "company": "UsefulBI",
-      "source": "Private placement-raw-data WhatsApp archive / RVITM Placements 2027",
-      "evidence": "Full Stack Development / Generative AI drive: 4-month internship, ₹30,000/month, performance-based FTE at ₹7 LPA, Pune/Bangalore, deadline 9-Sep at 4:00 PM.",
-      "personalImpact": "Need Info; deadline passed and submission is unconfirmed."
     },
     {
       "date": "2026-09-09",
@@ -161,10 +213,10 @@
       "personalImpact": "Need Info/raw-source-only; no official RVITM campus notice or personal application confirmation found."
     },
     {
-      "date": "2026-09-09",
+      "date": "2026-09-12",
       "source": "Private placement-raw-data WhatsApp archive",
-      "evidence": "Several captured WhatsApp messages still have unsupported/unknown types with no readable text/caption.",
-      "personalImpact": "Do not promote unsupported messages without corroboration."
+      "evidence": "Several 12-Sep captured WhatsApp messages remain unsupported/unknown types with no readable text/caption.",
+      "personalImpact": "Do not promote unreadable messages without corroboration."
     }
   ],
   "confirmedStates": {
@@ -174,7 +226,7 @@
     "bitGo": "Not Applicable to RVITM current process unless newer official communication reopens it; 12-Aug application-list evidence is historical only.",
     "qualcomm": "Rejected/not selected for the concluded RVCE pool process; preserve prior INFRA SW Waitlist history.",
     "bakerHughes": "Rejected/not selected for the concluded pool process; preserve confirmed registration/history.",
-    "cargill": "Shortlisted for Cargill Technical Interview scheduled 11-Sep-2026 at 10:00 AM, venue RVITM Campus, T&P Cell, 7th Floor. As of the 11-Sep 13:02 sync there is no newer official outcome; do not infer selection or rejection from elapsed time.",
+    "cargill": "Shortlisted for Cargill Technical Interview scheduled 11-Sep-2026 at 10:00 AM, venue RVITM Campus, T&P Cell, 7th Floor. No newer confirmed outcome has been found; do not infer selection or rejection from elapsed time.",
     "societeGenerale": "Selected/placed in the Software Engineer track per explicit user confirmation on 9-Sep and official offer communication on 10-Sep. Acceptance was due 6:00 PM IST on 10-Sep; Gmail has not confirmed submission. Preserve Selected status and treat acceptance as unconfirmed, not rejected.",
     "smartsheet": "Applied – Integration Engineering; proposed campus process 9–10 Sep 2026; exact times TBD.",
     "warnerMusicGroup": "Applied – Software Engineer; official Drive application sheet confirms Puneet.",
@@ -183,8 +235,10 @@
     "societeGeneraleDataScientist": "Not Shortlisted for the current interview process; official 8-Sep list excludes Puneet.",
     "stellantis": "Need Info – official registration deadline passed 7-Sep-2026 at 3:00 PM IST; personal submission unconfirmed.",
     "sapLabsIndia": "Need Info – Drive proves a filled registration copy and tailored resume, but official submission and hiring details are uncorroborated.",
-    "usefulBI": "Need Info – raw placement-channel notice dated 9-Sep; deadline passed and personal submission is unconfirmed.",
+    "usefulBI": "Not Applied – official registration workbook contains no Puneet entry after the registration and profile-preference deadlines.",
     "geAerospace": "Need Info – forwarded raw placement-channel Data Science Intern opportunity with official careers link; no official RVITM campus notice or personal application confirmation found.",
+    "prodapt": "Need Info – recovered RVITM campus-drive notice has 17/19/20-Sep process dates and an official registration sheet with no Puneet entry, but no registration deadline was recovered.",
+    "hsbcTechnologyIndia": "Not Applied – RVITM notice deadline was 12-Sep-2026 9:00 AM and the official registration sheet contains no Puneet entry after cutoff.",
     "gnaniAi": "Not Applied / historical only – tracker records that Puneet decided not to apply. Official 10-Sep shortlist does not include him and must not be converted into a rejection."
   },
   "sourcePriority": "Explicit user-confirmed state > newer official placement/company communication > official Drive evidence > raw WhatsApp archive > existing site state."
